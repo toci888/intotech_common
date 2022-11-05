@@ -5,19 +5,19 @@ VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common", "Intotech.Common\Intotech.Common.csproj", "{883EA103-3349-4C67-9872-967C91B473B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Common.Bll", "Intotech.Common.Bll\Intotech.Common.Bll.csproj", "{C68C3CE2-F9CD-4A47-8863-41B4990487D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Bll", "Intotech.Common.Bll\Intotech.Common.Bll.csproj", "{C68C3CE2-F9CD-4A47-8863-41B4990487D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Common.Bll.Interfaces", "Intotech.Common.Bll.Interfaces\Intotech.Common.Bll.Interfaces.csproj", "{F7C3429A-D94A-4D98-BC5E-FB0FF1ACBB3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Bll.Interfaces", "Intotech.Common.Bll.Interfaces\Intotech.Common.Bll.Interfaces.csproj", "{F7C3429A-D94A-4D98-BC5E-FB0FF1ACBB3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Common.Database", "Toci.Common.Database\Intotech.Common.Database.csproj", "{A92A0E16-A3B4-4EC8-AB45-005DE8393506}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Database", "Toci.Common.Database\Intotech.Common.Database.csproj", "{A92A0E16-A3B4-4EC8-AB45-005DE8393506}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Common.Database.Interfaces", "Intotech.Common.Database.Interfaces\Intotech.Common.Database.Interfaces.csproj", "{9CC2C525-2D3E-4A19-B0F4-9DC5F25CD2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Database.Interfaces", "Intotech.Common.Database.Interfaces\Intotech.Common.Database.Interfaces.csproj", "{9CC2C525-2D3E-4A19-B0F4-9DC5F25CD2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Common.Microservices", "Intotech.Common.Microservices\Intotech.Common.Microservices.csproj", "{8DA9DA21-FAFE-459C-BDCD-4A485B6E695A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Microservices", "Intotech.Common.Microservices\Intotech.Common.Microservices.csproj", "{8DA9DA21-FAFE-459C-BDCD-4A485B6E695A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Common.Microservices.Interfaces", "Intotech.Common.Microservices.Interfaces\Intotech.Common.Microservices.Interfaces.csproj", "{38F6BDBA-5206-4AD1-A1B4-780B838726B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Microservices.Interfaces", "Intotech.Common.Microservices.Interfaces\Intotech.Common.Microservices.Interfaces.csproj", "{38F6BDBA-5206-4AD1-A1B4-780B838726B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.ExcelLibrary.Extensions", "Intotech.ExcelLibrary.Extensions\Intotech.ExcelLibrary.Extensions.csproj", "{46710E03-D11A-41B3-9CAB-8213F942E973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.ExcelLibrary.Extensions", "Intotech.ExcelLibrary.Extensions\Intotech.ExcelLibrary.Extensions.csproj", "{46710E03-D11A-41B3-9CAB-8213F942E973}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

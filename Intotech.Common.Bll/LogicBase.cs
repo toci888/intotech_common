@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using System.Net.Mail;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Database;
 using Intotech.Common.Database.Interfaces;

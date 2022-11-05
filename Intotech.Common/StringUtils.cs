@@ -1,4 +1,7 @@
-﻿namespace Intotech.Common;
+﻿using System.Security.Cryptography;
+using System.Text;
+
+namespace Intotech.Common;
 
 public static class StringUtils
 {
@@ -30,5 +33,22 @@ public static class StringUtils
     public static bool IsEmail(string candidate)
     {
         return candidate.Contains("@");
+    }
+
+    public static string HashPassword(string password)
+    {
+        if (password == null)
+        {
+            return null;
+        }
+
+        SHA256 algorithm = SHA256.Create();
+        StringBuilder sb = new StringBuilder();
+        foreach (Byte b in algorithm.ComputeHash(Encoding.UTF8.GetBytes(password)))
+        {
+            sb.Append(b.ToString("X2"));
+        }
+
+        return sb.ToString();
     }
 }
