@@ -7,6 +7,19 @@ public static class StringUtils
 {
     private static Random randomizer = new Random();
     private static string alphabet = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()_+";
+    private static string alphabetLetters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+
+    public static string GetRandomText(int maxLength)
+    {
+        string result = string.Empty;
+
+        for (int i = 0; i < randomizer.Next(5, maxLength); i++)
+        {
+            result += alphabetLetters[randomizer.Next(0, alphabetLetters.Length - 1)];
+        }
+
+        return result;
+    }
 
     public static string GetRandomString(int maxLength)
     {
