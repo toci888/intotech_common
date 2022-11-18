@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Intotech.Common.Bll.Interfaces;
+using {ModelPersistenceUsingEx};
+
+
+namespace {KeyNamespaceEx}
+{
+    public interface I{FileNameEx}Logic : ILogicBase<{FileNameEx}>
+    {
+
+    }
+}
