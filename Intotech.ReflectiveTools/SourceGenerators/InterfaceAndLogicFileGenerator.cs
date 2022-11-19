@@ -13,6 +13,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators
             //DirectoryInfo dirInfo = new DirectoryInfo(destDirectory);
 
             string interfaceSkeleton = string.Empty;
+            string addScopedCode = string.Empty;
 
             if (interf)
             {
@@ -39,6 +40,13 @@ namespace Intotech.ReflectiveTools.SourceGenerators
                 {
                     File.WriteAllText(destDirectory + "/" + fileModel + "Logic.cs", interfaceGen);
                 }
+
+                addScopedCode += "builder.Services.AddScoped<I" + fileModel + "Logic, " + fileModel + "Logic>();" + Environment.NewLine;
+            }
+
+            if (!File.Exists(destDirectory + "/scopes.txt"))
+            {
+                File.WriteAllText(destDirectory + "/scopes.txt", addScopedCode);
             }
         }
     }
