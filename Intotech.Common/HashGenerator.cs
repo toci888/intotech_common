@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Intotech.Common;
 
-public class HashGenerator
+public static class HashGenerator
 {
     public static string Md5(string text)
     {
@@ -26,5 +26,22 @@ public class HashGenerator
 
             return hash;
         }
+    }
+
+    public static string HashSHA256(string item)
+    {
+        if (item == null)
+        {
+            return null;
+        }
+
+        SHA256 algorithm = SHA256.Create();
+        StringBuilder sb = new StringBuilder();
+        foreach (Byte b in algorithm.ComputeHash(Encoding.UTF8.GetBytes(item)))
+        {
+            sb.Append(b.ToString("X2"));
+        }
+
+        return sb.ToString();
     }
 }
