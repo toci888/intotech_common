@@ -2,11 +2,11 @@
 
 namespace Intotech.Common.Microservices;
 
-public abstract class ApiSimpleControllerBase<TLogic> : ControllerBase
+public abstract class ApiSimpleControllerBase<TService> : ControllerBase
 {
-    protected TLogic Logic;
-    protected ApiSimpleControllerBase(TLogic logic)
+    protected TService Service;
+    protected ApiSimpleControllerBase(TService service)
     {
-        Logic = logic;
+        Service = service;
     }
 }
