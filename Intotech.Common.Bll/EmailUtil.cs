@@ -20,7 +20,8 @@ public class EmailUtil : IEmailUtil
 
         bodyBuilder.HtmlBody = content.Body;
 
-        foreach (string emailTo in content.EmailTo)
+        //foreach (string emailTo in content.EmailTo)
+        string emailTo = content.EmailTo;
         {
             MimeMessage message = new MimeMessage();
             message.From.Add(new MailboxAddress(content.From, Settings.AdminLoginAddress)); //content.EmailFrom
