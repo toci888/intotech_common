@@ -7,6 +7,7 @@ namespace Intotech.Common.Database;
 public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
 {
     protected DbContext DatabaseHandle;
+    private static object LockObj = new object();
 
     public DbHandle(Func<DbContext> databaseHandle)
     {
@@ -15,7 +16,9 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
 
     public int Delete(TModel model)
     {
-        DatabaseHandle.Remove(model);
+        lock (LockObj)
+        {
+            DatabaseHandle.Remove(model);
 
         DatabaseHandle.SaveChanges();
 
@@ -26,34 +29,43 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
 
     public TModel Insert(TModel model)
     {
-        // insert into product (id, ....)
-        EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
+        lock (LockObj)
+        {
+            // insert into product (id, ....)
+            EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
 
-        DatabaseHandle.SaveChanges();
+            DatabaseHandle.SaveChanges();
 
-        // DatabaseHandle?.Dispose();
+            // DatabaseHandle?.Dispose();
 
-        return (TModel)(entr.Entity);
+            return (TModel)(entr.Entity);
+        }
     }
 
     public IQueryable<TModel> Select()
     {
-        IQueryable<TModel> result = DatabaseHandle.Set<TModel>().AsQueryable().AsNoTracking();
+        lock (LockObj)
+        {
+            IQueryable<TModel> result = DatabaseHandle.Set<TModel>().AsQueryable().AsNoTracking();
 
-        //DatabaseHandle.Dispose();
+            //DatabaseHandle.Dispose();
 
-        return result;
+            return result;
+        }
     }
 
     public TModel Update(TModel model)
     {
-        DatabaseHandle.Update(model);
+        lock (LockObj)
+        {
+            DatabaseHandle.Update(model);
 
         DatabaseHandle.SaveChanges();
 
-        //  DatabaseHandle?.Dispose();
+            //  DatabaseHandle?.Dispose();
 
-        return model;
+            return model;
+        }
     }
 
     public void Dispose()
