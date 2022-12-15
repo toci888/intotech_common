@@ -17,7 +17,7 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
     {
         DatabaseHandle.Remove(model);
 
-        DatabaseHandle.SaveChangesAsync();
+        DatabaseHandle.SaveChanges();
 
         // DatabaseHandle?.Dispose();
 
@@ -49,7 +49,7 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
     {
         DatabaseHandle.Update(model);
 
-        DatabaseHandle.SaveChangesAsync();
+        DatabaseHandle.SaveChanges();
 
         //  DatabaseHandle?.Dispose();
 
