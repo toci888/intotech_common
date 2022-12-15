@@ -20,11 +20,12 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
         {
             DatabaseHandle.Remove(model);
 
-        DatabaseHandle.SaveChanges();
+            DatabaseHandle.SaveChanges();
 
-        // DatabaseHandle?.Dispose();
+            // DatabaseHandle?.Dispose();
 
-        return 1;
+            return 1;
+        }
     }
 
     public TModel Insert(TModel model)
