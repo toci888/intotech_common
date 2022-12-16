@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Net.Mail;
 
 namespace Intotech.Common;
 
@@ -63,5 +64,19 @@ public static class StringUtils
         }
 
         return sb.ToString();
+    }
+
+    public static bool IsEmailAddress(string emailCandidate)
+    {
+        try
+        {
+            MailAddress emailAddress = new MailAddress(emailCandidate);
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
