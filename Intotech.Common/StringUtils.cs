@@ -9,7 +9,37 @@ public static class StringUtils
     private static Random randomizer = new Random();
     private static string alphabet = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890!@#$%^&*()_+";
     private static string alphabetLetters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+    private static string vowel = "eyuioa";
+    private static string consonant = "qwrtpsdfghjklzxcvbnm";
+    public static string VowelConsonants(int length)
+    {
+        Random rnd = new Random();
+        string returned = string.Empty;
+        for (int i = 0; i < length; i++)
+        {
+            if (i % 2 == 1)
+            {
+                returned += vowel[rnd.Next(0, vowel.Length - 1)];
+            }
+            else
+            {
+                returned += consonant[rnd.Next(0, consonant.Length - 1)];
+            }
+        }
 
+        return returned;
+    }
+
+    public static string CreateChat(int wordCount)
+    {
+        Random rnd = new Random();
+        string result = string.Empty;
+        for (int i = 0; i < wordCount; i++)
+        {
+            result += VowelConsonants(rnd.Next(4, 11)) + " ";
+        }
+        return result;
+    }
     public static string GetRandomText(int maxLength)
     {
         string result = string.Empty;
