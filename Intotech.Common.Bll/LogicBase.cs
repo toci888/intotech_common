@@ -47,4 +47,6 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : clas
     {
         return DbHandle.Delete(model);
     }
+
+    //public abstract int DeleteByColumnId(string column, int whereId);
 }
