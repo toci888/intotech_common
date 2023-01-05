@@ -7,7 +7,7 @@ namespace Intotech.Common.Database;
 public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
 {
     protected DbContext DatabaseHandle;
-    private static object LockObj = new object();
+    private readonly object LockObj = new object();
 
     public DbHandle(Func<DbContext> databaseHandle)
     {
@@ -61,7 +61,7 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
         {
             DatabaseHandle.Update(model);
 
-        DatabaseHandle.SaveChanges();
+            DatabaseHandle.SaveChanges();
 
             //  DatabaseHandle?.Dispose();
 
