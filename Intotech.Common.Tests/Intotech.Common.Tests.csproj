@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Intotech.Common.Bll\Intotech.Common.Bll.csproj" />
+    <ProjectReference Include="..\Intotech.Common\Intotech.Common.csproj" />
   </ItemGroup>
 
 </Project>
