@@ -77,6 +77,27 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
         }
     }
 
+    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
+    {
+        Connection = new NpgsqlConnection();
+        Connection.ConnectionString = ConnectionString;
+        Connection.Open();
+
+        NpgsqlCommand command = Connection.CreateCommand();
+        command.CommandText = selectQuery;
+
+        NpgsqlDataReader reader = command.ExecuteReader();
+
+        List<TModel> result = new List<TModel>();
+
+        while (reader.Read())
+        {
+            result.Add(mapperDelegate(reader));
+        }
+
+        return result;
+    }
+
     public IQueryable<TModel> Select()
     {
         lock (LockObj)

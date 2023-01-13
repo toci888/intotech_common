@@ -3,6 +3,7 @@ using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Database;
 using Intotech.Common.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace Intotech.Common.Bll;
 
@@ -21,6 +22,11 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : clas
         DbHandle = new DbHandle<TModel>(GetEfHandle, connectionString);
     }
 
+
+    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
+    {
+        return DbHandle.RawSelect(selectQuery, mapperDelegate);
+    }
 
     public virtual TModel Insert(TModel model)
     {

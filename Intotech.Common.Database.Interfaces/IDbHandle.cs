@@ -1,8 +1,12 @@
-﻿namespace Intotech.Common.Database.Interfaces;
+﻿using Npgsql;
+
+namespace Intotech.Common.Database.Interfaces;
 
 public interface IDbHandle<TModel> : IDisposable
 {
     IQueryable<TModel> Select();
+
+    IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate);
 
     TModel Insert(TModel model);
 

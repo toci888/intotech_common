@@ -30,6 +30,16 @@ public static class StringUtils
         return returned;
     }
 
+    public static string ReplaceCommaWithDot(string candidate)
+    {
+        return candidate.Replace(",", ".");
+    }
+
+    public static string ReplaceCommaWithDot(double candidate)
+    {
+        return candidate.ToString().Replace(",", ".");
+    }
+
     public static string CreateChat(int wordCount)
     {
         Random rnd = new Random();
