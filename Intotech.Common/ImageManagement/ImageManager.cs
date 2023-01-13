@@ -8,7 +8,7 @@ public class ImageManager
     {
         httpRequestClient = new HttpClient();
 
-        httpRequestClient.BaseAddress = new Uri(baseUrl);
+        //httpRequestClient.BaseAddress = new Uri(baseUrl);
     }
 
     public virtual string GetImageBase64(string url)
