@@ -11,4 +11,8 @@ public interface ILogicBase<TModel> where TModel : class
     TModel Update(TModel model);
 
     int Delete(TModel model);
+
+    int Delete(string tableName, string idColumn, int id);
+
+    int Delete(string tableName, string whereClause);
 }

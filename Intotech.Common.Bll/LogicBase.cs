@@ -11,9 +11,14 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : clas
     protected abstract DbContext GetEfHandle();
     protected IDbHandle<TModel> DbHandle;
 
-    public LogicBase()
+    protected LogicBase()
     {
         DbHandle = new DbHandle<TModel>(GetEfHandle);
+    }
+
+    protected LogicBase(string connectionString)
+    {
+        DbHandle = new DbHandle<TModel>(GetEfHandle, connectionString);
     }
 
 
@@ -40,6 +45,16 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : clas
     public virtual int Delete(TModel model)
     {
         return DbHandle.Delete(model);
+    }
+
+    public virtual int Delete(string tableName, string idColumn, int id)
+    {
+        return DbHandle.Delete(tableName, idColumn, id);
+    }
+
+    public virtual int Delete(string tableName, string whereClause)
+    {
+        return DbHandle.Delete(tableName, whereClause);
     }
 
     //public abstract int DeleteByColumnId(string column, int whereId);
