@@ -8,8 +8,8 @@ public class ImageManagerTest
     [TestMethod]
     public void TestMy3ImageManagement()
     {
-        ImageManager im = new ImageManager("https://scontent.fwaw7-1.fna.fbcdn.net");
+        ImageManager im = new ImageManager(); //"https://scontent.fwaw7-1.fna.fbcdn.net"
 
-        string result = im.GetImageBase64("/v/t39.30808-6/274276787_5059313134128039_4678920387161799416_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=pXXqXX9uErcAX8_DJ3Y&_nc_oc=AQluF8UaW4jqA9YAKDpXZO4gHkCG16fqnUlIxIoSJgHit2SDmb2PNaC0lVo1ng1Ri40&_nc_ht=scontent.fwaw7-1.fna&oh=00_AfCkU6N52TARGE6xEWcWXaIEfbJpS-7BNNZ4gZzv72FSUA&oe=63C51F92");
+        string result = im.GetImageBase64("https://scontent-frx5-1.xx.fbcdn.net/v/t39.30808-1/262427974_4735820343143988_5239449481639743539_n.jpg?stp=c0.54.200.200a_dst-jpg_p200x200&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=6YGgU2kKkCIAX_Q6Jdx&_nc_ht=scontent-frx5-1.xx&oh=00_AfCquUWK2QkphGQzmhW9XY6uWY6igzMdM7cFBxWqsWxh4w&oe=63C91A30");
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Intotech.Common.Database.Interfaces;
 
-public interface IDrToTModelMapper<TModel> where TModel : class
+public interface IDrToTModelMapper<out TModel> where TModel : class
 {
     TModel MapFromReader(NpgsqlDataReader dataReader);
 }
