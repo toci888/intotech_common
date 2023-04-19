@@ -33,14 +33,11 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : clas
         return DbHandle.Insert(model);
     }
 
-    public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter) // model => model.id == ??
+    public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
         List<TModel> result = DbHandle.Select().Where(filter).ToList();
 
-        //  DbHandle.Dispose();
-
         return result;
-
     }
 
     public virtual TModel Update(TModel model)
@@ -62,6 +59,4 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : clas
     {
         return DbHandle.Delete(tableName, whereClause);
     }
-
-    //public abstract int DeleteByColumnId(string column, int whereId);
 }
