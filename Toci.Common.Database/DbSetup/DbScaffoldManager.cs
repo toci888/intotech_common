@@ -28,6 +28,7 @@ public class DbScaffoldManager
                 FileName = "dotnet",
                 Arguments = arguments,
                 RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 UseShellExecute = false,
                 CreateNoWindow = true,
                 WorkingDirectory = workingDirectory
