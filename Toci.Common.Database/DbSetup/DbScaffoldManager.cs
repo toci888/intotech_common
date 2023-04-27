@@ -15,7 +15,7 @@ public class DbScaffoldManager
         _parentProjectFolderPath = parentProjectFolderPath;
     }
 
-    public void RunScaffold()
+    public bool RunScaffold()
     {
         string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
         string workingDirectory = Path.Combine(solutionDirectory, _parentProjectFolderPath);
@@ -41,10 +41,14 @@ public class DbScaffoldManager
         {
             string errorOutput = process.StandardError.ReadToEnd();
             Console.WriteLine($"Error: {errorOutput}");
+
+            return false;
         }
         else
         {
             Console.WriteLine("Models generated successfully.");
+
+            return true;
         }
     }
 }
