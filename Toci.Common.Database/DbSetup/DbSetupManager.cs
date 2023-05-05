@@ -19,8 +19,9 @@ public class DbSetupManager
         _customDbConnectionString = customDbConnectionString;
     }
 
-    public bool SetupDatabase()
+    public bool SetupDatabase(bool force)
     {
+        
         using NpgsqlConnection connection = new NpgsqlConnection(_connectionString);
         connection.Open();
 
@@ -35,8 +36,10 @@ public class DbSetupManager
                 if (ex.SqlState == "42P04")
                 {
                     Console.WriteLine($"Database '{_databaseName}' already exists.");
-
-                    return false;
+                    if (!force)
+                    {
+                        return false;
+                    }
                 }
                 else
                 {
