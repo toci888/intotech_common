@@ -21,16 +21,16 @@ namespace Intotech.Common.Database.DbSetup
             DbScaffoldManager = new DbScaffoldManager(DbSetupEntity.CustomDbConnectionString, DbSetupEntity.ProjectName, DbSetupEntity.ParentProjectFolderPath);
         }
 
-        public bool RunAll(bool force)
+        public bool RunAll(bool force = false)
         {
-            bool result = DbSetupManager.SetupDatabase(force);
+            bool result = DbSetupManager.SetupDatabase(force); // true - czysta
 
-            if (!result)
+            if (result)
             {
-                return false;
+                return DbScaffoldManager.RunScaffold();
             }
 
-            return DbScaffoldManager.RunScaffold();
+            return false;
         }
     }
 }
