@@ -31,7 +31,14 @@ namespace Intotech.Common.Database.DbSetup
         {
             foreach (object entity in Entities) 
             {
-                Insert(entity);
+                try
+                {
+                    Insert(entity);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Nie udało się zaseedować tabeli, prawdopodobnie są już w niej dane. {ex.Message} {entity}");
+                }
             }
 
             return true;
@@ -45,12 +52,12 @@ namespace Intotech.Common.Database.DbSetup
 
             MethodInfo custom = setMethodInfo.MakeGenericMethod(model.GetType());
 
-            var fuck = custom.Invoke(DbContext, null);
+            var set = custom.Invoke(DbContext, null);
 
-            MethodInfo addMethod = fuck.GetType().GetMethod("Add");
+            MethodInfo addMethod = set.GetType().GetMethod("Add");
 
-            //fuck.Add(model);
-            addMethod.Invoke(fuck, new[] { model });
+            //set.Add(model);
+            addMethod.Invoke(set, new[] { model });
 
             DbContext.SaveChanges();
 
