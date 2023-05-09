@@ -44,6 +44,7 @@ public class DbSetupManager
                 else
                 {
                     Console.WriteLine("Error creating database: " + ex.Message);
+                    return false;
                 }
             }
         }
