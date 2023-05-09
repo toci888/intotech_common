@@ -11,7 +11,7 @@ namespace Intotech.Common.Database.DbSetup
 {
     public abstract class SeedManagerBase<TDbContext> : ISeedManager<TDbContext> where TDbContext : DbContext
     {
-        protected List<SeedHandler<object>> SeedHandlers = new List<SeedHandler<object>>();
+        protected List<SeedHandler> SeedHandlers = new List<SeedHandler>();
 
         protected TDbContext DbContext { get; set; }
 
@@ -22,7 +22,7 @@ namespace Intotech.Common.Database.DbSetup
 
         public virtual bool SeedAllDb()
         {
-            foreach (SeedHandler<object> handler in SeedHandlers) 
+            foreach (SeedHandler handler in SeedHandlers) 
             {
                 handler.SeedCollection();
             }

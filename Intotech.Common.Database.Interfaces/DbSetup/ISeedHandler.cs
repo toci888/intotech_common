@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Intotech.Common.Database.Interfaces.DbSetup
 {
-    public interface ISeedHandler<TModel>
+    public interface ISeedHandler
     {
-        bool AddEntity(TModel modelEntity);
+        bool AddEntity(object modelEntity);
 
         bool SeedCollection();
     }
