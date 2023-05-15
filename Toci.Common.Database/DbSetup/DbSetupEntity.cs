@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Intotech.Common.Database.DbSetup
+﻿namespace Intotech.Common.Database.DbSetup
 {
     public class DbSetupEntity
     {
-        public DbSetupEntity(string host, string? port, string password, string newDatabaseName)
+        public DbSetupEntity(string host, string password, string newDatabaseName)
         {
-            port ??= "5432";
+            AssignConnectionStrings(host, "5432", password, newDatabaseName);
+        }
 
+        public DbSetupEntity(string password, string newDatabaseName)
+        {
+            AssignConnectionStrings("localhost", "5432", password, newDatabaseName);
+        }
+
+        public DbSetupEntity(string host, string port, string password, string newDatabaseName)
+        {
+            AssignConnectionStrings(host, port, password, newDatabaseName);
+        }
+
+        private void AssignConnectionStrings(string host, string port, string password, string newDatabaseName)
+        {
             RootConnectionString = $"Host={host};Port={port};Database=postgres;Username=postgres;Password={password}";
             CustomDbConnectionString = $"Host={host};Port={port};Database={newDatabaseName};Username=postgres;Password={password}";
             DatabaseName = newDatabaseName;
@@ -24,5 +31,4 @@ namespace Intotech.Common.Database.DbSetup
         public string DatabaseName { get; set; }
         public string CustomDbConnectionString { get; set; }
     }
-
 }
