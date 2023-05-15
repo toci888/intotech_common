@@ -17,7 +17,7 @@ public class DbScaffoldManager
 
     public bool RunScaffold()
     {
-        string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+        string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
         string workingDirectory = Path.Combine(solutionDirectory, _parentProjectFolderPath);
 
         var arguments = $"ef dbcontext scaffold \"{_connectionString}\" Npgsql.EntityFrameworkCore.PostgreSQL -o Models --project {_projectName} -f";
