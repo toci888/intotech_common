@@ -8,10 +8,15 @@ namespace Intotech.Common.Database.DbSetup
 {
     public class DbSetupEntity
     {
-        public DbSetupEntity(string host, string password, string newDatabaseName)
+        public DbSetupEntity(string host, string? port, string password, string newDatabaseName)
         {
-            RootConnectionString = $"Host={host};Database=postgres;Username=postgres;Password={password}";
-            CustomDbConnectionString = $"Host={host};Database={newDatabaseName};Username=postgres;Password={password}";
+            if (port == null)
+            {
+                port = "5432";
+            }
+
+            RootConnectionString = $"Host={host};Port={port};Database=postgres;Username=postgres;Password={password}";
+            CustomDbConnectionString = $"Host={host};Port={port};Database={newDatabaseName};Username=postgres;Password={password}";
             DatabaseName = newDatabaseName;
         }
 
