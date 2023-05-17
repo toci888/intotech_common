@@ -1,11 +1,6 @@
 ﻿using Intotech.Common.Database.Interfaces.DbSetup;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Reflection;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Intotech.Common.Database.DbSetup
 {
@@ -33,6 +28,7 @@ namespace Intotech.Common.Database.DbSetup
             {
                 try
                 {
+                    // TODO check if in the table is data
                     Insert(entity);
                 }
                 catch (Exception ex)
@@ -46,6 +42,8 @@ namespace Intotech.Common.Database.DbSetup
 
         protected virtual bool Insert(object model) 
         {
+            // TODO or check if in the table is data here
+
             MethodInfo setMethodInfo = DbContext.GetType().GetMethods(BindingFlags.Instance | BindingFlags.Public)
                                         .Where(m => m.Name == "Set" && m.IsGenericMethod)
                                         .First();

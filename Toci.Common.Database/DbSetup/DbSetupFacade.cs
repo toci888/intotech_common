@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Intotech.Common.Database.DbSetup
+﻿namespace Intotech.Common.Database.DbSetup
 {
     public class DbSetupFacade
     {
@@ -23,9 +17,10 @@ namespace Intotech.Common.Database.DbSetup
 
         public bool RunAll(bool force = false)
         {
-            bool result = DbSetupManager.SetupDatabase(force); // true - czysta
+            bool isDbFresh = DbSetupManager.SetupDatabase(force);
+            //bool isScaffoldConnectionStringRight = DbSetupEntity.CustomDbConnectionString == IntotechXerionContext.cs.Contains(DbSetupEntity.CustomDbConnectionString)
 
-            if (result)
+            if (isDbFresh)
             {
                 return DbScaffoldManager.RunScaffold();
             }
