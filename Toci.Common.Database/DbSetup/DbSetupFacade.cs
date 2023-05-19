@@ -12,15 +12,24 @@
             DbSetupEntity = dbSetupEntity;
 
             DbSetupManager = new DbSetupManager(DbSetupEntity.RootConnectionString, DbSetupEntity.CustomDbConnectionString, DbSetupEntity.DatabaseName, DbSetupEntity.SqlFilePath);
-            DbScaffoldManager = new DbScaffoldManager(DbSetupEntity.CustomDbConnectionString, DbSetupEntity.ProjectName, DbSetupEntity.ParentProjectFolderPath);
+            DbScaffoldManager = new DbScaffoldManager(DbSetupEntity.CustomDbConnectionString, DbSetupEntity.ProjectName);
         }
 
         public bool RunAll(bool force = false)
         {
             bool isDbFresh = DbSetupManager.SetupDatabase(force);
-            //bool isScaffoldConnectionStringRight = DbSetupEntity.CustomDbConnectionString == IntotechXerionContext.cs.Contains(DbSetupEntity.CustomDbConnectionString)
+            
+            string solutionDirectory = PathUtils.GetSolutionDirectory();
 
-            if (isDbFresh)
+
+            string fileContent = FileUtils.GetTextFromFile(
+                $"{solutionDirectory}/{DbSetupEntity.BackendFolderPath}/{DbSetupEntity.ProjectName}/Models/{DbSetupEntity.DatabaseName.Replace(".", "")}Context.cs");
+            
+
+            bool isScaffoldConnectionStringRight = fileContent.Contains(DbSetupEntity.CustomDbConnectionString);
+
+
+            if (isDbFresh || !isScaffoldConnectionStringRight)
             {
                 return DbScaffoldManager.RunScaffold();
             }

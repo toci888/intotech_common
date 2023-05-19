@@ -51,9 +51,9 @@ public class DbSetupManager
 
         connection.Close();
 
-        bool isFileRead = ReadSqlFile();
+        FileContents = FileUtils.GetTextFromFile(_sqlFilePath);
 
-        if (!isFileRead)
+        if (FileContents == string.Empty)
         {
             Console.WriteLine("SQL file path is probably wrong.");
             return false;
@@ -111,19 +111,5 @@ public class DbSetupManager
         int count = Regex.Matches(FileContents, searchText, RegexOptions.IgnoreCase).Count;
 
         return count;
-    }
-
-    protected virtual bool ReadSqlFile()
-    {
-        try
-        {
-            FileContents = File.ReadAllText(_sqlFilePath);
-        }
-        catch (FileNotFoundException e)
-        {
-            return false;
-        }
-
-        return true;
     }
 }

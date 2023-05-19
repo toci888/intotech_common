@@ -26,9 +26,11 @@
 
         public string RootConnectionString { get; set; }
         public string ProjectName { get; set; }
-        public string ParentProjectFolderPath { get; set; }
         public string SqlFilePath { get; set; }
         public string DatabaseName { get; set; }
         public string CustomDbConnectionString { get; set; }
+        public string BackendFolderPath { get; set; }
+        public string SolutionDirectory { get; set; }
+        
     }
 }

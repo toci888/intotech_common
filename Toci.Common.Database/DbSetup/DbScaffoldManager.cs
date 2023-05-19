@@ -6,13 +6,11 @@ public class DbScaffoldManager
 {
     private string _connectionString;
     private string _projectName;
-    private string _parentProjectFolderPath;
 
-    public DbScaffoldManager(string connectionString, string projectName, string parentProjectFolderPath)
+    public DbScaffoldManager(string connectionString, string projectName)
     {
         _connectionString = connectionString;
         _projectName = projectName;
-        _parentProjectFolderPath = parentProjectFolderPath;
     }
 
     public bool RunScaffold()
