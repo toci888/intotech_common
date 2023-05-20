@@ -10,7 +10,7 @@ public class DbSetupManager
     private string _databaseName;
     private string _customDbConnectionString;
 
-    protected string FileContents;
+    protected string FileContents = String.Empty;
 
     public DbSetupManager(string rootConnectionString, string customDbConnectionString, string databaseName, string sqlFilePath)
     {

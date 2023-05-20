@@ -1,15 +1,18 @@
 ﻿namespace Intotech.Common
 {
-    public class PathUtils
+    public class EnvironmentUtils
     {
+        public static bool IsDockerEnv;
         public static string GetSolutionDirectory()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
 
-            if (IsRunningInDocker())
+            IsDockerEnv = IsRunningInDocker();
+
+            if (IsDockerEnv)
             {
                 string? parentDirectory = Directory.GetParent(currentDirectory)?.FullName;
-                return Path.Combine(parentDirectory, "src");
+                return Path.Combine(parentDirectory ?? string.Empty, "src");
             }
             else
             {

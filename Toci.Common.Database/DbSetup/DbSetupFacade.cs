@@ -19,7 +19,7 @@
         {
             bool isDbFresh = DbSetupManager.SetupDatabase(force);
             
-            string solutionDirectory = PathUtils.GetSolutionDirectory();
+            string solutionDirectory = EnvironmentUtils.GetSolutionDirectory();
 
 
             string fileContent = FileUtils.GetTextFromFile(
