@@ -40,6 +40,7 @@ public class EmailUtil : IEmailUtil
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error while sending email" + ex.Message);
                 return false;
             }
             finally
