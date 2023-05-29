@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Intotech.Common.Bll\Intotech.Common.Bll.csproj" />
     <ProjectReference Include="..\Intotech.ReflectiveTools\Intotech.ReflectiveTools.csproj" />
   </ItemGroup>
 

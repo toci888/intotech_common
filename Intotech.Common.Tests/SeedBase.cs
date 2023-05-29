@@ -10,6 +10,8 @@ public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
     {
         foreach (TModel item in items)
         {
+            //Select(m => true);
+
             Insert(item);
         }
     }

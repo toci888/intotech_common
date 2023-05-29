@@ -1,0 +1,16 @@
+﻿using {UsingNamespace};
+
+namespace Intotech.Wheelo.Seed.Common.{Namespace}
+{
+    public class Seed{TModel} : {SeedBase}<{TModel}>
+    {
+        public override void Insert()
+        {
+            List<{TModel}> list = new List<{TModel}>();
+
+            //TODO Here !
+
+            InsertCollection(list);
+        }
+    }
+}
