@@ -1,6 +1,6 @@
 ﻿using {UsingNamespace};
 
-namespace Intotech.Wheelo.Seed.Common.{Namespace}
+namespace {Namespace}
 {
     public class Seed{TModel} : {SeedBase}<{TModel}>
     {

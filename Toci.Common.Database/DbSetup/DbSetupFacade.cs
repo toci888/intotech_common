@@ -15,15 +15,14 @@
             DbScaffoldManager = new DbScaffoldManager(DbSetupEntity.CustomDbConnectionString, DbSetupEntity.ProjectName);
         }
 
-        public bool RunAll(bool force = false)
+        public bool RunAll(bool force = false, string insideFolder = "")
         {
             bool isDbFresh = DbSetupManager.SetupDatabase(force);
             
             string solutionDirectory = EnvironmentUtils.GetSolutionDirectory();
 
-
-            string fileContent = FileUtils.GetTextFromFile(
-                $"{solutionDirectory}/{DbSetupEntity.BackendFolderPath}/{DbSetupEntity.ProjectName}/Models/{DbSetupEntity.DatabaseName.Replace(".", "")}Context.cs");
+            var path = $"{solutionDirectory}/{DbSetupEntity.BackendFolderPath}/{insideFolder}/{DbSetupEntity.ProjectName}/Models/{DbSetupEntity.DatabaseName.Replace(".", "")}Context.cs";
+            string fileContent = FileUtils.GetTextFromFile(path);
             
 
             bool isScaffoldConnectionStringRight = fileContent.Contains(DbSetupEntity.CustomDbConnectionString);

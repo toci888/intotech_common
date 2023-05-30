@@ -55,7 +55,7 @@ public class DbSetupManager
 
         if (FileContents == string.Empty)
         {
-            Console.WriteLine("SQL file path is probably wrong.");
+            Console.WriteLine("SQL file path is probably wrong. I can't create tables.");
             return false;
         }
 

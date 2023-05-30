@@ -12,7 +12,8 @@ namespace Intotech.Common.Bll.Seed
         public virtual void GenerateFiles(string path, string destPath, string namespaceSeed, string namespaceUsing, string seedBase)
         {
             string[] files = Directory.GetFiles(path);
-            string template = File.ReadAllText(@"C:\Users\bzapa\source\repos\toci888\Intotech.Common\Intotech.Common.Bll\Seed\SeedModelTemplate.txt");
+            string solutionPath = Directory.GetParent(EnvironmentUtils.GetSolutionDirectory())?.Parent.FullName;
+            string template = File.ReadAllText(@$"{solutionPath}\Intotech.Common.Bll\Seed\SeedModelTemplate.txt");
 
             foreach (string file in files)
             {
@@ -28,7 +29,7 @@ namespace Intotech.Common.Bll.Seed
                     .Replace("{UsingNamespace}", namespaceUsing)
                     .Replace("{SeedBase}", seedBase);
 
-                File.WriteAllText(destPath + item, templatePopulated);
+                File.WriteAllText(destPath + "\\Seed" + item, templatePopulated);
             }
         }
     }
