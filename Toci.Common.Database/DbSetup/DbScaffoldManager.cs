@@ -6,11 +6,14 @@ public class DbScaffoldManager
 {
     private string _connectionString;
     private string _projectName;
+    private string _databaseName;
+    private string _dbContextFilePath;
 
-    public DbScaffoldManager(string connectionString, string projectName)
+    public DbScaffoldManager(string connectionString, string projectName, string dbContextFilePath)
     {
         _connectionString = connectionString;
         _projectName = projectName;
+        _dbContextFilePath = dbContextFilePath;
     }
 
     public bool RunScaffold()
@@ -18,22 +21,32 @@ public class DbScaffoldManager
         string solutionDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
 
         if (EnvironmentUtils.IsDockerEnv)
-        { //TODO path for it
-            string dbContextFilePath = EnvironmentUtils.GetSolutionDirectory() + "/Backend/" + _projectName + "/Models/IntotechXerionContext.cs";
-            string context = FileUtils.GetTextFromFile(dbContextFilePath);
+        {
+            GetDbName();
 
-            if (!context.Contains("=> optionsBuilder.UseNpgsql(\"Host=host.docker.internal;Database="))
+            string context = FileUtils.GetTextFromFile(_dbContextFilePath);
+
+            if (!context.Contains("=> optionsBuilder.UseNpgsql(\"Host=host.docker.internal"))
             {
                 string connStringText = "=> optionsBuilder.UseNpgsql(\"";
-                int start = context.IndexOf(connStringText) + connStringText.Length;
+                int pgStringPos = context.IndexOf(connStringText);
+
+                if (pgStringPos == -1)
+                {
+                    Console.WriteLine("Nie znalazłem connection stringa innego niż docker" + _projectName);
+                    return false;
+                }
+
+                int start = pgStringPos + connStringText.Length;
                 int end = context.IndexOf("\"", start);
                 string oldText = context.Substring(start, end - start);
                 string newContext = context.Replace(oldText, _connectionString);
-                
-                File.WriteAllText(dbContextFilePath, newContext);
-            }
 
-            return true;
+                File.WriteAllText(_dbContextFilePath, newContext);
+
+                //Environment.Exit(0);
+                return false;
+            }
         }
 
         var arguments = $"ef dbcontext scaffold \"{_connectionString}\" Npgsql.EntityFrameworkCore.PostgreSQL -o Models --project {_projectName} -f";
@@ -65,6 +78,22 @@ public class DbScaffoldManager
             Console.WriteLine("Models generated successfully.");
 
             return true;
+        }
+    }
+
+    private void GetDbName()
+    {
+        int startIndex = _connectionString.IndexOf("Database=");
+        if (startIndex >= 0)
+        {
+            startIndex += "Database=".Length; // Przesuwamy indeks za "Database="
+
+            int endIndex = _connectionString.IndexOf(";", startIndex); // Znajdujemy indeks pierwszego wystąpienia znaku ";" po starcie
+
+            if (endIndex >= 0)
+            {
+                _databaseName = _connectionString.Substring(startIndex, endIndex - startIndex); // Pobieramy tekst pomiędzy indeksami
+            }
         }
     }
 }

@@ -36,7 +36,7 @@ public class DbSetupManager
                 if (ex.SqlState == "42P04")
                 {
                     Console.WriteLine($"Database '{_databaseName}' already exists.");
-                    if (!force)
+                    if (!force) // to remove
                     {
                         return false;
                     }

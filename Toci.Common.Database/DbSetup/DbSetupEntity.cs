@@ -9,7 +9,10 @@
 
         public DbSetupEntity(string password, string newDatabaseName)
         {
-            AssignConnectionStrings("localhost", "5432", password, newDatabaseName);
+            string host = EnvironmentUtils.IsDockerEnv ? "host.docker.internal" : "localhost";
+            string port = EnvironmentUtils.IsDockerEnv ? "5500" : "5432";
+
+            AssignConnectionStrings(host, port, password, newDatabaseName);
         }
 
         public DbSetupEntity(string host, string port, string password, string newDatabaseName)
@@ -31,6 +34,5 @@
         public string CustomDbConnectionString { get; set; }
         public string BackendFolderPath { get; set; }
         public string SolutionDirectory { get; set; }
-        
     }
 }

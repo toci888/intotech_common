@@ -1,4 +1,5 @@
 using Intotech.Common.Bll;
+using System.Linq.Expressions;
 
 namespace Intotech.Common.Tests;
 
@@ -10,9 +11,14 @@ public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
     {
         foreach (TModel item in items)
         {
-            //Select(m => true);
+            Expression<Func<TModel, bool>> SelectWhereCondition = TakeWhereCondition(item);
 
-            Insert(item);
+            if (Select(SelectWhereCondition).FirstOrDefault() == null)
+            {
+                Insert(item);
+            }
         }
     }
+
+    public abstract Expression<Func<TModel, bool>> TakeWhereCondition(TModel searchValue);
 }
