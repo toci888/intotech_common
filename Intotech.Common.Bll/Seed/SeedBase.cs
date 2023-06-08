@@ -1,7 +1,6 @@
-using Intotech.Common.Bll;
 using System.Linq.Expressions;
 
-namespace Intotech.Common.Tests;
+namespace Intotech.Common.Bll.Seed;
 
 public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
 {
@@ -20,5 +19,8 @@ public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
         }
     }
 
-    public abstract Expression<Func<TModel, bool>> TakeWhereCondition(TModel searchValue);
+    public virtual Expression<Func<TModel, bool>> TakeWhereCondition(TModel searchValue)
+    {
+        return m => true;
+    }
 }
