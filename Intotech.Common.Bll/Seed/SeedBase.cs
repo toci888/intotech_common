@@ -4,6 +4,8 @@ namespace Intotech.Common.Bll.Seed;
 
 public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
 {
+    protected int AccountIdOffset = 0;
+
     public abstract void Insert();
 
     protected virtual void InsertCollection(List<TModel> items)

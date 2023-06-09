@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ChorDtoBll\Dto\" />
     <Folder Include="Extensibility\" />
     <Folder Include="ComplexResponses\" />
   </ItemGroup>
