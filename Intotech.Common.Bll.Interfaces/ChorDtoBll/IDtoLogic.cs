@@ -2,9 +2,9 @@
 
 namespace Intotech.Common.Bll.Interfaces.ChorDtoBll;
 
-public interface IDtoLogic<out TModel, TLogic, TDto> 
+public interface IDtoLogic<out TModel, out TLogic, TDto> : IDtoEntityHandler<TDto>
     where TLogic : ILogicBase<TModel>
     where TModel : class
 {
-    TDto GetEntity(TDto masterEntity);
+    
 }

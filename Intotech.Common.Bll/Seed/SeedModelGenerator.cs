@@ -13,7 +13,7 @@ namespace Intotech.Common.Bll.Seed
         {
             string[] files = Directory.GetFiles(path);
             string solutionPath = Directory.GetParent(EnvironmentUtils.GetSolutionDirectory())?.Parent.FullName;
-            string template = File.ReadAllText(@$"{solutionPath}\Intotech.Common.Bll\Seed\SeedModelTemplate.txt");
+            string template = File.ReadAllText(@$"D:\Razer\Dev\intotech.common\Intotech.Common.Bll\Seed\SeedModelTemplate.txt");
 
             foreach (string file in files)
             {

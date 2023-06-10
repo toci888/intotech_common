@@ -17,11 +17,11 @@ namespace Intotech.ReflectiveTools.SourceGenerators
 
             if (interf)
             {
-                interfaceSkeleton = File.ReadAllText(@"C:\Dev\Intotech.Xerion\Backend\Intotech.Common\Intotech.ReflectiveTools\SourceGenerators\InterfaceSkeleton.txt");
+                interfaceSkeleton = File.ReadAllText(@"D:\Razer\Dev\intotech.common\Intotech.ReflectiveTools\SourceGenerators\InterfaceSkeleton.txt");
             }
             else
             {
-                interfaceSkeleton = File.ReadAllText(@"C:\Dev\Intotech.Xerion\Backend\toci888\Intotech.Common\Intotech.ReflectiveTools\SourceGenerators\LogicSkeleton.txt");
+                interfaceSkeleton = File.ReadAllText(@"D:\Razer\Dev\intotech.common\Intotech.ReflectiveTools\SourceGenerators\LogicSkeleton.txt");
             }
 
             interfaceSkeleton = interfaceSkeleton.Replace("{ModelPersistenceUsingEx}", gfDto.ModelPersistenceUsing)
