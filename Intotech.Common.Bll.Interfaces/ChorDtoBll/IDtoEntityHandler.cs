@@ -3,4 +3,6 @@
 public interface IDtoEntityHandler<TDto>
 {
     TDto GetEntity(TDto masterEntity);
+
+    TDto SetEntity(TDto dtoToSet);
 }
