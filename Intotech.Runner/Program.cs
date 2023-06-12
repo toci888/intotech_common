@@ -2,8 +2,12 @@
 using Intotech.Common;
 using Intotech.Common.Bll.Seed;
 using Intotech.ReflectiveTools.SourceGenerators;
+using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
+
+ClassRendererRunner.LoadAndReadAssembly("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll",
+    "C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\ModelDtos\\Intotech.Wheelo.Dtos\\");
 
 //List<string> fileNames = ModelsReader.ReadAllModelsNames(@"D:\Razer\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Database.Persistence\Models");
 
@@ -20,8 +24,9 @@ SeedModelGenerator smg = new SeedModelGenerator();
 ////    @$"{solutionPath}\Intotech.Wheelo.Seed.Common\Wheelo.Main\", "Wheelo.Main", "Toci.Driver.Database.Persistence.Models",
 ////    "SeedWheeloMainLogic"); // 
 
-smg.GenerateFiles(@$"C:\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Database.Persistence\Models",
+/*smg.GenerateFiles(@$"C:\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Database.Persistence\Models",
     @$"C:\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Common\Seed\Xerion.Main",
     "Intotech.Xerion.Common.Seed.Xerion.Main",
     "Intotech.Xerion.Database.Persistence.Models",
     "SeedXerionMainLogic");
+*/
