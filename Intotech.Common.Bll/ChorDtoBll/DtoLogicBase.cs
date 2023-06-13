@@ -34,6 +34,11 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
     {
         TModel result = CrudLogic.Select(SelectFilter).FirstOrDefault();
 
+        if (result == null)
+        {
+            return masterEntity;
+        }
+
         TModelDto entity = new TModelDto();
 
         return FillEntity(masterEntity, entity.MapModelToDto(result));

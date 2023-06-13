@@ -4,6 +4,6 @@ public interface IDtoLogicManager<TDto>
 {
     void AddDtoLogic(IDtoEntityHandler<TDto> logic);
 
-    TDto RunGet();
-    TDto RunSet();
+    TDto RunGet(int id);
+    TDto RunSet(TDto dto);
 }

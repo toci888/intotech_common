@@ -2,7 +2,7 @@
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
-public class DtoLogicManager<TDto> : IDtoLogicManager<TDto>
+public class DtoLogicManager<TDto> : IDtoLogicManager<TDto> where TDto : new()
 {
     protected List<IDtoEntityHandler<TDto>> Handlers = new List<IDtoEntityHandler<TDto>>();
 
@@ -12,18 +12,25 @@ public class DtoLogicManager<TDto> : IDtoLogicManager<TDto>
         Handlers.Add(logic);
     }
 
-    public virtual TDto RunGet()
+    public virtual TDto RunGet(int id)
     {
+        TDto dto = new TDto();
+
         foreach (IDtoEntityHandler<TDto> handler in Handlers)
         {
-            //handler.GetEntity();
+            dto = handler.GetEntity(dto);
         }
 
-        return default(TDto);
+        return dto;
     }
 
-    public TDto RunSet()
+    public virtual TDto RunSet(TDto dto)
     {
-        throw new NotImplementedException();
+        foreach(IDtoEntityHandler<TDto> handler in Handlers)
+        {
+            dto = handler.SetEntity(dto);
+        }
+
+        return dto;
     }
 }
