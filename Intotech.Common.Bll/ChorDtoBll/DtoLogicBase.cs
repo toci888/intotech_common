@@ -14,13 +14,13 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
     protected TLogic CrudLogic;
     protected Expression<Func<TModel, bool>> SelectFilter;
     //protected Func<TDto, Func<TDto, TDto>, TModel>
-    protected Func<TDto, TModel, TDto> UpdateModel;
+    protected Func<TDto, TModelDto, TDto> UpdateModel;
     //protected Func<TDto, TModel> EntityGetter;
 
     protected DtoLogicBase(
         TLogic crudLogic, 
         Expression<Func<TModel, bool>> selectFilter,
-        Func<TDto, TModel, TDto> updateModel
+        Func<TDto, TModelDto, TDto> updateModel
         //Func<TDto, TModel> entityGetter
         )
     {
@@ -49,7 +49,8 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
         }
 
         entity = CrudLogic.Update(entity);
-        dtoToSet = UpdateModel(dtoToSet, entity);
+        TModelDto modelDto = DtoModelMapper.Map<TModelDto, TModel>(entity);
+        dtoToSet = UpdateModel(dtoToSet, modelDto);
 
         return dtoToSet;
     }
