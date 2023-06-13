@@ -1,10 +1,11 @@
 ﻿using System.Reflection;
+using System.Text;
 
 namespace Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 
 public class ClassRenderer
 {
-    public static void RenderAutoProperties(Type sourceClass, string outputPath)
+    public static void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace)
     {
         if (!sourceClass.FullName.Contains("Context"))
         {
@@ -12,9 +13,11 @@ public class ClassRenderer
 
             outputPath += sourceClass.Name + "ModelDto.cs";
 
-            using (StreamWriter writer = new StreamWriter(outputPath))
+            using (StreamWriter writer = new StreamWriter(outputPath, Encoding.UTF8, new FileStreamOptions() { Mode = FileMode.OpenOrCreate, Access = FileAccess.ReadWrite }))
             {
-                writer.WriteLine($"public class {sourceClass.Name}ModelDto");
+                writer.WriteLine(usings + Environment.NewLine);
+                writer.WriteLine(nmSpace + Environment.NewLine);
+                writer.WriteLine($"public class {sourceClass.Name}ModelDto : DtoBase<{sourceClass.Name}>");
                 writer.WriteLine("{");
 
                 foreach (PropertyInfo property in properties)
@@ -32,6 +35,8 @@ public class ClassRenderer
                     {
                         typeName = propertyType.Name;
                     }
+
+                    typeName = ClassRendererPropertyTypeUtils.MapTypeName(typeName);
 
                     if (!property.Name.Contains("Navigation"))
                     {

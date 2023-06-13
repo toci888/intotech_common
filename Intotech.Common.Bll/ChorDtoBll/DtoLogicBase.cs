@@ -1,37 +1,42 @@
 ﻿using System.Linq.Expressions;
+using Intotech.Common.Bll.ChorDtoBll.Dto;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Bll.Interfaces.ChorDtoBll;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
-public abstract class DtoLogicBase<TModel, TLogic, TDto> : IDtoLogic<TModel, TLogic, TDto>
+public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<TModel, TLogic, TDto>
     where TLogic : ILogicBase<TModel>
-    where TModel : class
+    where TModelDto : DtoBase<TModel>, new()
+    where TModel : class, new()
 {
     protected TLogic CrudLogic;
     protected Expression<Func<TModel, bool>> SelectFilter;
     //protected Func<TDto, Func<TDto, TDto>, TModel>
     protected Func<TDto, TModel, TDto> UpdateModel;
-    protected Func<TDto, TModel> EntityGetter;
+    //protected Func<TDto, TModel> EntityGetter;
 
     protected DtoLogicBase(
         TLogic crudLogic, 
         Expression<Func<TModel, bool>> selectFilter,
-        Func<TDto, TModel, TDto> updateModel,
-        Func<TDto, TModel> entityGetter)
+        Func<TDto, TModel, TDto> updateModel
+        //Func<TDto, TModel> entityGetter
+        )
     {
         CrudLogic = crudLogic;
         SelectFilter = selectFilter;
         UpdateModel = updateModel;
-        EntityGetter = entityGetter;
+        //EntityGetter = entityGetter;
     }
 
     public virtual TDto GetEntity(TDto masterEntity)
     {
         TModel result = CrudLogic.Select(SelectFilter).FirstOrDefault();
 
-        return FillEntity(masterEntity, result);
+        TModelDto entity = new TModelDto();
+
+        return FillEntity(masterEntity, entity.MapModelToDto(result));
     }
 
     public virtual TDto SetEntity(TDto dtoToSet)
@@ -49,5 +54,13 @@ public abstract class DtoLogicBase<TModel, TLogic, TDto> : IDtoLogic<TModel, TLo
         return dtoToSet;
     }
 
-    protected abstract TDto FillEntity(TDto dto, TModel field);
+    protected virtual TModel EntityGetter(TDto dto)
+    {
+        DtoBase<TModel> field = GetDtoModelField(dto);
+
+        return field.MapDtoToModel();
+    }
+
+    protected abstract DtoBase<TModel> GetDtoModelField(TDto dto);
+    protected abstract TDto FillEntity(TDto dto, DtoBase<TModel> field);
 }

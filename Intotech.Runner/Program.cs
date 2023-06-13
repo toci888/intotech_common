@@ -7,7 +7,9 @@ using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 Console.WriteLine("The runner is a midnight runner ! xd");
 
 ClassRendererRunner.LoadAndReadAssembly("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll",
-    "C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\ModelDtos\\Intotech.Wheelo.Dtos\\");
+    "C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\ModelDtos\\Intotech.Wheelo.Dtos\\",
+    "using Intotech.Common.Bll.ChorDtoBll.Dto;\r\nusing Toci.Driver.Database.Persistence.Models;",
+    "namespace Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;");
 
 //List<string> fileNames = ModelsReader.ReadAllModelsNames(@"D:\Razer\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Database.Persistence\Models");
 
