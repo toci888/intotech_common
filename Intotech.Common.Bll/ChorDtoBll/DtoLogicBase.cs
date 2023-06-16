@@ -8,7 +8,7 @@ namespace Intotech.Common.Bll.ChorDtoBll;
 
 public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<TModel, TLogic, TDto>
     where TLogic : ILogicBase<TModel>
-    where TModelDto : DtoBase<TModel>, new()
+    where TModelDto : DtoBase<TModel, TModelDto>, new()
     where TModel : class, new()
 {
     protected TLogic CrudLogic;
@@ -62,11 +62,11 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
 
     protected virtual TModel EntityGetter(TDto dto)
     {
-        DtoBase<TModel> field = GetDtoModelField(dto);
+        DtoBase<TModel, TModelDto> field = GetDtoModelField(dto);
 
         return field.MapDtoToModel();
     }
 
-    protected abstract DtoBase<TModel> GetDtoModelField(TDto dto);
-    protected abstract TDto FillEntity(TDto dto, DtoBase<TModel> field);
+    protected abstract DtoBase<TModel, TModelDto> GetDtoModelField(TDto dto);
+    protected abstract TDto FillEntity(TDto dto, DtoBase<TModel, TModelDto> field);
 }
