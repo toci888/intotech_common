@@ -17,7 +17,7 @@ public class ClassRenderer
             {
                 writer.WriteLine(usings + Environment.NewLine);
                 writer.WriteLine(nmSpace + Environment.NewLine);
-                writer.WriteLine($"public class {sourceClass.Name}ModelDto : DtoBase<{sourceClass.Name}>");
+                writer.WriteLine($"public class {sourceClass.Name}ModelDto : DtoBase<{sourceClass.Name}, {sourceClass.Name}ModelDto>");
                 writer.WriteLine("{");
 
                 foreach (PropertyInfo property in properties)

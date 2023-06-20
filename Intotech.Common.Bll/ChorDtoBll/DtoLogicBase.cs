@@ -2,39 +2,37 @@
 using Intotech.Common.Bll.ChorDtoBll.Dto;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Bll.Interfaces.ChorDtoBll;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
 public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<TModel, TLogic, TDto>
     where TLogic : ILogicBase<TModel>
-    where TModelDto : DtoBase<TModel>, new()
+    where TModelDto : DtoBase<TModel, TModelDto>, new()
     where TModel : class, new()
 {
     protected TLogic CrudLogic;
     protected Expression<Func<TModel, bool>> SelectFilter;
-    //protected Func<TDto, Func<TDto, TDto>, TModel>
     protected Func<TDto, TModelDto, TDto> UpdateModel;
-    //protected Func<TDto, TModel> EntityGetter;
 
     public int Id { get; set; }
 
     protected DtoLogicBase(
-        TLogic crudLogic, 
-        Expression<Func<TModel, bool>> selectFilter,
+        TLogic crudLogic,
         Func<TDto, TModelDto, TDto> updateModel
-        //Func<TDto, TModel> entityGetter
-        )
+    )
     {
         CrudLogic = crudLogic;
-        SelectFilter = selectFilter;
         UpdateModel = updateModel;
-        //EntityGetter = entityGetter;
     }
 
     public virtual TDto GetEntity(TDto masterEntity)
     {
         TModel result = CrudLogic.Select(SelectFilter).FirstOrDefault();
+
+        if (result == null)
+        {
+            return masterEntity;
+        }
 
         TModelDto entity = new TModelDto();
 
@@ -57,13 +55,18 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
         return dtoToSet;
     }
 
+    public virtual void SetSelectFilter(Expression<Func<TModel, bool>> selectFilter)
+    {
+        selectFilter = SelectFilter;
+    }
+
     protected virtual TModel EntityGetter(TDto dto)
     {
-        DtoBase<TModel> field = GetDtoModelField(dto);
+        DtoBase<TModel, TModelDto> field = GetDtoModelField(dto);
 
         return field.MapDtoToModel();
     }
 
-    protected abstract DtoBase<TModel> GetDtoModelField(TDto dto);
-    protected abstract TDto FillEntity(TDto dto, DtoBase<TModel> field);
+    protected abstract DtoBase<TModel, TModelDto> GetDtoModelField(TDto dto);
+    protected abstract TDto FillEntity(TDto dto, TModelDto field);
 }
