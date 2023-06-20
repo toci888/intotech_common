@@ -2,7 +2,6 @@
 using Intotech.Common.Bll.ChorDtoBll.Dto;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Bll.Interfaces.ChorDtoBll;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
@@ -13,19 +12,15 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
 {
     protected TLogic CrudLogic;
     protected Expression<Func<TModel, bool>> SelectFilter;
-    //protected Func<TDto, Func<TDto, TDto>, TModel>
     protected Func<TDto, TModelDto, TDto> UpdateModel;
-    //protected Func<TDto, TModel> EntityGetter;
 
     protected DtoLogicBase(
         TLogic crudLogic,
         Func<TDto, TModelDto, TDto> updateModel
-        //Func<TDto, TModel> entityGetter
-        )
+    )
     {
         CrudLogic = crudLogic;
         UpdateModel = updateModel;
-        //EntityGetter = entityGetter;
     }
 
     public virtual TDto GetEntity(TDto masterEntity)
@@ -71,5 +66,5 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
     }
 
     protected abstract DtoBase<TModel, TModelDto> GetDtoModelField(TDto dto);
-    protected abstract TDto FillEntity(TDto dto, DtoBase<TModel, TModelDto> field);
+    protected abstract TDto FillEntity(TDto dto, TModelDto field);
 }
