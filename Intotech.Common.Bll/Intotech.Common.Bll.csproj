@@ -10,6 +10,7 @@
     <Folder Include="ChorDtoBll\Dto\" />
     <Folder Include="Extensibility\" />
     <Folder Include="ComplexResponses\" />
+    <Folder Include="Dictionaries\" />
   </ItemGroup>
 
   <ItemGroup>

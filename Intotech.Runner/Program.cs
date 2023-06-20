@@ -6,9 +6,13 @@ using Intotech.ReflectiveTools.SourceGenerators;
 using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
+using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
 
+ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+
+mdm.AddDerivanceToModels("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "ModelBase");
 
 // Generate DtoLogic Classes 
 
