@@ -55,7 +55,7 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
 
     public virtual void SetSelectFilter(Expression<Func<TModel, bool>> selectFilter)
     {
-        selectFilter = SelectFilter;
+        SelectFilter = selectFilter;
     }
 
     protected virtual TModel EntityGetter(TDto dto)
