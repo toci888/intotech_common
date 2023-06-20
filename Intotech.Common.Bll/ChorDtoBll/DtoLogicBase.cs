@@ -18,14 +18,12 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
     //protected Func<TDto, TModel> EntityGetter;
 
     protected DtoLogicBase(
-        TLogic crudLogic, 
-        Expression<Func<TModel, bool>> selectFilter,
+        TLogic crudLogic,
         Func<TDto, TModelDto, TDto> updateModel
         //Func<TDto, TModel> entityGetter
         )
     {
         CrudLogic = crudLogic;
-        SelectFilter = selectFilter;
         UpdateModel = updateModel;
         //EntityGetter = entityGetter;
     }
@@ -58,6 +56,11 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
         dtoToSet = UpdateModel(dtoToSet, modelDto);
 
         return dtoToSet;
+    }
+
+    public virtual void SetSelectFilter(Expression<Func<TModel, bool>> selectFilter)
+    {
+        selectFilter = SelectFilter;
     }
 
     protected virtual TModel EntityGetter(TDto dto)
