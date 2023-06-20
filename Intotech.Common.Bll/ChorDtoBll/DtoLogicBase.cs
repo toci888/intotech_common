@@ -14,6 +14,8 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto> : IDtoLogic<
     protected Expression<Func<TModel, bool>> SelectFilter;
     protected Func<TDto, TModelDto, TDto> UpdateModel;
 
+    public int Id { get; set; }
+
     protected DtoLogicBase(
         TLogic crudLogic,
         Func<TDto, TModelDto, TDto> updateModel

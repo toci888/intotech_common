@@ -21,9 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.ExcelLibrary.Exten
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Tests", "Intotech.Common.Tests\Intotech.Common.Tests.csproj", "{EF1F23B0-C21D-4F48-88FE-19D5329CAA52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.ReflectiveTools", "Intotech.ReflectiveTools\Intotech.ReflectiveTools.csproj", "{4A486BBA-FEB4-4AE4-AC64-F5022AE70F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.ReflectiveTools", "Intotech.ReflectiveTools\Intotech.ReflectiveTools.csproj", "{4A486BBA-FEB4-4AE4-AC64-F5022AE70F7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Intotech.Runner", "Intotech.Runner\Intotech.Runner.csproj", "{F8F1FF3D-135B-4299-AF56-AC497F547752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Runner", "Intotech.Runner\Intotech.Runner.csproj", "{F8F1FF3D-135B-4299-AF56-AC497F547752}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.GhostRider", "Intotech.GhostRider\Intotech.GhostRider\Intotech.GhostRider.csproj", "{06C6C67E-502B-49B5-AC36-7E7F08326BE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{F8F1FF3D-135B-4299-AF56-AC497F547752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F1FF3D-135B-4299-AF56-AC497F547752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F1FF3D-135B-4299-AF56-AC497F547752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
