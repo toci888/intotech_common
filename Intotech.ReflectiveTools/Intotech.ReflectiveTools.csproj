@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="SourceGenerators\Models2DtosGenerator\" />
+    <Folder Include="SourceGenerators\ModelManipulation\" />
   </ItemGroup>
 
  

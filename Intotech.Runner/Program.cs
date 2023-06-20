@@ -6,9 +6,28 @@ using Intotech.ReflectiveTools.SourceGenerators;
 using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
+using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
+using System.IO;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
 
+InterfaceAndLogicFileGenerator interfaceAndLogicFileGenerator = new InterfaceAndLogicFileGenerator();
+
+List<string> files = Directory.GetFiles("").ToList();
+
+GeneratedFileDto generatedFile = new GeneratedFileDto()
+{
+    KeyNamespace = "Intotech.Xerion.Dictionaries.Bll.Persistence", //
+    ModelPersistenceUsing = "Intotech.Xerion.Dictionaries.Database.Persistence.Models"
+};
+
+
+
+interfaceAndLogicFileGenerator.GenerateCodeFiles("", files, generatedFile);
+
+ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+
+mdm.AddDerivanceToModels("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "DictionaryModelBase");
 
 // Generate DtoLogic Classes 
 
