@@ -13,8 +13,6 @@ namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
     {
         public static void LoadAndReadAssembly(string inputDllPath, string outputDirectory, string usings, string nmSpace, bool isInterfase)
         {
-            DtoLogicRenderer logicRenderer = new DtoLogicRenderer();
-
             var types = Assembly.LoadFrom(inputDllPath).GetTypes();
 
             for (int i = 4; i < types.Length; i++)

@@ -56,10 +56,10 @@ LogicRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\
 
 //Generate ModelDtos
 
-ClassRendererRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll",
-    "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\ModelDtos\\Intotech.Wheelo.Dtos\\",
-    "using Intotech.Common.Bll.ChorDtoBll.Dto;\r\n using Toci.Driver.Database.Persistence.Models;",
-    "namespace Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;");
+//ClassRendererRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll",
+//    "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\ModelDtos\\Intotech.Wheelo.Dtos\\",
+//    "using Intotech.Common.Bll.ChorDtoBll.Dto;\r\n using Toci.Driver.Database.Persistence.Models;",
+//    "namespace Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;");
 
 //List<string> fileNames = ModelsReader.ReadAllModelsNames(@"C:\Users\stasx\Documents\GitHub\intotech_wheelo\Toci.Driver.Bll.Porsche.Interfaces\Toci.Driver.Database.Persistence\Models\");
 
