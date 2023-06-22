@@ -39,25 +39,26 @@ dtosRender.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\i
 
 // Generate Dto Classes
 
-//DtoRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\Dtos\\", "using Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;", "namespace Intotech.Wheelo.Bll.Models.Dtos;");
+DtoRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\Dtos\\", "using Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;", "namespace Intotech.Wheelo.Bll.Models.Dtos;");
 
 // Generate Logic Classes (zostawić Logic.cs i AccountLogicConstants.cs)
 
-//LogicRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Persistence\\",
-//"using Intotech.Wheelo.Bll.Persistence.Interfaces;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\nusing Toci.Driver.Database.Persistence.Models;",
-//"namespace Intotech.Wheelo.Bll.Persistence;", false);
+LogicRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Persistence\\",
+"using Intotech.Wheelo.Bll.Persistence.Interfaces;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\nusing Toci.Driver.Database.Persistence.Models;",
+"namespace Intotech.Wheelo.Bll.Persistence;", false);
 
 
 // Generate ILogic Interfases
 
-//LogicRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Persistence.Interfaces\\",
-//"using Intotech.Common.Bll.Interfaces;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\nusing Toci.Driver.Database.Persistence.Models;",
-//"namespace Intotech.Wheelo.Bll.Persistence;", true);
+LogicRendererRunner.LoadAndReadAssembly("GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Persistence.Interfaces\\",
+"using Intotech.Common.Bll.Interfaces;\r\nusing System;\r\nusing System.Collections.Generic;\r\nusing System.Linq;\r\nusing System.Text;\r\nusing System.Threading.Tasks;\r\nusing Toci.Driver.Database.Persistence.Models;",
+"namespace Intotech.Wheelo.Bll.Persistence;", true);
 
+//Generate ModelDtos
 
 //ClassRendererRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll",
 //    "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\ModelDtos\\Intotech.Wheelo.Dtos\\",
-//    "using Intotech.Common.Bll.ChorDtoBll.Dto;\r\nusing Toci.Driver.Database.Persistence.Models;",
+//    "using Intotech.Common.Bll.ChorDtoBll.Dto;\r\n using Toci.Driver.Database.Persistence.Models;",
 //    "namespace Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;");
 
 //List<string> fileNames = ModelsReader.ReadAllModelsNames(@"C:\Users\stasx\Documents\GitHub\intotech_wheelo\Toci.Driver.Bll.Porsche.Interfaces\Toci.Driver.Database.Persistence\Models\");
