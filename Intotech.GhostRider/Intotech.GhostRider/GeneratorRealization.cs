@@ -95,7 +95,9 @@ namespace Intotech.GhostRider
         }
         public bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
         {
-            if (Directory.GetFiles(outputDirectory).Length == 0)
+            List<string> selectedObj = new() { "Intotech.Wheelo.Bll.Persistence.Interfaces.csproj", "AccountLogicConstants.cs" };
+            
+            if (Directory.GetFiles(outputDirectory).Length - selectedObj.Count() == 0)
             {
                 try
                 {
@@ -110,7 +112,7 @@ namespace Intotech.GhostRider
             }
             else
             {
-                if (FolderCleaner(outputDirectory) == false)
+                if (FolderCleaner(outputDirectory, selectedObj) == false)
                 {
                     return false;
                 }

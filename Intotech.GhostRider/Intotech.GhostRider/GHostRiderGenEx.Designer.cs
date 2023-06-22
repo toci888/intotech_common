@@ -37,7 +37,7 @@
             this.dtoLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._dtoGen_Panel = new System.Windows.Forms.Panel();
             this._dto_Banner_Label = new System.Windows.Forms.Label();
-            this._dto_Name_Spaces_Label = new System.Windows.Forms.Label();
+            this._dto_Name_Space_Label = new System.Windows.Forms.Label();
             this._dto_Usings_Label = new System.Windows.Forms.Label();
             this._dto_Output_Path_Label = new System.Windows.Forms.Label();
             this._dto_Dll_Path_Label = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this._modelDto_GenPanel = new System.Windows.Forms.Panel();
             this._modelDto_Banner_Label = new System.Windows.Forms.Label();
             this._modelDto_GenButton = new System.Windows.Forms.Button();
-            this._modelDto_Name_Spaces_Label = new System.Windows.Forms.Label();
+            this._modelDto_Name_Space_Label = new System.Windows.Forms.Label();
             this._modelDto_Usings_Label = new System.Windows.Forms.Label();
             this._modelDto_Output_Directory_Label = new System.Windows.Forms.Label();
             this._modelDto_Dll_Path_Label = new System.Windows.Forms.Label();
@@ -58,9 +58,9 @@
             this._modelDtoUsings = new System.Windows.Forms.TextBox();
             this._modelDtoPathAssembly = new System.Windows.Forms.TextBox();
             this._logic_GenPanel = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this._logic_Usings_Label = new System.Windows.Forms.Label();
+            this._logic_Output_Path_Label = new System.Windows.Forms.Label();
+            this._logic_Name_Space_Label = new System.Windows.Forms.Label();
             this._logic_Dll_Path_Label = new System.Windows.Forms.Label();
             this._logic_Banner_Label = new System.Windows.Forms.Label();
             this._logicNameSpaces = new System.Windows.Forms.TextBox();
@@ -68,10 +68,22 @@
             this._logicOutputDirectory = new System.Windows.Forms.TextBox();
             this._logicPathAssembly = new System.Windows.Forms.TextBox();
             this._logic_GenButton = new System.Windows.Forms.Button();
+            this._ilogic_Banner_Label = new System.Windows.Forms.Label();
+            this._ilogic_Dll_Path_Label = new System.Windows.Forms.Label();
+            this._ilogic_GenPanel = new System.Windows.Forms.Panel();
+            this._ilogicUsings = new System.Windows.Forms.TextBox();
+            this._ilogicNameSpace = new System.Windows.Forms.TextBox();
+            this._ilogicOutputDirectory = new System.Windows.Forms.TextBox();
+            this._ilogicPathAssembly = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this._ilogic_Output_Path_Label = new System.Windows.Forms.Label();
+            this._ilogic_Name_Space_Label = new System.Windows.Forms.Label();
+            this._ilogic_GenButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this._dtoGen_Panel.SuspendLayout();
             this._modelDto_GenPanel.SuspendLayout();
             this._logic_GenPanel.SuspendLayout();
+            this._ilogic_GenPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -126,7 +138,7 @@
             // _dtoGen_Panel
             // 
             this._dtoGen_Panel.Controls.Add(this._dto_Banner_Label);
-            this._dtoGen_Panel.Controls.Add(this._dto_Name_Spaces_Label);
+            this._dtoGen_Panel.Controls.Add(this._dto_Name_Space_Label);
             this._dtoGen_Panel.Controls.Add(this._dto_Usings_Label);
             this._dtoGen_Panel.Controls.Add(this._dto_Output_Path_Label);
             this._dtoGen_Panel.Controls.Add(this._dto_Dll_Path_Label);
@@ -150,14 +162,14 @@
             this._dto_Banner_Label.TabIndex = 10;
             this._dto_Banner_Label.Text = "Dto Generation";
             // 
-            // _dto_Name_Spaces_Label
+            // _dto_Name_Space_Label
             // 
-            this._dto_Name_Spaces_Label.AutoSize = true;
-            this._dto_Name_Spaces_Label.Location = new System.Drawing.Point(798, 303);
-            this._dto_Name_Spaces_Label.Name = "_dto_Name_Spaces_Label";
-            this._dto_Name_Spaces_Label.Size = new System.Drawing.Size(78, 15);
-            this._dto_Name_Spaces_Label.TabIndex = 8;
-            this._dto_Name_Spaces_Label.Text = "Name Spaces";
+            this._dto_Name_Space_Label.AutoSize = true;
+            this._dto_Name_Space_Label.Location = new System.Drawing.Point(798, 303);
+            this._dto_Name_Space_Label.Name = "_dto_Name_Space_Label";
+            this._dto_Name_Space_Label.Size = new System.Drawing.Size(73, 15);
+            this._dto_Name_Space_Label.TabIndex = 8;
+            this._dto_Name_Space_Label.Text = "Name Space";
             // 
             // _dto_Usings_Label
             // 
@@ -239,7 +251,7 @@
             // 
             this._modelDto_GenPanel.Controls.Add(this._modelDto_Banner_Label);
             this._modelDto_GenPanel.Controls.Add(this._modelDto_GenButton);
-            this._modelDto_GenPanel.Controls.Add(this._modelDto_Name_Spaces_Label);
+            this._modelDto_GenPanel.Controls.Add(this._modelDto_Name_Space_Label);
             this._modelDto_GenPanel.Controls.Add(this._modelDto_Usings_Label);
             this._modelDto_GenPanel.Controls.Add(this._modelDto_Output_Directory_Label);
             this._modelDto_GenPanel.Controls.Add(this._modelDto_Dll_Path_Label);
@@ -272,14 +284,14 @@
             this._modelDto_GenButton.UseVisualStyleBackColor = true;
             this._modelDto_GenButton.Click += new System.EventHandler(this._modelDto_GenButton_Click);
             // 
-            // _modelDto_Name_Spaces_Label
+            // _modelDto_Name_Space_Label
             // 
-            this._modelDto_Name_Spaces_Label.AutoSize = true;
-            this._modelDto_Name_Spaces_Label.Location = new System.Drawing.Point(798, 303);
-            this._modelDto_Name_Spaces_Label.Name = "_modelDto_Name_Spaces_Label";
-            this._modelDto_Name_Spaces_Label.Size = new System.Drawing.Size(78, 15);
-            this._modelDto_Name_Spaces_Label.TabIndex = 7;
-            this._modelDto_Name_Spaces_Label.Text = "Name Spaces";
+            this._modelDto_Name_Space_Label.AutoSize = true;
+            this._modelDto_Name_Space_Label.Location = new System.Drawing.Point(798, 303);
+            this._modelDto_Name_Space_Label.Name = "_modelDto_Name_Space_Label";
+            this._modelDto_Name_Space_Label.Size = new System.Drawing.Size(73, 15);
+            this._modelDto_Name_Space_Label.TabIndex = 7;
+            this._modelDto_Name_Space_Label.Text = "Name Space";
             // 
             // _modelDto_Usings_Label
             // 
@@ -350,9 +362,9 @@
             // 
             // _logic_GenPanel
             // 
-            this._logic_GenPanel.Controls.Add(this.label3);
-            this._logic_GenPanel.Controls.Add(this.label2);
-            this._logic_GenPanel.Controls.Add(this.label1);
+            this._logic_GenPanel.Controls.Add(this._logic_Usings_Label);
+            this._logic_GenPanel.Controls.Add(this._logic_Output_Path_Label);
+            this._logic_GenPanel.Controls.Add(this._logic_Name_Space_Label);
             this._logic_GenPanel.Controls.Add(this._logic_Dll_Path_Label);
             this._logic_GenPanel.Controls.Add(this._logic_Banner_Label);
             this._logic_GenPanel.Controls.Add(this._logicNameSpaces);
@@ -365,32 +377,32 @@
             this._logic_GenPanel.Size = new System.Drawing.Size(0, 0);
             this._logic_GenPanel.TabIndex = 10;
             // 
-            // label3
+            // _logic_Usings_Label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(132, 305);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 15);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Usings";
+            this._logic_Usings_Label.AutoSize = true;
+            this._logic_Usings_Label.Location = new System.Drawing.Point(132, 305);
+            this._logic_Usings_Label.Name = "_logic_Usings_Label";
+            this._logic_Usings_Label.Size = new System.Drawing.Size(42, 15);
+            this._logic_Usings_Label.TabIndex = 11;
+            this._logic_Usings_Label.Text = "Usings";
             // 
-            // label2
+            // _logic_Output_Path_Label
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(792, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 15);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Output Path";
+            this._logic_Output_Path_Label.AutoSize = true;
+            this._logic_Output_Path_Label.Location = new System.Drawing.Point(792, 33);
+            this._logic_Output_Path_Label.Name = "_logic_Output_Path_Label";
+            this._logic_Output_Path_Label.Size = new System.Drawing.Size(72, 15);
+            this._logic_Output_Path_Label.TabIndex = 11;
+            this._logic_Output_Path_Label.Text = "Output Path";
             // 
-            // label1
+            // _logic_Name_Space_Label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(798, 303);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 15);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Name Spaces";
+            this._logic_Name_Space_Label.AutoSize = true;
+            this._logic_Name_Space_Label.Location = new System.Drawing.Point(798, 303);
+            this._logic_Name_Space_Label.Name = "_logic_Name_Space_Label";
+            this._logic_Name_Space_Label.Size = new System.Drawing.Size(73, 15);
+            this._logic_Name_Space_Label.TabIndex = 11;
+            this._logic_Name_Space_Label.Text = "Name Space";
             // 
             // _logic_Dll_Path_Label
             // 
@@ -460,12 +472,126 @@
             this._logic_GenButton.UseVisualStyleBackColor = true;
             this._logic_GenButton.Click += new System.EventHandler(this._logic_GenButton_Click);
             // 
+            // _ilogic_Banner_Label
+            // 
+            this._ilogic_Banner_Label.AutoSize = true;
+            this._ilogic_Banner_Label.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._ilogic_Banner_Label.Location = new System.Drawing.Point(412, 56);
+            this._ilogic_Banner_Label.Name = "_ilogic_Banner_Label";
+            this._ilogic_Banner_Label.Size = new System.Drawing.Size(114, 20);
+            this._ilogic_Banner_Label.TabIndex = 13;
+            this._ilogic_Banner_Label.Text = "ILogic Generation";
+            // 
+            // _ilogic_Dll_Path_Label
+            // 
+            this._ilogic_Dll_Path_Label.AutoSize = true;
+            this._ilogic_Dll_Path_Label.Location = new System.Drawing.Point(127, 39);
+            this._ilogic_Dll_Path_Label.Name = "_ilogic_Dll_Path_Label";
+            this._ilogic_Dll_Path_Label.Size = new System.Drawing.Size(48, 15);
+            this._ilogic_Dll_Path_Label.TabIndex = 13;
+            this._ilogic_Dll_Path_Label.Text = "Dll Path";
+            // 
+            // _ilogic_GenPanel
+            // 
+            this._ilogic_GenPanel.Controls.Add(this._ilogicUsings);
+            this._ilogic_GenPanel.Controls.Add(this._ilogicNameSpace);
+            this._ilogic_GenPanel.Controls.Add(this._ilogicOutputDirectory);
+            this._ilogic_GenPanel.Controls.Add(this._ilogicPathAssembly);
+            this._ilogic_GenPanel.Controls.Add(this.label1);
+            this._ilogic_GenPanel.Controls.Add(this._ilogic_Output_Path_Label);
+            this._ilogic_GenPanel.Controls.Add(this._ilogic_Name_Space_Label);
+            this._ilogic_GenPanel.Controls.Add(this._ilogic_GenButton);
+            this._ilogic_GenPanel.Controls.Add(this._ilogic_Dll_Path_Label);
+            this._ilogic_GenPanel.Controls.Add(this._ilogic_Banner_Label);
+            this._ilogic_GenPanel.Location = new System.Drawing.Point(1, 26);
+            this._ilogic_GenPanel.Name = "_ilogic_GenPanel";
+            this._ilogic_GenPanel.Size = new System.Drawing.Size(1019, 506);
+            this._ilogic_GenPanel.TabIndex = 14;
+            // 
+            // _ilogicUsings
+            // 
+            this._ilogicUsings.Location = new System.Drawing.Point(24, 339);
+            this._ilogicUsings.Multiline = true;
+            this._ilogicUsings.Name = "_ilogicUsings";
+            this._ilogicUsings.Size = new System.Drawing.Size(300, 150);
+            this._ilogicUsings.TabIndex = 10;
+            this._ilogicUsings.Text = resources.GetString("_ilogicUsings.Text");
+            // 
+            // _ilogicNameSpace
+            // 
+            this._ilogicNameSpace.Location = new System.Drawing.Point(685, 337);
+            this._ilogicNameSpace.Multiline = true;
+            this._ilogicNameSpace.Name = "_ilogicNameSpace";
+            this._ilogicNameSpace.Size = new System.Drawing.Size(313, 156);
+            this._ilogicNameSpace.TabIndex = 13;
+            this._ilogicNameSpace.Text = "namespace Intotech.Wheelo.Bll.Persistence;";
+            // 
+            // _ilogicOutputDirectory
+            // 
+            this._ilogicOutputDirectory.Location = new System.Drawing.Point(682, 69);
+            this._ilogicOutputDirectory.Multiline = true;
+            this._ilogicOutputDirectory.Name = "_ilogicOutputDirectory";
+            this._ilogicOutputDirectory.Size = new System.Drawing.Size(300, 181);
+            this._ilogicOutputDirectory.TabIndex = 13;
+            this._ilogicOutputDirectory.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interface" +
+    "s\\Intotech.Wheelo.Bll.Persistence.Interfaces\\";
+            // 
+            // _ilogicPathAssembly
+            // 
+            this._ilogicPathAssembly.HideSelection = false;
+            this._ilogicPathAssembly.Location = new System.Drawing.Point(20, 68);
+            this._ilogicPathAssembly.Multiline = true;
+            this._ilogicPathAssembly.Name = "_ilogicPathAssembly";
+            this._ilogicPathAssembly.Size = new System.Drawing.Size(310, 170);
+            this._ilogicPathAssembly.TabIndex = 13;
+            this._ilogicPathAssembly.Text = "C:\\\\Users\\\\stasx\\\\Documents\\\\GitHub\\\\intotech_wheelo\\\\Toci.Driver.Bll.Porsche.Int" +
+    "erfaces\\\\Toci.Driver.Database.Persistence\\\\bin\\\\Debug\\\\net7.0\\\\Toci.Driver.Datab" +
+    "ase.Persistence.dll";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(132, 305);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Usings";
+            // 
+            // _ilogic_Output_Path_Label
+            // 
+            this._ilogic_Output_Path_Label.AutoSize = true;
+            this._ilogic_Output_Path_Label.Location = new System.Drawing.Point(792, 33);
+            this._ilogic_Output_Path_Label.Name = "_ilogic_Output_Path_Label";
+            this._ilogic_Output_Path_Label.Size = new System.Drawing.Size(72, 15);
+            this._ilogic_Output_Path_Label.TabIndex = 13;
+            this._ilogic_Output_Path_Label.Text = "Output Path";
+            // 
+            // _ilogic_Name_Space_Label
+            // 
+            this._ilogic_Name_Space_Label.AutoSize = true;
+            this._ilogic_Name_Space_Label.Location = new System.Drawing.Point(798, 303);
+            this._ilogic_Name_Space_Label.Name = "_ilogic_Name_Space_Label";
+            this._ilogic_Name_Space_Label.Size = new System.Drawing.Size(73, 15);
+            this._ilogic_Name_Space_Label.TabIndex = 13;
+            this._ilogic_Name_Space_Label.Text = "Name Space";
+            // 
+            // _ilogic_GenButton
+            // 
+            this._ilogic_GenButton.Location = new System.Drawing.Point(370, 424);
+            this._ilogic_GenButton.Name = "_ilogic_GenButton";
+            this._ilogic_GenButton.Size = new System.Drawing.Size(238, 55);
+            this._ilogic_GenButton.TabIndex = 13;
+            this._ilogic_GenButton.Text = "Generate";
+            this._ilogic_GenButton.UseVisualStyleBackColor = true;
+            this._ilogic_GenButton.Click += new System.EventHandler(this._ilogic_GenButton_Click);
+            // 
             // GhostRiderGenEx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1020, 533);
+            this.Controls.Add(this._ilogic_GenPanel);
             this.Controls.Add(this._logic_GenPanel);
             this.Controls.Add(this._dtoGen_Panel);
             this.Controls.Add(this._modelDto_GenPanel);
@@ -473,7 +599,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GhostRiderGenEx";
-            this.Text = "Form1";
+            this.Text = "Class Generator";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this._dtoGen_Panel.ResumeLayout(false);
@@ -482,6 +608,8 @@
             this._modelDto_GenPanel.PerformLayout();
             this._logic_GenPanel.ResumeLayout(false);
             this._logic_GenPanel.PerformLayout();
+            this._ilogic_GenPanel.ResumeLayout(false);
+            this._ilogic_GenPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,14 +629,14 @@
         private TextBox _dtoUsings;
         private TextBox _dtoNameSpaces;
         private Button _dtoGen_Button;
-        private Label _dto_Name_Spaces_Label;
+        private Label _dto_Name_Space_Label;
         private Label _dto_Usings_Label;
         private Label _dto_Output_Path_Label;
         private Label _dto_Dll_Path_Label;
         private Panel _modelDto_GenPanel;
         private TextBox _logicPathAssembly;
         private Button _modelDto_GenButton;
-        private Label _modelDto_Name_Spaces_Label;
+        private Label _modelDto_Name_Space_Label;
         private Label _modelDto_Usings_Label;
         private Label _modelDto_Output_Directory_Label;
         private Label _modelDto_Dll_Path_Label;
@@ -524,12 +652,23 @@
         private Panel _logic_GenPanel;
         private Button _logic_GenButton;
         private TextBox _logicOutputDirectory;
-        private Label label3;
-        private Label label2;
-        private Label label1;
+        private Label _logic_Usings_Label;
+        private Label _logic_Output_Path_Label;
+        private Label _logic_Name_Space_Label;
         private Label _logic_Dll_Path_Label;
         private Label _logic_Banner_Label;
         private TextBox _logicNameSpaces;
         private TextBox _logicUsings;
+        private Label _ilogic_Banner_Label;
+        private Label _ilogic_Dll_Path_Label;
+        private Panel _ilogic_GenPanel;
+        private TextBox _ilogicUsings;
+        private TextBox _ilogicNameSpace;
+        private TextBox _ilogicOutputDirectory;
+        private TextBox _ilogicPathAssembly;
+        private Label label1;
+        private Label _ilogic_Output_Path_Label;
+        private Label _ilogic_Name_Space_Label;
+        private Button _ilogic_GenButton;
     }
 }

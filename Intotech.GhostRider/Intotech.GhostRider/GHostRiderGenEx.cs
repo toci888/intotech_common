@@ -12,7 +12,8 @@ namespace Intotech.GhostRider
             _dtoGen_Panel.Size = new System.Drawing.Size(1019, 510);
             _modelDto_GenPanel.Size = new System.Drawing.Size(1019, 510);
             _logic_GenPanel.Size = new System.Drawing.Size(1019, 510);
-            
+            _ilogic_GenPanel.Size = new System.Drawing.Size(1019, 510);
+
         }
         
         private void dtoGenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -21,6 +22,7 @@ namespace Intotech.GhostRider
 
             _modelDto_GenPanel.Hide();
             _logic_GenPanel.Hide();
+            _ilogic_GenPanel.Hide();
         }
         private void logicGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -28,10 +30,13 @@ namespace Intotech.GhostRider
 
             _dtoGen_Panel.Hide();
             _modelDto_GenPanel.Hide();
+            _ilogic_GenPanel.Hide();
         }
 
         private void iLogicGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _ilogic_GenPanel.Show();
+
             _dtoGen_Panel.Hide();
             _modelDto_GenPanel.Hide();
             _logic_GenPanel.Hide();
@@ -43,6 +48,7 @@ namespace Intotech.GhostRider
 
             _dtoGen_Panel.Hide();
             _logic_GenPanel.Hide();
+            _ilogic_GenPanel.Hide();
 
         }
 
@@ -51,6 +57,7 @@ namespace Intotech.GhostRider
             _dtoGen_Panel.Hide();
             _modelDto_GenPanel.Hide();
             _logic_GenPanel.Hide();
+            _ilogic_GenPanel.Hide();
         }
 
         private void DtoGenButton_Click(object sender, EventArgs e)
@@ -123,6 +130,34 @@ namespace Intotech.GhostRider
                 if (reloadMethod == true)
                 {
                     _logic_GenButton_Click(sender, e); //
+                    MessageBox.Show("Dtos files are updated");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Not all fields are filled");
+            }
+        }
+
+        private void _ilogic_GenButton_Click(object sender, EventArgs e)
+        {
+
+            if (_ilogicPathAssembly.Text != null || _ilogicOutputDirectory.Text != null || _ilogicUsings.Text != null || _ilogicNameSpace.Text != null) //
+            {
+                var mainFolder = _ilogicPathAssembly.Text;         //
+                var outputDirectory = _ilogicOutputDirectory.Text; //
+                var usings = _ilogicUsings.Text;                   //
+                var nameSpace = _ilogicNameSpace.Text;            //
+
+                GeneratorRealization realizator = new();
+
+                var reloadMethod = realizator.ILogicRender(mainFolder, outputDirectory, usings, nameSpace); ///
+
+                if (reloadMethod == true)
+                {
+                    _ilogic_GenButton_Click(sender, e); //
                     MessageBox.Show("Dtos files are updated");
                 }
 
