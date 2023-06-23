@@ -6,7 +6,7 @@ using Intotech.Common.Bll.Interfaces.ChorDtoBll;
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
-public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : IDtoLogic<TModel, TLogic, TDto>
+public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : IDtoLogic<TModel, TLogic, TDto, TCollectionModelDto>
     where TLogic : ILogicBase<TModel>
     where TModelDto : DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto>, new()
     where TModel : class, new()
@@ -28,9 +28,9 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
         UpdateModel = updateModel;
     }
 
-    public virtual TDto GetEntity(TDto masterEntity)
+    public virtual TDto GetEntity(TDto masterEntity, TCollectionModelDto outputField = default(TCollectionModelDto))
     {
-        if (masterEntity is TCollectionModel)
+        if (outputField != null)
         {
             IList<TModel> collection = CrudLogic.Select(SelectFilter).ToList();
 
@@ -48,7 +48,9 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
                 entityCollection.Add(item.MapModelToDto(element));
             }
 
-            return FillEntity(masterEntity, entityCollection);
+            outputField = entityCollection;
+
+            return masterEntity;
         }
 
         TModel result = CrudLogic.Select(SelectFilter).FirstOrDefault();
