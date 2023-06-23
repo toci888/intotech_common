@@ -1,4 +1,4 @@
-﻿namespace Intotech.Common.Bll;
+﻿namespace Intotech.Common.Bll.Interfaces;
 
 public class DictionaryModelBase : ModelBase
 {

@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using Intotech.Common.Bll.Interfaces;
 
 namespace Intotech.Common.Bll.Dictionaries;
 
-public abstract class DictionaryLogicBase<TDictionaryModel> : LogicBase<TDictionaryModel> where TDictionaryModel : class // where TDictionaryModel : DictionaryModelBase
+public abstract class DictionaryLogicBase<TDictionaryModel> : LogicBase<TDictionaryModel> where TDictionaryModel : DictionaryModelBase
 {
-    public virtual IEnumerable<TDictionaryModel> GetDictionaryItems(Expression<Func<TDictionaryModel, bool>> filter)
+    public virtual IEnumerable<TDictionaryModel> GetDictionaryItems(string filter)
     {
-        return Select(filter);
+        return Select(m => m.Name.ToLower().StartsWith(filter));
     }
 }

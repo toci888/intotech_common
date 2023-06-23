@@ -2,7 +2,7 @@
 
 namespace Intotech.Common.Bll.Interfaces;
 
-public interface IDictionaryLogicBase<TModel> : ILogicBase<TModel> where TModel : class
+public interface IDictionaryLogicBase<TModel> : ILogicBase<TModel> where TModel : DictionaryModelBase
 {
-    IEnumerable<TModel> GetDictionaryItems(Expression<Func<TModel, bool>> filter);
+    IEnumerable<TModel> GetDictionaryItems(string filter);
 }
