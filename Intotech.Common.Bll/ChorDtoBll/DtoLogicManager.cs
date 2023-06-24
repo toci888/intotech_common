@@ -2,17 +2,25 @@
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
-public class DtoLogicManager<TDto> : IDtoLogicManager<TDto> where TDto : new()
+public class DtoLogicManager<TDto, TCollectionModelDto> : IDtoLogicManager<TDto, TCollectionModelDto> 
+    where TDto : new()
 {
-    protected List<IDtoEntityHandler<TDto>> Handlers = new List<IDtoEntityHandler<TDto>>();
+    protected List<IDtoEntityHandler<TDto, TCollectionModelDto>> Handlers = new List<IDtoEntityHandler<TDto, TCollectionModelDto>>();
 
 
-    public virtual void AddDtoLogic(IDtoEntityHandler<TDto> logic)
+    public virtual void AddDtoLogic(IDtoEntityHandler<TDto, TCollectionModelDto> logic)
     {
         Handlers.Add(logic);
     }
 
-    public virtual TDto RunGet(int id)
+    public virtual TDto GetData(int id)
+    {
+        //new AccountDtoLogic
+
+        return new TDto();
+    }
+
+    /*public virtual TDto RunGet(int id)
     {
         TDto dto = new TDto();
 
@@ -32,5 +40,5 @@ public class DtoLogicManager<TDto> : IDtoLogicManager<TDto> where TDto : new()
         }
 
         return dto;
-    }
+    }*/
 }

@@ -1,7 +1,7 @@
 ﻿namespace Intotech.Common.Bll.Interfaces.ChorDtoBll;
 
-public interface ILogic2DtoHandler<out TDto, TDtoLogic, in TModel> 
-    where TDtoLogic : IDtoLogic<TModel, ILogicBase<TModel>, TDto>
+public interface ILogic2DtoHandler<out TDto, TDtoLogic, in TModel, TCollectionModelDto> 
+    where TDtoLogic : IDtoLogic<TModel, ILogicBase<TModel>, TDto, TCollectionModelDto>
     where TModel : class
 {
     TDto GetData(TModel modelConstraint);
