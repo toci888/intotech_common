@@ -28,7 +28,7 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
         UpdateModel = updateModel;
     }
 
-    public virtual TCollectionModelDto GetCollection(TDto masterEntity)
+    public virtual TCollectionModelDto GetCollection()
     {
         IList<TModel> collection = CrudLogic.Select(SelectFilter).ToList();
 
@@ -49,6 +49,18 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
         //outputField = entityCollection;
 
         return entityCollection;
+    }
+
+    public virtual bool SetCollection(TCollectionModelDto entityCollection)
+    {
+        foreach (TModelDto element in entityCollection)
+        {
+            TModel item = element.MapDtoToModel();
+
+            CrudLogic.Update(item);
+        }
+        
+        return true;
     }
 
     public virtual TDto GetEntity(TDto masterEntity, TCollectionModelDto outputField = default)
