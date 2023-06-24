@@ -1,4 +1,5 @@
-﻿using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
+﻿using Intotech.ReflectiveTools.DtosLogicGenerator;
+using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
 using System;
@@ -9,15 +10,17 @@ using System.Threading.Tasks;
 
 namespace Intotech.GhostRider
 {
-    internal class GeneratorRealization
+    public class GeneratorRealization
     {
-        public bool DtoRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool DtoRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
         {
             if (Directory.GetFiles(outputDirectory).Length == 0)
             {
                 try
                 {
-                    DtoRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace);
+                    DtoRendererRunner dtoRendererRunner = new();
+
+                    dtoRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace);
                 }
                 catch (Exception ex)
                 {
@@ -37,13 +40,15 @@ namespace Intotech.GhostRider
                 return true;
             }
         }
-        public bool ModelDtoRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool ModelDtoRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
         {
             if (Directory.GetFiles(outputDirectory).Length == 0)
             {
                 try
                 {
-                    ClassRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace);
+                    ClassRendererRunner classRendererRunner = new();
+
+                    classRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace);
                 }
                 catch (Exception ex)
                 {
@@ -63,7 +68,7 @@ namespace Intotech.GhostRider
                 return true;
             }
         }
-        public bool LogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool LogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
         {
             List<string> selectedObj = new() { "Intotech.Wheelo.Bll.Persistence.csproj", "Logic.cs" };
 
@@ -71,7 +76,9 @@ namespace Intotech.GhostRider
             {
                 try
                 {
-                    LogicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, false);
+                    LogicRendererRunner logicRendererRunner = new();
+
+                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, false);
                 }
                 catch (Exception ex)
                 {
@@ -93,7 +100,7 @@ namespace Intotech.GhostRider
                 return true;
             }
         }
-        public bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
         {
             List<string> selectedObj = new() { "Intotech.Wheelo.Bll.Persistence.Interfaces.csproj", "AccountLogicConstants.cs" };
             
@@ -101,7 +108,9 @@ namespace Intotech.GhostRider
             {
                 try
                 {
-                    LogicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, true);
+                    LogicRendererRunner logicRendererRunner = new();
+
+                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, true);
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +131,35 @@ namespace Intotech.GhostRider
             }
         }
 
-        public static bool FolderCleaner(string outputDirectory, List<string> selectedObj = null)
+        public virtual bool DtoLogicRender(string mainFolderPath, string outputDirectory, string usings, string nameSpace)
+        {
+            if (Directory.GetFiles(outputDirectory).Length== 0)
+            {
+                try
+                {
+                    DtoLogicRendererRunner dtosRender = new();
+
+                    dtosRender.LoadAndReadAssembly(mainFolderPath, outputDirectory, usings, nameSpace);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    throw;
+                }
+                return false;
+            }
+            else
+            {
+                if (FolderCleaner(outputDirectory) == false)
+                {
+                    return false;
+                }
+
+
+                return true;
+            }
+        }
+        public virtual bool FolderCleaner(string outputDirectory, List<string> selectedObj = null)
         {
 
             DialogResult result = MessageBox.Show("There are objects in the folder, delete them?", "", MessageBoxButtons.YesNo);

@@ -11,13 +11,15 @@ namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
 {
     public class LogicRendererRunner
     {
-        public static void LoadAndReadAssembly(string inputDllPath, string outputDirectory, string usings, string nmSpace, bool isInterfase)
+        public virtual void LoadAndReadAssembly(string inputDllPath, string outputDirectory, string usings, string nmSpace, bool isInterfase)
         {
             var types = Assembly.LoadFrom(inputDllPath).GetTypes();
 
             for (int i = 4; i < types.Length; i++)
             {
-                LogicRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace, isInterfase);
+                LogicRenderer logicRenderer = new();
+
+                logicRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace, isInterfase);
             }
               
         }

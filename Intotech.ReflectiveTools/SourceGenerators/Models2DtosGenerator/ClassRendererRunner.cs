@@ -4,15 +4,19 @@ namespace Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 
 public class ClassRendererRunner
 {
-    public static void LoadAndReadAssembly(string assemblyPath, string outputDirectory, string usings, string nmSpace)
+    public virtual void LoadAndReadAssembly(string assemblyPath, string outputDirectory, string usings, string nmSpace)
     {
         Assembly assembly = Assembly.LoadFrom(assemblyPath);
 
         Type[] types = assembly.GetTypes();
 
-        foreach (Type type in types)
+        for (int i = 4; i < types.Length; i++)
         {
-            ClassRenderer.RenderAutoProperties(type, outputDirectory, usings, nmSpace);
+            ClassRenderer classRenderer = new();
+
+            classRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace);
         }
+            
+        
     }
 }

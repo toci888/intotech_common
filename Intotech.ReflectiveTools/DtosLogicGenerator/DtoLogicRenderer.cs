@@ -9,7 +9,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
 {
     public class DtoLogicRenderer
     {
-        public void RendererDtoLogic(List<Type?> inputTypes, string outputPath, string usings, string nmSpace)
+        public virtual void RendererDtoLogic(List<Type?> inputTypes, string outputPath, string usings, string nmSpace)
         {
            
            
@@ -24,7 +24,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
                 {
                     writer.WriteLine(usings + Environment.NewLine);
                     writer.WriteLine(nmSpace + Environment.NewLine);
-                    writer.WriteLine($"public class {model.Name}DtoLogic : DtoLogicBase< {modelsDtosTypes.Name} , {model.Name} , I{logicType.Name} , {dtoType.Name} >");
+                    writer.WriteLine($"public class {model.Name}DtoLogic : DtoLogicBase<{modelsDtosTypes.Name}, {model.Name}, I{logicType.Name}, {dtoType.Name}>");
                     writer.WriteLine("{");
 
                         writer.WriteLine($"    public {model.Name}DtoLogic(I{logicType.Name} {logicType.Name.ToLower()}) \r\n        " +
@@ -40,21 +40,6 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
 
                
                 }
-        }
-        public string GetMainPath(string mainFolderName)
-        {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string solutionName = Path.GetFileName(currentDirectory);
-
-            while (solutionName != null && solutionName.ToLower() != mainFolderName.ToLower())
-            {
-                currentDirectory = Directory.GetParent(currentDirectory).FullName;
-                solutionName = Path.GetFileName(currentDirectory);
-            }
-
-            string mainFolderPath = $"{currentDirectory}";
-
-            return mainFolderPath;
         }
 
         public List<Type?> GetRightTypes(string keyName, List<Type[]> allTypes)

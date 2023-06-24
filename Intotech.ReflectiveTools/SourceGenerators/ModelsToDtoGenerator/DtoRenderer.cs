@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
 {
-    internal class DtoRenderer
+    public class DtoRenderer
     {
-        public static void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace)
+        public virtual void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace)
         {
           
                 if (!sourceClass.FullName.Contains("Context"))

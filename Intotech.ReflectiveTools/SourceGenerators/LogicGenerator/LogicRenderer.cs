@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
 {
-    internal class LogicRenderer
+    public class LogicRenderer
     {
-        public static void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace, bool isInterfase)
+        public virtual void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace, bool isInterfase)
         {
             if (!isInterfase)
             {

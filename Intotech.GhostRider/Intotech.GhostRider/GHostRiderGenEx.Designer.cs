@@ -46,6 +46,16 @@
             this._dtoUsings = new System.Windows.Forms.TextBox();
             this._dtoOutputDirectory = new System.Windows.Forms.TextBox();
             this._dtoPathAssembly = new System.Windows.Forms.TextBox();
+            this._dtoLogic_Panel = new System.Windows.Forms.Panel();
+            this._dtoLogic_NameSpace_Label = new System.Windows.Forms.Label();
+            this._dtoLogic_Banner = new System.Windows.Forms.Label();
+            this._dtoLogic_Usings_Label = new System.Windows.Forms.Label();
+            this._dtoLogic_OutputPath_Label = new System.Windows.Forms.Label();
+            this._dtoLogic_GenButton = new System.Windows.Forms.Button();
+            this._dtoLogicNameSpace = new System.Windows.Forms.TextBox();
+            this._dtoLogicUsings = new System.Windows.Forms.TextBox();
+            this._dtoLogicOutputDirectory = new System.Windows.Forms.TextBox();
+            this._dtoLogic_MainFolder_Button = new System.Windows.Forms.Button();
             this._modelDto_GenPanel = new System.Windows.Forms.Panel();
             this._modelDto_Banner_Label = new System.Windows.Forms.Label();
             this._modelDto_GenButton = new System.Windows.Forms.Button();
@@ -81,6 +91,7 @@
             this._ilogic_GenButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this._dtoGen_Panel.SuspendLayout();
+            this._dtoLogic_Panel.SuspendLayout();
             this._modelDto_GenPanel.SuspendLayout();
             this._logic_GenPanel.SuspendLayout();
             this._ilogic_GenPanel.SuspendLayout();
@@ -246,6 +257,107 @@
             this._dtoPathAssembly.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interface" +
     "s\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persist" +
     "ence.dll";
+            // 
+            // _dtoLogic_Panel
+            // 
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogic_NameSpace_Label);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogic_Banner);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogic_Usings_Label);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogic_OutputPath_Label);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogic_GenButton);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogicNameSpace);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogicUsings);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogicOutputDirectory);
+            this._dtoLogic_Panel.Controls.Add(this._dtoLogic_MainFolder_Button);
+            this._dtoLogic_Panel.Location = new System.Drawing.Point(0, 24);
+            this._dtoLogic_Panel.Name = "_dtoLogic_Panel";
+            this._dtoLogic_Panel.Size = new System.Drawing.Size(39, 32);
+            this._dtoLogic_Panel.TabIndex = 15;
+            // 
+            // _dtoLogic_NameSpace_Label
+            // 
+            this._dtoLogic_NameSpace_Label.AutoSize = true;
+            this._dtoLogic_NameSpace_Label.Location = new System.Drawing.Point(798, 297);
+            this._dtoLogic_NameSpace_Label.Name = "_dtoLogic_NameSpace_Label";
+            this._dtoLogic_NameSpace_Label.Size = new System.Drawing.Size(73, 15);
+            this._dtoLogic_NameSpace_Label.TabIndex = 19;
+            this._dtoLogic_NameSpace_Label.Text = "Name Space";
+            // 
+            // _dtoLogic_Banner
+            // 
+            this._dtoLogic_Banner.AutoSize = true;
+            this._dtoLogic_Banner.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this._dtoLogic_Banner.Location = new System.Drawing.Point(410, 66);
+            this._dtoLogic_Banner.Name = "_dtoLogic_Banner";
+            this._dtoLogic_Banner.Size = new System.Drawing.Size(131, 20);
+            this._dtoLogic_Banner.TabIndex = 20;
+            this._dtoLogic_Banner.Text = "DtoLogic Generation";
+            // 
+            // _dtoLogic_Usings_Label
+            // 
+            this._dtoLogic_Usings_Label.AutoSize = true;
+            this._dtoLogic_Usings_Label.Location = new System.Drawing.Point(132, 299);
+            this._dtoLogic_Usings_Label.Name = "_dtoLogic_Usings_Label";
+            this._dtoLogic_Usings_Label.Size = new System.Drawing.Size(42, 15);
+            this._dtoLogic_Usings_Label.TabIndex = 18;
+            this._dtoLogic_Usings_Label.Text = "Usings";
+            // 
+            // _dtoLogic_OutputPath_Label
+            // 
+            this._dtoLogic_OutputPath_Label.AutoSize = true;
+            this._dtoLogic_OutputPath_Label.Location = new System.Drawing.Point(792, 27);
+            this._dtoLogic_OutputPath_Label.Name = "_dtoLogic_OutputPath_Label";
+            this._dtoLogic_OutputPath_Label.Size = new System.Drawing.Size(72, 15);
+            this._dtoLogic_OutputPath_Label.TabIndex = 17;
+            this._dtoLogic_OutputPath_Label.Text = "Output Path";
+            // 
+            // _dtoLogic_GenButton
+            // 
+            this._dtoLogic_GenButton.Location = new System.Drawing.Point(370, 418);
+            this._dtoLogic_GenButton.Name = "_dtoLogic_GenButton";
+            this._dtoLogic_GenButton.Size = new System.Drawing.Size(238, 55);
+            this._dtoLogic_GenButton.TabIndex = 15;
+            this._dtoLogic_GenButton.Text = "Generate";
+            this._dtoLogic_GenButton.UseVisualStyleBackColor = true;
+            this._dtoLogic_GenButton.Click += new System.EventHandler(this._dtoLogic_GenButton_Click);
+            // 
+            // _dtoLogicNameSpace
+            // 
+            this._dtoLogicNameSpace.Location = new System.Drawing.Point(685, 331);
+            this._dtoLogicNameSpace.Multiline = true;
+            this._dtoLogicNameSpace.Name = "_dtoLogicNameSpace";
+            this._dtoLogicNameSpace.Size = new System.Drawing.Size(313, 156);
+            this._dtoLogicNameSpace.TabIndex = 14;
+            this._dtoLogicNameSpace.Text = "namespace Intotech.Wheelo.Bll.Logic.DtoLogics;";
+            // 
+            // _dtoLogicUsings
+            // 
+            this._dtoLogicUsings.Location = new System.Drawing.Point(24, 333);
+            this._dtoLogicUsings.Multiline = true;
+            this._dtoLogicUsings.Name = "_dtoLogicUsings";
+            this._dtoLogicUsings.Size = new System.Drawing.Size(300, 150);
+            this._dtoLogicUsings.TabIndex = 13;
+            this._dtoLogicUsings.Text = resources.GetString("_dtoLogicUsings.Text");
+            // 
+            // _dtoLogicOutputDirectory
+            // 
+            this._dtoLogicOutputDirectory.Location = new System.Drawing.Point(682, 63);
+            this._dtoLogicOutputDirectory.Multiline = true;
+            this._dtoLogicOutputDirectory.Name = "_dtoLogicOutputDirectory";
+            this._dtoLogicOutputDirectory.Size = new System.Drawing.Size(300, 181);
+            this._dtoLogicOutputDirectory.TabIndex = 12;
+            this._dtoLogicOutputDirectory.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interface" +
+    "s\\Intotech.Wheelo.Bll.Logic\\DtoLogics\\";
+            // 
+            // _dtoLogic_MainFolder_Button
+            // 
+            this._dtoLogic_MainFolder_Button.Location = new System.Drawing.Point(76, 74);
+            this._dtoLogic_MainFolder_Button.Name = "_dtoLogic_MainFolder_Button";
+            this._dtoLogic_MainFolder_Button.Size = new System.Drawing.Size(164, 33);
+            this._dtoLogic_MainFolder_Button.TabIndex = 0;
+            this._dtoLogic_MainFolder_Button.Text = "Choose main folder";
+            this._dtoLogic_MainFolder_Button.UseVisualStyleBackColor = true;
+            this._dtoLogic_MainFolder_Button.Click += new System.EventHandler(this._dtoLogic_MainFolder_Button_Click);
             // 
             // _modelDto_GenPanel
             // 
@@ -505,7 +617,7 @@
             this._ilogic_GenPanel.Controls.Add(this._ilogic_Banner_Label);
             this._ilogic_GenPanel.Location = new System.Drawing.Point(1, 26);
             this._ilogic_GenPanel.Name = "_ilogic_GenPanel";
-            this._ilogic_GenPanel.Size = new System.Drawing.Size(1019, 506);
+            this._ilogic_GenPanel.Size = new System.Drawing.Size(0, 0);
             this._ilogic_GenPanel.TabIndex = 14;
             // 
             // _ilogicUsings
@@ -591,6 +703,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1020, 533);
+            this.Controls.Add(this._dtoLogic_Panel);
             this.Controls.Add(this._ilogic_GenPanel);
             this.Controls.Add(this._logic_GenPanel);
             this.Controls.Add(this._dtoGen_Panel);
@@ -604,6 +717,8 @@
             this.menuStrip1.PerformLayout();
             this._dtoGen_Panel.ResumeLayout(false);
             this._dtoGen_Panel.PerformLayout();
+            this._dtoLogic_Panel.ResumeLayout(false);
+            this._dtoLogic_Panel.PerformLayout();
             this._modelDto_GenPanel.ResumeLayout(false);
             this._modelDto_GenPanel.PerformLayout();
             this._logic_GenPanel.ResumeLayout(false);
@@ -670,5 +785,15 @@
         private Label _ilogic_Output_Path_Label;
         private Label _ilogic_Name_Space_Label;
         private Button _ilogic_GenButton;
+        private Panel _dtoLogic_Panel;
+        private Button _dtoLogic_MainFolder_Button;
+        private Label _dtoLogic_Banner;
+        private Label _dtoLogic_NameSpace_Label;
+        private Label _dtoLogic_Usings_Label;
+        private Label _dtoLogic_OutputPath_Label;
+        private Button _dtoLogic_GenButton;
+        private TextBox _dtoLogicNameSpace;
+        private TextBox _dtoLogicUsings;
+        private TextBox _dtoLogicOutputDirectory;
     }
 }

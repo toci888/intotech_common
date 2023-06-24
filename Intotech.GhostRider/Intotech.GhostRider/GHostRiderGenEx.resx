@@ -60,6 +60,16 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="_dtoLogicUsings.Text" xml:space="preserve">
+    <value>using System.Linq.Expressions;
+using Intotech.Common.Bll.ChorDtoBll;
+using Intotech.Common.Bll.ChorDtoBll.Dto;
+using Intotech.Wheelo.Bll.Models.Dtos;
+using Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;
+using Intotech.Wheelo.Bll.Persistence;
+using Intotech.Wheelo.Common.Interfaces.ModelMapperInterfaces;
+using Toci.Driver.Database.Persistence.Models;</value>
+  </data>
   <data name="_logicUsings.Text" xml:space="preserve">
     <value>using Intotech.Wheelo.Bll.Persistence.Interfaces;
 using System;

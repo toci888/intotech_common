@@ -11,11 +11,10 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
 {
     public class DtoLogicRendererRunner
     {
-        public void LoadAndReadAssembly(string mainFolderName, string? outputPath, string? usings, string? nmSpace)
+        public virtual void LoadAndReadAssembly(string mainFolderPath, string outputPath, string usings, string nmSpace)
         {
             DtoLogicRenderer renderer = new ();
 
-            var mainFolderPath = renderer.GetMainPath(mainFolderName);
 
             string modelsDllPath = "\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll";
             string modelsDtosDllPath = "\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\bin\\Debug\\net7.0\\Intotech.Wheelo.Bll.Models.dll";
@@ -30,12 +29,10 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
             paths.Add(dtosDllPath);
 
             List<Type[]> allTypes = new ();
-
-
-
+           
             for (int i = 0; i < paths.Count(); i++)
             {
-                var singleTypes = Assembly.LoadFrom(mainFolderPath + paths[i]).GetTypes();
+                Type? [] singleTypes = Assembly.LoadFrom(mainFolderPath + paths[i]).GetTypes();
                 allTypes.Add(singleTypes);
             }
 

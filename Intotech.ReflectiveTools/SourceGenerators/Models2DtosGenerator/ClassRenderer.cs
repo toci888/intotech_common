@@ -5,7 +5,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 
 public class ClassRenderer
 {
-    public static void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace)
+    public virtual void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace)
     {
         if (!sourceClass.FullName.Contains("Context"))
         {
