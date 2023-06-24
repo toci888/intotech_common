@@ -57,7 +57,14 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
         {
             TModel item = element.MapDtoToModel();
 
-            CrudLogic.Update(item);
+            try
+            {
+                CrudLogic.Update(item);
+            }
+            catch (Exception ex)
+            {
+                CrudLogic.Insert(item);
+            }
         }
         
         return true;
