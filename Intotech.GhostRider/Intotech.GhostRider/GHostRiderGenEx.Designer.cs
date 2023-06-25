@@ -652,7 +652,7 @@
             this._ilogicNameSpace.Name = "_ilogicNameSpace";
             this._ilogicNameSpace.Size = new System.Drawing.Size(313, 156);
             this._ilogicNameSpace.TabIndex = 13;
-            this._ilogicNameSpace.Text = "namespace Intotech.Wheelo.Bll.Persistence;";
+            this._ilogicNameSpace.Text = "namespace Intotech.Wheelo.Bll.Persistence.Interfaces;";
             // 
             // _ilogicOutputDirectory
             // 
