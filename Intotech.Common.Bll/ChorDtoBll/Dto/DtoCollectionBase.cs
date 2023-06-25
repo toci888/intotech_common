@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Intotech.Common.Bll.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace Intotech.Common.Bll.ChorDtoBll.Dto
 {
     public class DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto> : DtoBase<TModel, TModelDto>
-        where TModel : new()
+        where TModel : ModelBase, new()
         where TModelDto : DtoBase<TModel, TModelDto>, new()
         where TCollectionModel : IList<TModel>, new()
         where TCollectionModelDto : IList<TModelDto>, new()
