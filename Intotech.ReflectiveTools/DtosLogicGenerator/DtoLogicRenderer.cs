@@ -24,7 +24,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
                 {
                     writer.WriteLine(usings + Environment.NewLine);
                     writer.WriteLine(nmSpace + Environment.NewLine);
-                    writer.WriteLine($"public class {model.Name}DtoLogic : DtoLogicBase<{modelsDtosTypes.Name}, {model.Name}, I{logicType.Name}, {dtoType.Name}>");
+                    writer.WriteLine($"public class {model.Name}DtoLogic : DtoLogicBase<{modelsDtosTypes.Name}, {model.Name}, I{logicType.Name}, {dtoType.Name}, List<{model.Name}>, List<{modelsDtosTypes.Name}>>");
                     writer.WriteLine("{");
 
                         writer.WriteLine($"    public {model.Name}DtoLogic(I{logicType.Name} {logicType.Name.ToLower()}) \r\n        " +
@@ -32,7 +32,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
                             $"(aDto, aModelDto) => {{ \r\n                " +
                             $"aDto.{model.Name} = aModelDto;\r\n                " +
                             $"return aDto;\r\n            }})\r\n    {{\r\n    }}\r\n\r\n    " +
-                            $"protected override DtoBase<{model.Name}> GetDtoModelField({model.Name}Dto dto)\r\n    {{\r\n       " +
+                            $"protected override DtoBase<{model.Name},{dtoType.Name}> GetDtoModelField({model.Name}Dto dto)\r\n    {{\r\n       " +
                             $"return dto.{model.Name};\r\n    }}\r\n\r\n    protected override {model.Name}Dto FillEntity({model.Name}Dto dto, DtoBase<{model.Name}> field)\r\n    {{\r\n        " +
                             $"dto.{model.Name} = ({model.Name}ModelDto)field;\r\n\r\n        return dto;\r\n    }}");
 
