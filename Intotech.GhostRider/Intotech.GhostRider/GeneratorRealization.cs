@@ -1,5 +1,6 @@
 ﻿using Intotech.ReflectiveTools.DtosLogicGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
+using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
 using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
 using System;
@@ -158,6 +159,23 @@ namespace Intotech.GhostRider
 
                 return true;
             }
+        }
+
+        public virtual bool MDManRender(string folderPath, string baseClass)
+        {
+            try
+            {
+                ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+
+                mdm.AddDerivanceToModels(folderPath, baseClass);
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
         public virtual bool FolderCleaner(string outputDirectory, List<string> selectedObj = null)
         {

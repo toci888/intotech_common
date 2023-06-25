@@ -35,6 +35,7 @@
             this.iLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modelDtoGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dtoLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.derivanceManipulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._dtoGen_Panel = new System.Windows.Forms.Panel();
             this._dto_Banner_Label = new System.Windows.Forms.Label();
             this._dto_Name_Space_Label = new System.Windows.Forms.Label();
@@ -89,12 +90,19 @@
             this._ilogic_Output_Path_Label = new System.Windows.Forms.Label();
             this._ilogic_Name_Space_Label = new System.Windows.Forms.Label();
             this._ilogic_GenButton = new System.Windows.Forms.Button();
+            this._MDMan_Panel = new System.Windows.Forms.Panel();
+            this._MDMan_BaseClassName_Label = new System.Windows.Forms.Label();
+            this._MDMan_FolderPath_Label = new System.Windows.Forms.Label();
+            this._MDMan_GenButton = new System.Windows.Forms.Button();
+            this._MDManBaseClassName = new System.Windows.Forms.TextBox();
+            this._MDManFolderPath = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this._dtoGen_Panel.SuspendLayout();
             this._dtoLogic_Panel.SuspendLayout();
             this._modelDto_GenPanel.SuspendLayout();
             this._logic_GenPanel.SuspendLayout();
             this._ilogic_GenPanel.SuspendLayout();
+            this._MDMan_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -104,7 +112,8 @@
             this.logicGenToolStripMenuItem,
             this.iLogicGenToolStripMenuItem,
             this.modelDtoGenToolStripMenuItem,
-            this.dtoLogicGenToolStripMenuItem});
+            this.dtoLogicGenToolStripMenuItem,
+            this.derivanceManipulatorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1020, 24);
@@ -145,6 +154,13 @@
             this.dtoLogicGenToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
             this.dtoLogicGenToolStripMenuItem.Text = "DtoLogicGen";
             this.dtoLogicGenToolStripMenuItem.Click += new System.EventHandler(this.dtoLogicGenToolStripMenuItem_Click);
+            // 
+            // derivanceManipulatorToolStripMenuItem
+            // 
+            this.derivanceManipulatorToolStripMenuItem.Name = "derivanceManipulatorToolStripMenuItem";
+            this.derivanceManipulatorToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.derivanceManipulatorToolStripMenuItem.Text = "DerivanceManipulator";
+            this.derivanceManipulatorToolStripMenuItem.Click += new System.EventHandler(this.derivanceManipulatorToolStripMenuItem_Click);
             // 
             // _dtoGen_Panel
             // 
@@ -269,9 +285,9 @@
             this._dtoLogic_Panel.Controls.Add(this._dtoLogicUsings);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogicOutputDirectory);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogic_MainFolder_Button);
-            this._dtoLogic_Panel.Location = new System.Drawing.Point(0, 24);
+            this._dtoLogic_Panel.Location = new System.Drawing.Point(2, 24);
             this._dtoLogic_Panel.Name = "_dtoLogic_Panel";
-            this._dtoLogic_Panel.Size = new System.Drawing.Size(39, 32);
+            this._dtoLogic_Panel.Size = new System.Drawing.Size(10, 10);
             this._dtoLogic_Panel.TabIndex = 15;
             // 
             // _dtoLogic_NameSpace_Label
@@ -371,7 +387,7 @@
             this._modelDto_GenPanel.Controls.Add(this._modelDtoOutputDirectory);
             this._modelDto_GenPanel.Controls.Add(this._modelDtoUsings);
             this._modelDto_GenPanel.Controls.Add(this._modelDtoPathAssembly);
-            this._modelDto_GenPanel.Location = new System.Drawing.Point(3, 25);
+            this._modelDto_GenPanel.Location = new System.Drawing.Point(2, 24);
             this._modelDto_GenPanel.Name = "_modelDto_GenPanel";
             this._modelDto_GenPanel.Size = new System.Drawing.Size(0, 0);
             this._modelDto_GenPanel.TabIndex = 9;
@@ -484,7 +500,7 @@
             this._logic_GenPanel.Controls.Add(this._logicOutputDirectory);
             this._logic_GenPanel.Controls.Add(this._logicPathAssembly);
             this._logic_GenPanel.Controls.Add(this._logic_GenButton);
-            this._logic_GenPanel.Location = new System.Drawing.Point(4, 24);
+            this._logic_GenPanel.Location = new System.Drawing.Point(2, 24);
             this._logic_GenPanel.Name = "_logic_GenPanel";
             this._logic_GenPanel.Size = new System.Drawing.Size(0, 0);
             this._logic_GenPanel.TabIndex = 10;
@@ -615,7 +631,7 @@
             this._ilogic_GenPanel.Controls.Add(this._ilogic_GenButton);
             this._ilogic_GenPanel.Controls.Add(this._ilogic_Dll_Path_Label);
             this._ilogic_GenPanel.Controls.Add(this._ilogic_Banner_Label);
-            this._ilogic_GenPanel.Location = new System.Drawing.Point(1, 26);
+            this._ilogic_GenPanel.Location = new System.Drawing.Point(2, 24);
             this._ilogic_GenPanel.Name = "_ilogic_GenPanel";
             this._ilogic_GenPanel.Size = new System.Drawing.Size(0, 0);
             this._ilogic_GenPanel.TabIndex = 14;
@@ -697,12 +713,71 @@
             this._ilogic_GenButton.UseVisualStyleBackColor = true;
             this._ilogic_GenButton.Click += new System.EventHandler(this._ilogic_GenButton_Click);
             // 
+            // _MDMan_Panel
+            // 
+            this._MDMan_Panel.Controls.Add(this._MDMan_BaseClassName_Label);
+            this._MDMan_Panel.Controls.Add(this._MDMan_FolderPath_Label);
+            this._MDMan_Panel.Controls.Add(this._MDMan_GenButton);
+            this._MDMan_Panel.Controls.Add(this._MDManBaseClassName);
+            this._MDMan_Panel.Controls.Add(this._MDManFolderPath);
+            this._MDMan_Panel.Location = new System.Drawing.Point(2, 24);
+            this._MDMan_Panel.Name = "_MDMan_Panel";
+            this._MDMan_Panel.Size = new System.Drawing.Size(1019, 507);
+            this._MDMan_Panel.TabIndex = 16;
+            // 
+            // _MDMan_BaseClassName_Label
+            // 
+            this._MDMan_BaseClassName_Label.AutoSize = true;
+            this._MDMan_BaseClassName_Label.Location = new System.Drawing.Point(662, 124);
+            this._MDMan_BaseClassName_Label.Name = "_MDMan_BaseClassName_Label";
+            this._MDMan_BaseClassName_Label.Size = new System.Drawing.Size(61, 15);
+            this._MDMan_BaseClassName_Label.TabIndex = 15;
+            this._MDMan_BaseClassName_Label.Text = "Base Class";
+            // 
+            // _MDMan_FolderPath_Label
+            // 
+            this._MDMan_FolderPath_Label.AutoSize = true;
+            this._MDMan_FolderPath_Label.Location = new System.Drawing.Point(207, 131);
+            this._MDMan_FolderPath_Label.Name = "_MDMan_FolderPath_Label";
+            this._MDMan_FolderPath_Label.Size = new System.Drawing.Size(67, 15);
+            this._MDMan_FolderPath_Label.TabIndex = 14;
+            this._MDMan_FolderPath_Label.Text = "Folder Path";
+            // 
+            // _MDMan_GenButton
+            // 
+            this._MDMan_GenButton.Location = new System.Drawing.Point(370, 424);
+            this._MDMan_GenButton.Name = "_MDMan_GenButton";
+            this._MDMan_GenButton.Size = new System.Drawing.Size(238, 55);
+            this._MDMan_GenButton.TabIndex = 13;
+            this._MDMan_GenButton.Text = "Generate";
+            this._MDMan_GenButton.UseVisualStyleBackColor = true;
+            this._MDMan_GenButton.Click += new System.EventHandler(this._MDMan_GenButton_Click);
+            // 
+            // _MDManBaseClassName
+            // 
+            this._MDManBaseClassName.Location = new System.Drawing.Point(579, 169);
+            this._MDManBaseClassName.Multiline = true;
+            this._MDManBaseClassName.Name = "_MDManBaseClassName";
+            this._MDManBaseClassName.Size = new System.Drawing.Size(228, 120);
+            this._MDManBaseClassName.TabIndex = 1;
+            // 
+            // _MDManFolderPath
+            // 
+            this._MDManFolderPath.Location = new System.Drawing.Point(132, 170);
+            this._MDManFolderPath.Multiline = true;
+            this._MDManFolderPath.Name = "_MDManFolderPath";
+            this._MDManFolderPath.Size = new System.Drawing.Size(256, 178);
+            this._MDManFolderPath.TabIndex = 0;
+            this._MDManFolderPath.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interface" +
+    "s\\Toci.Driver.Database.Persistence\\Models\\";
+            // 
             // GhostRiderGenEx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1020, 533);
+            this.Controls.Add(this._MDMan_Panel);
             this.Controls.Add(this._dtoLogic_Panel);
             this.Controls.Add(this._ilogic_GenPanel);
             this.Controls.Add(this._logic_GenPanel);
@@ -725,6 +800,8 @@
             this._logic_GenPanel.PerformLayout();
             this._ilogic_GenPanel.ResumeLayout(false);
             this._ilogic_GenPanel.PerformLayout();
+            this._MDMan_Panel.ResumeLayout(false);
+            this._MDMan_Panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -795,5 +872,12 @@
         private TextBox _dtoLogicNameSpace;
         private TextBox _dtoLogicUsings;
         private TextBox _dtoLogicOutputDirectory;
+        private Panel _MDMan_Panel;
+        private TextBox _MDManBaseClassName;
+        private TextBox _MDManFolderPath;
+        private ToolStripMenuItem derivanceManipulatorToolStripMenuItem;
+        private Label _MDMan_BaseClassName_Label;
+        private Label _MDMan_FolderPath_Label;
+        private Button _MDMan_GenButton;
     }
 }

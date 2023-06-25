@@ -25,9 +25,9 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 
 //interfaceAndLogicFileGenerator.GenerateCodeFiles("", files, generatedFile);
 
-//ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
 
-//mdm.AddDerivanceToModels("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "DictionaryModelBase");
+mdm.AddDerivanceToModels("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "DictionaryModelBase");
 
 // Generate DtoLogic Classes 
 

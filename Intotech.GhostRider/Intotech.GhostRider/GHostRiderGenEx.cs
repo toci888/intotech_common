@@ -14,6 +14,7 @@ namespace Intotech.GhostRider
             _logic_GenPanel.Size = new System.Drawing.Size(1019, 510);
             _ilogic_GenPanel.Size = new System.Drawing.Size(1019, 510);
             _dtoLogic_Panel.Size = new System.Drawing.Size(1019, 510);
+            _MDMan_Panel.Size = new System.Drawing.Size(1019, 510);
 
         }
         public string MainFolderPath = null;
@@ -25,6 +26,7 @@ namespace Intotech.GhostRider
             _logic_GenPanel.Hide();
             _ilogic_GenPanel.Hide();
             _dtoLogic_Panel.Hide();
+            _MDMan_Panel.Hide();
         }
         private void logicGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -34,6 +36,7 @@ namespace Intotech.GhostRider
             _modelDto_GenPanel.Hide();
             _ilogic_GenPanel.Hide();
             _dtoLogic_Panel.Hide();
+            _MDMan_Panel.Hide();
         }
 
         private void iLogicGenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -44,6 +47,7 @@ namespace Intotech.GhostRider
             _modelDto_GenPanel.Hide();
             _logic_GenPanel.Hide();
             _dtoLogic_Panel.Hide();
+            _MDMan_Panel.Hide();
         }
 
         private void modelDtoGenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -54,7 +58,7 @@ namespace Intotech.GhostRider
             _logic_GenPanel.Hide();
             _ilogic_GenPanel.Hide();
             _dtoLogic_Panel.Hide();
-
+            _MDMan_Panel.Hide();
         }
 
         private void dtoLogicGenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +69,7 @@ namespace Intotech.GhostRider
             _modelDto_GenPanel.Hide();
             _logic_GenPanel.Hide();
             _ilogic_GenPanel.Hide();
+            _MDMan_Panel.Hide();
         }
 
         private void DtoGenButton_Click(object sender, EventArgs e)
@@ -216,6 +221,36 @@ namespace Intotech.GhostRider
                 }
 
 
+
+            }
+            else
+            {
+                MessageBox.Show("Not all fields are filled");
+            }
+        }
+
+        private void derivanceManipulatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _MDMan_Panel.Show();
+
+            _dtoGen_Panel.Hide();
+            _modelDto_GenPanel.Hide();
+            _logic_GenPanel.Hide();
+            _ilogic_GenPanel.Hide();
+            _dtoLogic_Panel.Hide();
+        }
+
+        private void _MDMan_GenButton_Click(object sender, EventArgs e)
+        {
+
+            if (_MDManFolderPath.Text != null || _MDManBaseClassName.Text != null)
+            {
+                var folderPath = _MDManFolderPath.Text;
+                var baseClassName = _MDManBaseClassName.Text;
+
+                    GeneratorRealization realizator = new();
+
+                    var reloadMethod = realizator.MDManRender(folderPath, baseClassName);
 
             }
             else
