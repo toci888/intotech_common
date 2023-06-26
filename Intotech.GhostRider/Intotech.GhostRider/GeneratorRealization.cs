@@ -27,15 +27,15 @@ namespace Intotech.GhostRider
                     MessageBox.Show(ex.ToString());
                     throw;
                 }
+
                 return false;
             }
             else
             {
-                if (FolderCleaner(outputDirectory) == false)
+                if (!FolderCleaner(outputDirectory))
                 {
                     return false;
                 }
-                
                 
                 return true;
             }
@@ -55,6 +55,7 @@ namespace Intotech.GhostRider
                     MessageBox.Show(ex.ToString());
                     throw;
                 }
+
                 return false;
             }
             else
@@ -63,7 +64,6 @@ namespace Intotech.GhostRider
                 {
                     return false;
                 }
-
 
                 return true;
             }

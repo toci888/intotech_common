@@ -1,30 +1,39 @@
 ﻿using Intotech.GhostRider;
 using System.IO;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
+using Intotech.GhostRider.Panels;
 
 namespace Intotech.GhostRider
 {
     public partial class GhostRiderGenEx : Form
     {
+        protected PanelBase generatorOptionPanel;
+
+
         public GhostRiderGenEx()
         {
             InitializeComponent();
-            _dtoGen_Panel.Size = new System.Drawing.Size(1019, 510);
-            _modelDto_GenPanel.Size = new System.Drawing.Size(1019, 510);
-            _logic_GenPanel.Size = new System.Drawing.Size(1019, 510);
-            _ilogic_GenPanel.Size = new System.Drawing.Size(1019, 510);
-            _dtoLogic_Panel.Size = new System.Drawing.Size(1019, 510);
+            //_dtoGen_Panel.Size = new System.Drawing.Size(1019, 510);
+            //_modelDto_GenPanel.Size = new System.Drawing.Size(1019, 510);
+            //_logic_GenPanel.Size = new System.Drawing.Size(1019, 510);
+            //_ilogic_GenPanel.Size = new System.Drawing.Size(1019, 510);
+//            _dtoLogic_Panel.Size = new System.Drawing.Size(1019, 510);
 
         }
         public string MainFolderPath = null;
         private void dtoGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _dtoGen_Panel.Show();
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
 
-            _modelDto_GenPanel.Hide();
-            _logic_GenPanel.Hide();
-            _ilogic_GenPanel.Hide();
-            _dtoLogic_Panel.Hide();
+            generatorOptionPanel = new DtoGenerationPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
         }
         private void logicGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
