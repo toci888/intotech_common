@@ -9,7 +9,7 @@ namespace Intotech.Common.Bll.ChorDtoBll;
 public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : IDtoLogic<TModel, TLogic, TDto, TCollectionModelDto>
     where TLogic : ILogicBase<TModel>
     where TModelDto : DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto>, new()
-    where TModel : class, new()
+    where TModel : ModelBase, new()
     where TCollectionModel : IList<TModel>, new()
     where TCollectionModelDto : IList<TModelDto>, new()
 {
@@ -57,11 +57,11 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
         {
             TModel item = element.MapDtoToModel();
 
-            try
+            if (item.Id > 0)
             {
                 CrudLogic.Update(item);
             }
-            catch (Exception ex)
+            else 
             {
                 CrudLogic.Insert(item);
             }

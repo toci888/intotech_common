@@ -25,17 +25,17 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 
 //interfaceAndLogicFileGenerator.GenerateCodeFiles("", files, generatedFile);
 
-//ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
 
-//mdm.AddDerivanceToModels("C:\\Users\\bzapart\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "DictionaryModelBase");
+mdm.AddDerivanceToModels("C:\\Users\\bzapa\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "ModelBase");
 
 // Generate DtoLogic Classes 
 
-DtoLogicRendererRunner dtosRender = new();
+//DtoLogicRendererRunner dtosRender = new();
 
-dtosRender.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Logic\\DtoLogics\\",
-    "using System.Linq.Expressions;\r\nusing Intotech.Common.Bll.ChorDtoBll;\r\nusing Intotech.Common.Bll.ChorDtoBll.Dto;\r\nusing Intotech.Wheelo.Bll.Models.Dtos;\r\nusing Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;\r\nusing Intotech.Wheelo.Bll.Persistence;\r\nusing Intotech.Wheelo.Common.Interfaces.ModelMapperInterfaces;\r\nusing Toci.Driver.Database.Persistence.Models;",
-    "namespace Intotech.Wheelo.Bll.Logic.DtoLogics;");
+//dtosRender.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Logic\\DtoLogics\\",
+ //   "using System.Linq.Expressions;\r\nusing Intotech.Common.Bll.ChorDtoBll;\r\nusing Intotech.Common.Bll.ChorDtoBll.Dto;\r\nusing Intotech.Wheelo.Bll.Models.Dtos;\r\nusing Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;\r\nusing Intotech.Wheelo.Bll.Persistence;\r\nusing Intotech.Wheelo.Common.Interfaces.ModelMapperInterfaces;\r\nusing Toci.Driver.Database.Persistence.Models;",
+ //   "namespace Intotech.Wheelo.Bll.Logic.DtoLogics;");
 
 //// Generate Dto Classes
 
