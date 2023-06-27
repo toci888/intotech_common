@@ -1,7 +1,9 @@
-﻿namespace Intotech.Common.Bll.ChorDtoBll.Dto;
+﻿using Intotech.Common.Bll.Interfaces;
+
+namespace Intotech.Common.Bll.ChorDtoBll.Dto;
 
 public class DtoBase<TModel, TModelDto> 
-    where TModel : new()
+    where TModel : ModelBase, new()
     where TModelDto : DtoBase<TModel, TModelDto>, new()
 {
     public virtual TModelDto MapModelToDto(TModel model)
