@@ -14,6 +14,8 @@ public class ModelDerivanceManipulator
             {
                 string fileContents = File.ReadAllText(file);
 
+                fileContents = "using Intotech.Common.Bll.Interfaces; " + Environment.NewLine + fileContents;
+
                 string pattern = @"class\s+(\w+)"; // Regular expression pattern to match "class AnyClassName"
                 string replacement = "class $1 : " + baseClassName; // Replacement pattern to add the derivation
 

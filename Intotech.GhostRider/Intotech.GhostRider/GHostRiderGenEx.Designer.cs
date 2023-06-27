@@ -48,6 +48,9 @@
             this._dtoOutputDirectory = new System.Windows.Forms.TextBox();
             this._dtoPathAssembly = new System.Windows.Forms.TextBox();
             this._dtoLogic_Panel = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this._dtoLogic_NameSpace_Label = new System.Windows.Forms.Label();
             this._dtoLogic_Banner = new System.Windows.Forms.Label();
             this._dtoLogic_Usings_Label = new System.Windows.Forms.Label();
@@ -69,6 +72,9 @@
             this._modelDtoUsings = new System.Windows.Forms.TextBox();
             this._modelDtoPathAssembly = new System.Windows.Forms.TextBox();
             this._logic_GenPanel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this._logic_Usings_Label = new System.Windows.Forms.Label();
             this._logic_Output_Path_Label = new System.Windows.Forms.Label();
             this._logic_Name_Space_Label = new System.Windows.Forms.Label();
@@ -160,7 +166,6 @@
             this.derivanceManipulatorToolStripMenuItem.Name = "derivanceManipulatorToolStripMenuItem";
             this.derivanceManipulatorToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
             this.derivanceManipulatorToolStripMenuItem.Text = "DerivanceManipulator";
-            this.derivanceManipulatorToolStripMenuItem.Click += new System.EventHandler(this.derivanceManipulatorToolStripMenuItem_Click);
             // 
             // _dtoGen_Panel
             // 
@@ -233,7 +238,6 @@
             this._dtoGen_Button.TabIndex = 4;
             this._dtoGen_Button.Text = "Generate";
             this._dtoGen_Button.UseVisualStyleBackColor = true;
-            this._dtoGen_Button.Click += new System.EventHandler(this.DtoGenButton_Click);
             // 
             // _dtoNameSpaces
             // 
@@ -276,6 +280,9 @@
             // 
             // _dtoLogic_Panel
             // 
+            this._dtoLogic_Panel.Controls.Add(this.button3);
+            this._dtoLogic_Panel.Controls.Add(this.button2);
+            this._dtoLogic_Panel.Controls.Add(this.button1);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogic_NameSpace_Label);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogic_Banner);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogic_Usings_Label);
@@ -287,8 +294,35 @@
             this._dtoLogic_Panel.Controls.Add(this._dtoLogic_MainFolder_Button);
             this._dtoLogic_Panel.Location = new System.Drawing.Point(2, 24);
             this._dtoLogic_Panel.Name = "_dtoLogic_Panel";
-            this._dtoLogic_Panel.Size = new System.Drawing.Size(10, 10);
+            this._dtoLogic_Panel.Size = new System.Drawing.Size(81, 30);
             this._dtoLogic_Panel.TabIndex = 15;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(42, 191);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(164, 33);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Choose main folder";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(41, 145);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(164, 33);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "Choose main folder";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(39, 99);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(164, 33);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Choose main folder";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // _dtoLogic_NameSpace_Label
             // 
@@ -335,7 +369,6 @@
             this._dtoLogic_GenButton.TabIndex = 15;
             this._dtoLogic_GenButton.Text = "Generate";
             this._dtoLogic_GenButton.UseVisualStyleBackColor = true;
-            this._dtoLogic_GenButton.Click += new System.EventHandler(this._dtoLogic_GenButton_Click);
             // 
             // _dtoLogicNameSpace
             // 
@@ -344,7 +377,6 @@
             this._dtoLogicNameSpace.Name = "_dtoLogicNameSpace";
             this._dtoLogicNameSpace.Size = new System.Drawing.Size(313, 156);
             this._dtoLogicNameSpace.TabIndex = 14;
-            this._dtoLogicNameSpace.Text = "namespace Intotech.Wheelo.Bll.Logic.DtoLogics;";
             // 
             // _dtoLogicUsings
             // 
@@ -353,7 +385,6 @@
             this._dtoLogicUsings.Name = "_dtoLogicUsings";
             this._dtoLogicUsings.Size = new System.Drawing.Size(300, 150);
             this._dtoLogicUsings.TabIndex = 13;
-            this._dtoLogicUsings.Text = resources.GetString("_dtoLogicUsings.Text");
             // 
             // _dtoLogicOutputDirectory
             // 
@@ -362,18 +393,15 @@
             this._dtoLogicOutputDirectory.Name = "_dtoLogicOutputDirectory";
             this._dtoLogicOutputDirectory.Size = new System.Drawing.Size(300, 181);
             this._dtoLogicOutputDirectory.TabIndex = 12;
-            this._dtoLogicOutputDirectory.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interface" +
-    "s\\Intotech.Wheelo.Bll.Logic\\DtoLogics\\";
             // 
             // _dtoLogic_MainFolder_Button
             // 
-            this._dtoLogic_MainFolder_Button.Location = new System.Drawing.Point(76, 74);
+            this._dtoLogic_MainFolder_Button.Location = new System.Drawing.Point(40, 56);
             this._dtoLogic_MainFolder_Button.Name = "_dtoLogic_MainFolder_Button";
             this._dtoLogic_MainFolder_Button.Size = new System.Drawing.Size(164, 33);
             this._dtoLogic_MainFolder_Button.TabIndex = 0;
             this._dtoLogic_MainFolder_Button.Text = "Choose main folder";
             this._dtoLogic_MainFolder_Button.UseVisualStyleBackColor = true;
-            this._dtoLogic_MainFolder_Button.Click += new System.EventHandler(this._dtoLogic_MainFolder_Button_Click);
             // 
             // _modelDto_GenPanel
             // 
@@ -490,6 +518,9 @@
             // 
             // _logic_GenPanel
             // 
+            this._logic_GenPanel.Controls.Add(this.label3);
+            this._logic_GenPanel.Controls.Add(this.label2);
+            this._logic_GenPanel.Controls.Add(this.textBox1);
             this._logic_GenPanel.Controls.Add(this._logic_Usings_Label);
             this._logic_GenPanel.Controls.Add(this._logic_Output_Path_Label);
             this._logic_GenPanel.Controls.Add(this._logic_Name_Space_Label);
@@ -502,8 +533,35 @@
             this._logic_GenPanel.Controls.Add(this._logic_GenButton);
             this._logic_GenPanel.Location = new System.Drawing.Point(2, 24);
             this._logic_GenPanel.Name = "_logic_GenPanel";
-            this._logic_GenPanel.Size = new System.Drawing.Size(0, 0);
+            this._logic_GenPanel.Size = new System.Drawing.Size(23, 30);
             this._logic_GenPanel.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(394, 320);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(226, 15);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Enter the file names separated by a space.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(452, 172);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 15);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Dont Delete Files";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(377, 202);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(256, 110);
+            this.textBox1.TabIndex = 13;
             // 
             // _logic_Usings_Label
             // 
@@ -598,7 +656,6 @@
             this._logic_GenButton.TabIndex = 0;
             this._logic_GenButton.Text = "Generate";
             this._logic_GenButton.UseVisualStyleBackColor = true;
-            this._logic_GenButton.Click += new System.EventHandler(this._logic_GenButton_Click);
             // 
             // _ilogic_Banner_Label
             // 
@@ -711,7 +768,6 @@
             this._ilogic_GenButton.TabIndex = 13;
             this._ilogic_GenButton.Text = "Generate";
             this._ilogic_GenButton.UseVisualStyleBackColor = true;
-            this._ilogic_GenButton.Click += new System.EventHandler(this._ilogic_GenButton_Click);
             // 
             // _MDMan_Panel
             // 
@@ -722,7 +778,7 @@
             this._MDMan_Panel.Controls.Add(this._MDManFolderPath);
             this._MDMan_Panel.Location = new System.Drawing.Point(2, 24);
             this._MDMan_Panel.Name = "_MDMan_Panel";
-            this._MDMan_Panel.Size = new System.Drawing.Size(1019, 507);
+            this._MDMan_Panel.Size = new System.Drawing.Size(10, 14);
             this._MDMan_Panel.TabIndex = 16;
             // 
             // _MDMan_BaseClassName_Label
@@ -751,7 +807,6 @@
             this._MDMan_GenButton.TabIndex = 13;
             this._MDMan_GenButton.Text = "Generate";
             this._MDMan_GenButton.UseVisualStyleBackColor = true;
-            this._MDMan_GenButton.Click += new System.EventHandler(this._MDMan_GenButton_Click);
             // 
             // _MDManBaseClassName
             // 
@@ -879,5 +934,11 @@
         private Label _MDMan_BaseClassName_Label;
         private Label _MDMan_FolderPath_Label;
         private Button _MDMan_GenButton;
+        private Label label3;
+        private Label label2;
+        private TextBox textBox1;
+        private Button button3;
+        private Button button2;
+        private Button button1;
     }
 }
