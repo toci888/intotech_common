@@ -292,9 +292,9 @@
             this._dtoLogic_Panel.Controls.Add(this._dtoLogicUsings);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogicOutputDirectory);
             this._dtoLogic_Panel.Controls.Add(this._dtoLogic_MainFolder_Button);
-            this._dtoLogic_Panel.Location = new System.Drawing.Point(2, 24);
+            this._dtoLogic_Panel.Location = new System.Drawing.Point(2, 16);
             this._dtoLogic_Panel.Name = "_dtoLogic_Panel";
-            this._dtoLogic_Panel.Size = new System.Drawing.Size(81, 30);
+            this._dtoLogic_Panel.Size = new System.Drawing.Size(38, 50);
             this._dtoLogic_Panel.TabIndex = 15;
             // 
             // button3

@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Intotech.GhostRider.Panels
 {
-   public class DtoLogicGenerationPanel : Panel
+    public class DtoLogicGenerationPanel : Panel
     {
         Button ChooseModelsDllPath = new();
         Button ChooseModelsDtosDllPath = new();
@@ -26,7 +28,7 @@ namespace Intotech.GhostRider.Panels
         TextBox Usings = new();
         TextBox Namespace = new();
 
-        List<string> paths = new List<string>();
+        string[] paths = new string[4];
 
         protected Font LabelsFont = new Font("Arial Narrow", 12F,FontStyle.Regular, GraphicsUnit.Point);
 
@@ -34,11 +36,7 @@ namespace Intotech.GhostRider.Panels
         {
             CreateLayout();
         }
-        //string modelsDllPath = "\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll";
-        //string modelsDtosDllPath = "\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\bin\\Debug\\net7.0\\Intotech.Wheelo.Bll.Models.dll";
-        //string logicDllPath = "\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Persistence\\bin\\Debug\\net7.0\\Intotech.Wheelo.Bll.Persistence.dll";
-        //string dtosDllPath = "\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\bin\\Debug\\net7.0\\Intotech.Wheelo.Bll.Models.dll";
-
+       
         protected virtual void CreateLayout()
         {
             OutputDirectoryLabel.Text = "Output Directory";
@@ -53,7 +51,11 @@ namespace Intotech.GhostRider.Panels
             BannerLabel.Text = "Dto Logic Generation";
             BannerLabel.Location = new Point(410, 66);
 
+            CreateButtons();
+
             CreateEvents();
+
+            CreateTextboxes();
 
             Controls.Add(OutputDirectoryLabel);
             Controls.Add(UsingsLabel);
@@ -64,8 +66,47 @@ namespace Intotech.GhostRider.Panels
             Controls.Add(ChooseLogicDllPath);
             Controls.Add(ChooseDtosDllPath);
             Controls.Add(GenButton);
+            Controls.Add(OutputDirectory);
+            Controls.Add(Usings);
+            Controls.Add(Namespace);
         }
+        protected virtual void CreateButtons()
+        {
+            GenButton.Location = new Point(370, 418);
+            GenButton.Size = new Size(238, 55);
+            GenButton.Text = "Generate";
 
+            ChooseModelsDllPath.Location = new Point(40, 56);
+            ChooseModelsDllPath.Size = new Size(164, 33);
+            ChooseModelsDllPath.Text = "Choose Models Dll";
+
+            ChooseModelsDtosDllPath.Location = new Point(39, 99);
+            ChooseModelsDtosDllPath.Size = new Size(164, 33);
+            ChooseModelsDtosDllPath.Text = "Choose ModelDto Dll";
+
+            ChooseLogicDllPath.Location = new Point(41, 145);
+            ChooseLogicDllPath.Size = new Size(164, 33);
+            ChooseLogicDllPath.Text = "Choose Logic Dll ";
+
+            ChooseDtosDllPath.Location = new Point(42, 191);
+            ChooseDtosDllPath.Size = new Size(164, 33);
+            ChooseDtosDllPath.Text = "Choose Dtos Dll";
+
+        }
+        protected virtual void CreateTextboxes()
+        {
+            OutputDirectory.Multiline = true;
+            OutputDirectory.Location = new Point(682, 63);
+            OutputDirectory.Size = new Size(300, 150);
+
+            Usings.Multiline = true;
+            Usings.Location = new Point(24, 333);
+            Usings.Size = new Size(300, 150);
+
+            Namespace.Multiline = true;
+            Namespace.Location = new Point(685, 333);
+            Namespace.Size = new Size(300, 150);
+        }
         protected virtual void CreateEvents()
         {
             ChooseModelsDllPath.Click += new EventHandler(ChooseModelsDllPath_Click);
@@ -74,32 +115,7 @@ namespace Intotech.GhostRider.Panels
             ChooseDtosDllPath.Click += new EventHandler(ChooseDtosDllPath_Click);
             GenButton.Click += new EventHandler(GenButton_Click);
         }
-        protected virtual void HandleClick(object? sender, EventArgs eventArgs)
-        {
-            //if (PathAssembly.Text != null || OutputDirectory.Text != null || Usings.Text != null || NameSpaces.Text != null)
-            //{
-            //    var mainFolder = PathAssembly.Text;
-            //    var outputDirectory = OutputDirectory.Text;
-            //    var usings = Usings.Text;
-            //    var nameSpace = NameSpaces.Text;
-
-            //    GeneratorRealization realizator = new();
-
-            //    var reloadMethod = realizator.DtoLogicRender(mainFolder, outputDirectory, usings, nameSpace);
-
-            //    if (reloadMethod == true)
-            //    {
-            //        HandleClick(sender, eventArgs);
-            //        MessageBox.Show("ModelDtos files are updated");
-            //    }
-
-
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Not all fields are filled");
-            //}
-        }
+        
 
         private void ChooseModelsDllPath_Click(object sender, EventArgs e)
         {
@@ -123,7 +139,31 @@ namespace Intotech.GhostRider.Panels
         }
         private void GenButton_Click(object sender, EventArgs e)
         {
+            if (OutputDirectory.Text != null || Usings.Text != null || Namespace.Text != null)
+            {
+                var outputDirectory = OutputDirectory.Text;
+                var usings = Usings.Text;
+                var nameSpace = Namespace.Text;
 
+                GeneratorRealization realizator = new();
+
+                List<string> dllPaths = new ();
+               dllPaths = paths.ToList();
+
+                var reloadMethod = realizator.DtoLogicRender(dllPaths, outputDirectory, usings, nameSpace);
+
+                if (reloadMethod == true)
+                {
+                    GenButton_Click(sender, e);
+                    MessageBox.Show("ModelDtos files are updated");
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Not all fields are filled");
+            }
         }
 
 
