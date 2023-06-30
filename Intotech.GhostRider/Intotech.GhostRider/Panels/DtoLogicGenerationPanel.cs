@@ -44,7 +44,7 @@ namespace Intotech.GhostRider.Panels
                 if (reloadMethod == true)
                 {
                     HandleClick(sender, e);
-                    MessageBox.Show("Dtos files are updated");
+                    MessageBox.Show("Files are updated");
                 }
             }
             else
