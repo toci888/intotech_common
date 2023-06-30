@@ -11,36 +11,19 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
 {
     public class DtoLogicRendererRunner
     {
-        public virtual void LoadAndReadAssembly(List<string> paths, string outputPath, string usings, string nmSpace)
+        public virtual void LoadAndReadAssembly(string modelPath, string outputPath, string usings, string nmSpace)
         {
             DtoLogicRenderer renderer = new ();
 
-            List<Type[]> allTypes = new ();
-           
-            for (int i = 1; i < paths.Count() - 1 ; i++)
+            Type[] model = Assembly.LoadFrom(modelPath).GetTypes();
+
+            for (int i = 4; i < model.Length; i++)
             {
-                Type? [] singleTypes = Assembly.LoadFrom(paths[i]).GetTypes();
-                allTypes.Add(singleTypes);
-            }
-
-
-            var models = Assembly.LoadFrom(paths[0]).GetTypes();
-
-            for (int i = 4; i < models.Length; i++)
-            {
-                var keyName = models[i].Name;
-
-                if (keyName != "" && keyName !="<>c")
+                if (model[i].Name != "<>c")
                 {
-                    var types = renderer.GetRightTypes(keyName, allTypes);
-
-                    types.Add(models[i]);
-
-                    renderer.RendererDtoLogic(types, outputPath, usings, nmSpace);
+                    renderer.RendererDtoLogic(model[i], outputPath, usings, nmSpace);
                 }
-
-
-
+                
             }
 
                 

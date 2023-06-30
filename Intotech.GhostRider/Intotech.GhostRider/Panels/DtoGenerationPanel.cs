@@ -8,30 +8,34 @@ namespace Intotech.GhostRider.Panels
 {
     public class DtoGenerationPanel : PanelBase
     {
+        protected string modelPath = null;
         public DtoGenerationPanel()
         {
             BannerLabel.Text = "Dto Generation";
             NameSpaceLabel.Text = "Namespace";
             UsingsLabel.Text = "Usings";
             OutputPathLabel.Text = "Output Path";
-            DllPathLabel.Text = "Dll Path";
-
-            NameSpaces.Text = "namespace Intotech.Wheelo.Bll.Models.Dtos;";
-            Usings.Text = "using Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;";
-            OutputDirectory.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Models\\Dtos\\";
-            PathAssembly.Text = "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll";
+            isModelSelect.Text = "Model not selected";
         }
 
+        protected override void ChooseModelsDllPathClick(object? sender, EventArgs eventArgs)
+        {
+            DLLBrowser dllBrowser = new();
+            modelPath = dllBrowser.SelectDLL();
+            if (modelPath != null)
+            {
+                isModelSelect.Text = "Model selected";
+            }
+        }
         protected override void HandleClick(object? sender, EventArgs eventArgs)
         {
-            if (PathAssembly.Text != null || OutputDirectory.Text != null || Usings.Text != null || NameSpaces.Text != null) 
-            {
-                string mainFolder = PathAssembly.Text;         
+            if (OutputDirectory.Text != null || Usings.Text != null || NameSpace.Text != null || modelPath != null) 
+            {     
                 string outputDirectory = OutputDirectory.Text; 
                 string usings = Usings.Text;                   
-                string nameSpace = NameSpaces.Text;            
+                string nameSpace = NameSpace.Text;            
 
-                bool reloadMethod = Realizator.DtoRender(mainFolder, outputDirectory, usings, nameSpace); 
+                bool reloadMethod = Realizator.DtoRender(modelPath, outputDirectory, usings, nameSpace); 
 
                 if (reloadMethod == true)
                 {

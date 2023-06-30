@@ -8,30 +8,35 @@ namespace Intotech.GhostRider.Panels
 {
     internal class ModelDtoGenerationPanel : PanelBase
     {
+        protected string modelPath = null;
         public ModelDtoGenerationPanel()
         {
             BannerLabel.Text = "ModelDto Generation";
             NameSpaceLabel.Text = "Namespace";
             UsingsLabel.Text = "Usings";
             OutputPathLabel.Text = "Output Path";
-            DllPathLabel.Text = "Dll Path";
+            isModelSelect.Text = "Model not selected";
+        }
 
-            NameSpaces.Text = "";
-            Usings.Text = "";
-            OutputDirectory.Text = "";
-            PathAssembly.Text = "";
+        protected override void ChooseModelsDllPathClick(object? sender, EventArgs eventArgs)
+        {
+            DLLBrowser dllBrowser = new();
+            modelPath = dllBrowser.SelectDLL();
+            if (modelPath != null)
+            {
+                isModelSelect.Text = "Model selected";
+            }
         }
 
         protected override void HandleClick(object? sender, EventArgs eventArgs)
         {
-            if (PathAssembly.Text != null || OutputDirectory.Text != null || Usings.Text != null || NameSpaces.Text != null)
+            if (OutputDirectory.Text != null || Usings.Text != null || NameSpace.Text != null || modelPath != null)
             {
-                string mainFolder = PathAssembly.Text;
                 string outputDirectory = OutputDirectory.Text;
                 string usings = Usings.Text;
-                string nameSpace = NameSpaces.Text;
+                string nameSpace = NameSpace.Text;
 
-                bool reloadMethod = Realizator.ModelDtoRender(mainFolder, outputDirectory, usings, nameSpace);
+                bool reloadMethod = Realizator.ModelDtoRender(modelPath, outputDirectory, usings, nameSpace);
 
                 if (reloadMethod == true)
                 {

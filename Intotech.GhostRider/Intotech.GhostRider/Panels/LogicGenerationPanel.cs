@@ -8,6 +8,8 @@ namespace Intotech.GhostRider.Panels
 {
     internal class LogicGenerationPanel : PanelBase
     {
+        protected string modelPath = null;
+
         protected TextBox dontDeleteFiles = new();
         protected Label dontDeleteFilesLabel = new();
         protected Label additionalMessageLabel = new();
@@ -17,15 +19,21 @@ namespace Intotech.GhostRider.Panels
             NameSpaceLabel.Text = "Namespace";
             UsingsLabel.Text = "Usings";
             OutputPathLabel.Text = "Output Path";
-            DllPathLabel.Text = "Dll Path";
-
-            NameSpaces.Text = "";
-            Usings.Text = "";
-            OutputDirectory.Text = "";
-            PathAssembly.Text = "";
+            isModelSelect.Text = "Model not selected";
 
             CreateDontDeleteFilesBox();
         }
+
+        protected override void ChooseModelsDllPathClick(object? sender, EventArgs eventArgs)
+        {
+            DLLBrowser dllBrowser = new DLLBrowser();
+            modelPath = dllBrowser.SelectDLL();
+            if (modelPath != null)
+            {
+                isModelSelect.Text = "Model selected";
+            }
+        }
+
         protected void CreateDontDeleteFilesBox()
         {
             dontDeleteFiles.AutoSize = true;
@@ -52,20 +60,19 @@ namespace Intotech.GhostRider.Panels
         }
         protected override void HandleClick(object? sender, EventArgs eventArgs)
         {
-            if (PathAssembly.Text != null || OutputDirectory.Text != null || Usings.Text != null || NameSpaces.Text != null || dontDeleteFiles.Text != null)
+            if (OutputDirectory.Text != null || Usings.Text != null || NameSpace.Text != null || modelPath != null)
             {
+                string outputDirectory = OutputDirectory.Text;
+                string usings = Usings.Text;
+                string nameSpace = NameSpace.Text;
+
                 List<string> dontDelFiles = new List<string>(dontDeleteFiles.Text.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
-                string mainFolder = PathAssembly.Text;         
-                string outputDirectory = OutputDirectory.Text; 
-                string usings = Usings.Text;                   
-                string nameSpace = NameSpaces.Text;            
-
-                bool reloadMethod = Realizator.LogicRender(mainFolder, outputDirectory, usings, nameSpace, dontDelFiles);
+                bool reloadMethod = Realizator.LogicRender(modelPath, outputDirectory, usings, nameSpace, dontDelFiles);
 
                 if (reloadMethod == true)
                 {
-                    HandleClick(sender, eventArgs); 
+                    HandleClick(sender, eventArgs);
                     MessageBox.Show("Dtos files are updated");
                 }
             }

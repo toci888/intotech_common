@@ -104,7 +104,23 @@ namespace Intotech.GhostRider
             Controls.Add(generatorOptionPanel);
 
             generatorOptionPanel.Show();
-        }}
+        }
+
+        private void derivanceManipulatorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
+
+            generatorOptionPanel = new ModelDerivanceManipulatorPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
+        }
+    }
         
 
     }

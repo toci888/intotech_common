@@ -8,20 +8,23 @@ namespace Intotech.GhostRider.Panels
 {
     public abstract class PanelBase : Panel
     {
+        protected string modelPath = null;
+
         protected GeneratorRealization Realizator = new();
 
         protected Label BannerLabel = new Label();
         protected Label NameSpaceLabel = new Label();
         protected Label UsingsLabel = new Label();
         protected Label OutputPathLabel = new Label();
-        protected Label DllPathLabel = new Label();
+        protected Label isModelSelect = new Label();
 
+        protected Button ChooseModelsDllPath = new Button();
         protected Button Gen_Button = new Button();
 
-        protected TextBox NameSpaces = new TextBox();
+        protected TextBox NameSpace = new TextBox();
         protected TextBox Usings = new TextBox();
         protected TextBox OutputDirectory = new TextBox();
-        protected TextBox PathAssembly = new TextBox();
+        
 
         protected Font LabelsFont = new Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 
@@ -33,34 +36,42 @@ namespace Intotech.GhostRider.Panels
         protected virtual void CreateLayout()
         {
             CreateLabels();
-            CreateTextboxes();         
-
-            Gen_Button.Location = new Point(370, 424);
-            Gen_Button.Name = "Gen_Button";
-            Gen_Button.Size = new Size(238, 55);
-            Gen_Button.Text = "Generate";
-            Gen_Button.UseVisualStyleBackColor = true;
-            Gen_Button.Click += new EventHandler(HandleClick);
+            CreateTextboxes();
+            CreateButtons();
 
             Controls.Add(BannerLabel);
             Controls.Add(NameSpaceLabel);
             Controls.Add(UsingsLabel);
             Controls.Add(OutputPathLabel);
-            Controls.Add(DllPathLabel);
+            Controls.Add(isModelSelect);
             Controls.Add(Gen_Button);
-            Controls.Add(NameSpaces);
+            Controls.Add(NameSpace);
             Controls.Add(Usings);
             Controls.Add(OutputDirectory);
-            Controls.Add(PathAssembly);
+            Controls.Add(ChooseModelsDllPath);
 
             Location = new Point(2, 24);
         }
 
+        protected virtual void CreateButtons()
+        {
+            Gen_Button.Location = new Point(370, 424);
+            Gen_Button.Name = "Gen_Button";
+            Gen_Button.Size = new Size(238, 55);
+            Gen_Button.Text = "Generate";
+            Gen_Button.Click += new EventHandler(HandleClick);
+
+
+            ChooseModelsDllPath.Location = new Point(31, 56);
+            ChooseModelsDllPath.Size = new Size(164, 33);
+            ChooseModelsDllPath.Text = "Choose Models Dll";
+            ChooseModelsDllPath.Click += new EventHandler(ChooseModelsDllPathClick);
+        }
         protected virtual void CreateTextboxes()
         {
-            NameSpaces.Location = new Point(685, 337);
-            NameSpaces.Multiline = true;
-            NameSpaces.Size = new Size(313, 156);
+            NameSpace.Location = new Point(685, 337);
+            NameSpace.Multiline = true;
+            NameSpace.Size = new Size(313, 156);
 
             Usings.Location = new Point(24, 339);
             Usings.Multiline = true;
@@ -69,12 +80,7 @@ namespace Intotech.GhostRider.Panels
             OutputDirectory.Location = new Point(682, 69);
             OutputDirectory.Multiline = true;
             OutputDirectory.Size = new Size(300, 181);
-
-            PathAssembly.Location = new Point(20, 68);
-            PathAssembly.Multiline = true;
-            PathAssembly.Size = new Size(310, 170);
         }
-
         protected virtual void CreateLabels()
         {
             BannerLabel.AutoSize = true;
@@ -97,11 +103,13 @@ namespace Intotech.GhostRider.Panels
             OutputPathLabel.Font = LabelsFont;
             OutputPathLabel.Size = new Size(72, 15);
 
-            DllPathLabel.AutoSize = true;
-            DllPathLabel.Location = new Point(127, 39);
-            DllPathLabel.Font = LabelsFont;
-            DllPathLabel.Size = new Size(48, 15);
+            isModelSelect.AutoSize = true;
+            isModelSelect.Location = new Point(200, 63);
+            isModelSelect.Font = LabelsFont;
+            isModelSelect.Size = new Size(48, 15);
         }
+
+        protected abstract void ChooseModelsDllPathClick(object? sender, EventArgs eventArgs);
 
         protected abstract void HandleClick(object? sender, EventArgs eventArgs);
     }
