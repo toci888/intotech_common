@@ -1,5 +1,6 @@
 ﻿using Intotech.ReflectiveTools.DtosLogicGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
+using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
 using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
 using System;
@@ -27,15 +28,15 @@ namespace Intotech.GhostRider
                     MessageBox.Show(ex.ToString());
                     throw;
                 }
+
                 return false;
             }
             else
             {
-                if (FolderCleaner(outputDirectory) == false)
+                if (!FolderCleaner(outputDirectory))
                 {
                     return false;
                 }
-                
                 
                 return true;
             }
@@ -55,6 +56,7 @@ namespace Intotech.GhostRider
                     MessageBox.Show(ex.ToString());
                     throw;
                 }
+
                 return false;
             }
             else
@@ -64,15 +66,12 @@ namespace Intotech.GhostRider
                     return false;
                 }
 
-
                 return true;
             }
         }
-        public virtual bool LogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool LogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
         {
-            List<string> selectedObj = new() { "Intotech.Wheelo.Bll.Persistence.csproj", "Logic.cs" };
-
-            if (Directory.GetFiles(outputDirectory).Length - selectedObj.Count() == 0)
+            if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
             {
                 try
                 {
@@ -89,22 +88,16 @@ namespace Intotech.GhostRider
             }
             else
             {
-                
-
-                if (FolderCleaner(outputDirectory, selectedObj) == false)
+                if (FolderCleaner(outputDirectory, dontDeleteFiles) == false)
                 {
                     return false;
                 }
-
-
                 return true;
             }
         }
-        public virtual bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace)
-        {
-            List<string> selectedObj = new() { "Intotech.Wheelo.Bll.Persistence.Interfaces.csproj", "AccountLogicConstants.cs" };
-            
-            if (Directory.GetFiles(outputDirectory).Length - selectedObj.Count() == 0)
+        public virtual bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
+        {   
+            if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
             {
                 try
                 {
@@ -121,17 +114,15 @@ namespace Intotech.GhostRider
             }
             else
             {
-                if (FolderCleaner(outputDirectory, selectedObj) == false)
+                if (FolderCleaner(outputDirectory, dontDeleteFiles) == false)
                 {
                     return false;
                 }
-
-
                 return true;
             }
         }
 
-        public virtual bool DtoLogicRender(string mainFolderPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool DtoLogicRender(string modelPath, string outputDirectory, string usings, string nameSpace)
         {
             if (Directory.GetFiles(outputDirectory).Length== 0)
             {
@@ -139,7 +130,7 @@ namespace Intotech.GhostRider
                 {
                     DtoLogicRendererRunner dtosRender = new();
 
-                    dtosRender.LoadAndReadAssembly(mainFolderPath, outputDirectory, usings, nameSpace);
+                    dtosRender.LoadAndReadAssembly(modelPath, outputDirectory, usings, nameSpace);
                 }
                 catch (Exception ex)
                 {
@@ -154,10 +145,25 @@ namespace Intotech.GhostRider
                 {
                     return false;
                 }
+                return true;
+            }
+        }
 
+        public virtual bool MDManRender(string folderPath, string baseClass)
+        {
+            try
+            {
+                ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+
+                mdm.AddDerivanceToModels(folderPath, baseClass);
 
                 return true;
             }
+            catch
+            {
+                return false;
+            }
+            
         }
         public virtual bool FolderCleaner(string outputDirectory, List<string> selectedObj = null)
         {
