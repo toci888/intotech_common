@@ -35,6 +35,7 @@
             this.modelDtoGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dtoLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.derivanceManipulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iDtoLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +47,7 @@
             this.iLogicGenToolStripMenuItem,
             this.modelDtoGenToolStripMenuItem,
             this.dtoLogicGenToolStripMenuItem,
+            this.iDtoLogicGenToolStripMenuItem,
             this.derivanceManipulatorToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -95,6 +97,13 @@
             this.derivanceManipulatorToolStripMenuItem.Text = "DerivanceManipulator";
             this.derivanceManipulatorToolStripMenuItem.Click += new System.EventHandler(this.derivanceManipulatorToolStripMenuItem_Click);
             // 
+            // iDtoLogicGenToolStripMenuItem
+            // 
+            this.iDtoLogicGenToolStripMenuItem.Name = "iDtoLogicGenToolStripMenuItem";
+            this.iDtoLogicGenToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
+            this.iDtoLogicGenToolStripMenuItem.Text = "IDtoLogicGen";
+            this.iDtoLogicGenToolStripMenuItem.Click += new System.EventHandler(this.iDtoLogicGenToolStripMenuItem_Click);
+            // 
             // GhostRiderGenEx
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -122,5 +131,6 @@
         private ToolStripMenuItem modelDtoGenToolStripMenuItem;
         private ToolStripMenuItem dtoLogicGenToolStripMenuItem;
         private ToolStripMenuItem derivanceManipulatorToolStripMenuItem;
+        private ToolStripMenuItem iDtoLogicGenToolStripMenuItem;
     }
 }

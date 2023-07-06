@@ -122,7 +122,7 @@ namespace Intotech.GhostRider
             }
         }
 
-        public virtual bool DtoLogicRender(string modelPath, string outputDirectory, string usings, string nameSpace)
+        public virtual bool DtoLogicRender(string modelPath, string outputDirectory, string usings, string nameSpace, bool isInterface)
         {
             if (Directory.GetFiles(outputDirectory).Length== 0)
             {
@@ -130,7 +130,7 @@ namespace Intotech.GhostRider
                 {
                     DtoLogicRendererRunner dtosRender = new();
 
-                    dtosRender.LoadAndReadAssembly(modelPath, outputDirectory, usings, nameSpace);
+                    dtosRender.LoadAndReadAssembly(modelPath, outputDirectory, usings, nameSpace, isInterface);
                 }
                 catch (Exception ex)
                 {

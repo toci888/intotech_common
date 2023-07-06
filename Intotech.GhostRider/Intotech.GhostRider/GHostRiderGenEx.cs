@@ -120,6 +120,21 @@ namespace Intotech.GhostRider
 
             generatorOptionPanel.Show();
         }
+
+        private void iDtoLogicGenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
+
+            generatorOptionPanel = new IDtoLogicGenerationPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
+        }
     }
         
 

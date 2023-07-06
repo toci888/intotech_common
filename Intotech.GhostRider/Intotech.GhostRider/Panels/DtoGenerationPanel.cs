@@ -25,6 +25,7 @@ namespace Intotech.GhostRider.Panels
             if (modelPath != null)
             {
                 isModelSelect.Text = "Model selected";
+                isModelSelect.BackColor = Color.Green;
             }
         }
         protected override void HandleClick(object? sender, EventArgs eventArgs)

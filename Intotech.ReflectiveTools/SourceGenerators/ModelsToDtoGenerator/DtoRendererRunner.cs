@@ -11,15 +11,19 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
 {
     public class DtoRendererRunner
     {
+        protected List<string> Excluded = new() { "<>c", "Context", "Attribute" };
         public virtual void LoadAndReadAssembly(string inputDllPath, string outputDirectory, string usings, string nmSpace)
         {
             var  types = Assembly.LoadFrom(inputDllPath).GetTypes();
 
-            for (int i = 4; i < types.Length; i++)
+            for (int i = 0; i < types.Length; i++)
             {
-                DtoRenderer dtoRenderer = new();
+                if (!Excluded.Any(n => types[i].Name.Contains(n)))
+                {
+                    DtoRenderer dtoRenderer = new();
 
-                dtoRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace);
+                    dtoRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace);
+                }
             }
         }
     }

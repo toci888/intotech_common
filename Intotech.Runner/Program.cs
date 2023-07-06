@@ -7,6 +7,7 @@ using Intotech.ReflectiveTools.SourceGenerators.Models2DtosGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.LogicGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
+using Intotech.ReflectiveTools.SourceGenerators.ScopesGenerator;
 using System.IO;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
@@ -21,13 +22,15 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 //    ModelPersistenceUsing = "Intotech.Xerion.Dictionaries.Database.Persistence.Models"
 //};
 
+ScopesGeneratorRunner scopesGeneratorRunner = new();
 
+scopesGeneratorRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll", "C:\\Users\\stasx\\Desktop\\");
 
 //interfaceAndLogicFileGenerator.GenerateCodeFiles("", files, generatedFile);
 
-ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
+//ModelDerivanceManipulator mdm = new ModelDerivanceManipulator();
 
-mdm.AddDerivanceToModels("C:\\Users\\bzapa\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "ModelBase");
+//mdm.AddDerivanceToModels("C:\\Users\\bzapa\\source\\repos\\toci888\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models", "ModelBase");
 
 // Generate DtoLogic Classes 
 

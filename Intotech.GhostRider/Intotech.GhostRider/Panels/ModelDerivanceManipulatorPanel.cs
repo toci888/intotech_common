@@ -31,6 +31,7 @@ namespace Intotech.GhostRider.Panels
                 if (selectedFolderPath != null)
                 {
                     isModelSelect.Text = "Folder selected";
+                    isModelSelect.BackColor = Color.Green;
                 }
             }
         }

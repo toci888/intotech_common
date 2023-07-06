@@ -2,7 +2,7 @@
 
 public interface IDtoEntityHandler<TDto, in TCollectionModelDto>
 {
-    TDto GetEntity(TDto masterEntity, TCollectionModelDto outputField = default);
+    //TDto GetEntity(TDto masterEntity, TCollectionModelDto outputField = default);
 
     TDto SetEntity(TDto dtoToSet);
 }

@@ -105,6 +105,7 @@ namespace Intotech.GhostRider.Panels
 
             isModelSelect.AutoSize = true;
             isModelSelect.Location = new Point(200, 63);
+            isModelSelect.BackColor = Color.Red;
             isModelSelect.Font = LabelsFont;
             isModelSelect.Size = new Size(48, 15);
         }

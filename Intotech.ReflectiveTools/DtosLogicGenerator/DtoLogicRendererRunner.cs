@@ -12,7 +12,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
     public class DtoLogicRendererRunner
     {
         protected List<string> Excluded = new() {"<>c", "Context","Attribute"};
-        public virtual void LoadAndReadAssembly(string modelPath, string outputPath, string usings, string nmSpace)
+        public virtual void LoadAndReadAssembly(string modelPath, string outputPath, string usings, string nmSpace, bool isInterface)
         {
             DtoLogicRenderer renderer = new ();
 
@@ -22,7 +22,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
             {
                 if (!Excluded.Any(n=> model[i].Name.Contains(n)))
                 {
-                    renderer.RendererDtoLogic(model[i], outputPath, usings, nmSpace);
+                    renderer.RendererDtoLogic(model[i], outputPath, usings, nmSpace, isInterface);
                 }
                 
             }
