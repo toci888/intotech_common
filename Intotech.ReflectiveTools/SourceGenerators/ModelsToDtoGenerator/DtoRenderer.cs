@@ -25,6 +25,8 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
                         writer.WriteLine($"public class {sourceClass.Name}Dto");
                         writer.WriteLine("{");
                         writer.WriteLine($"    public {sourceClass.Name}ModelDto {sourceClass.Name} {{ get; set; }}");
+                        writer.WriteLine($"    public {sourceClass.Name}roleModelDto {sourceClass.Name}Role {{ get; set; }}");
+                        writer.WriteLine($"    public {sourceClass.Name}modeModelDto {sourceClass.Name}Mode {{ get; set; }}");
                         writer.WriteLine("}");
 
                     }

@@ -11,15 +11,16 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
 {
     public class DtoLogicRendererRunner
     {
+        protected List<string> Excluded = new() {"<>c", "Context","Attribute"};
         public virtual void LoadAndReadAssembly(string modelPath, string outputPath, string usings, string nmSpace)
         {
             DtoLogicRenderer renderer = new ();
 
             Type[] model = Assembly.LoadFrom(modelPath).GetTypes();
 
-            for (int i = 4; i < model.Length; i++)
+            for (int i = 0; i < model.Length; i++)
             {
-                if (model[i].Name != "<>c")
+                if (!Excluded.Any(n=> model[i].Name.Contains(n)))
                 {
                     renderer.RendererDtoLogic(model[i], outputPath, usings, nmSpace);
                 }

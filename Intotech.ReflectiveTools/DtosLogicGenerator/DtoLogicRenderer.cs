@@ -21,13 +21,14 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
                     writer.WriteLine("{");
 
                         writer.WriteLine($"    public {model.Name}DtoLogic(I{model.Name}Logic {model.Name.ToLower()}logic) \r\n        " +
-                            $": base({model.Name.ToLower()}logic, m => m.Id == id, \r\n            " +
+                            $": base({model.Name.ToLower()}logic, \r\n            " +
                             $"(aDto, aModelDto) => {{ \r\n                " +
                             $"aDto.{model.Name} = aModelDto;\r\n                " +
                             $"return aDto;\r\n            }})\r\n    {{\r\n    }}\r\n\r\n    " +
-                            $"protected override DtoBase<{model.Name},{model.Name}Dto> GetDtoModelField({model.Name}Dto dto)\r\n    {{\r\n       " +
-                            $"return dto.{model.Name};\r\n    }}\r\n\r\n    protected override {model.Name}Dto FillEntity({model.Name}Dto dto, DtoBase<{model.Name}> field)\r\n    {{\r\n        " +
-                            $"dto.{model.Name} = ({model.Name}ModelDto)field;\r\n\r\n        return dto;\r\n    }}");
+                            $"protected override DtoBase<{model.Name},{model.Name}ModelDto> GetDtoModelField({model.Name}Dto dto)\r\n    {{\r\n       " +
+                            $"return dto.{model.Name};\r\n    }}\r\n\r\n    protected override {model.Name}Dto FillEntity({model.Name}Dto dto, {model.Name}ModelDto  field)\r\n    {{\r\n        " +
+                            $"dto.{model.Name} = field;\r\n\r\n        return dto;\r\n    }}"+
+                            $"    protected override {model.Name}Dto FillEntity({model.Name}Dto dto, List<{model.Name}ModelDto> field)\r\n    {{\r\n        throw new NotImplementedException();\r\n    }}");
 
                     writer.WriteLine("}");
 
