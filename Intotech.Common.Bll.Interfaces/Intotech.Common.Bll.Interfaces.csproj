@@ -10,8 +10,4 @@
     <PackageReference Include="Npgsql" Version="7.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ChorDtoBll\" />
-  </ItemGroup>
-
 </Project>
