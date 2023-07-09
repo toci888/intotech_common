@@ -46,7 +46,7 @@ namespace Intotech.ReflectiveTools.DtosLogicGenerator
                 {
                     writer.WriteLine(usings + Environment.NewLine);
                     writer.WriteLine(nmSpace + Environment.NewLine);
-                    writer.WriteLine($"   public interface I{model.Name}DtoLogic : IDtoEntityHandler<{model.Name}Dto, List<{model.Name}ModelDto>>\r\n    {{\r\n\r\n    }}");
+                    writer.WriteLine($"   public interface I{model.Name}DtoLogic : IDtoLogicBase<{model.Name}ModelDto, {model.Name}, {model.Name}Dto, List<{model.Name}>, List<{model.Name}ModelDto>>\r\n    {{\r\n\r\n    }}");
                 }
             }
         }

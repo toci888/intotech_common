@@ -21,7 +21,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ScopesGenerator
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Сталася помилка при створенні файлу: " + ex.Message);
+                    Console.WriteLine("An error occurred while creating the file: " + ex.Message);
                 }
             }
             else
