@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Runner", "Intotech
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.GhostRider", "Intotech.GhostRider\Intotech.GhostRider\Intotech.GhostRider.csproj", "{06C6C67E-502B-49B5-AC36-7E7F08326BE1}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Interfaces", "Intotech.Common.Interfaces\Intotech.Common.Interfaces.csproj", "{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06C6C67E-502B-49B5-AC36-7E7F08326BE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
