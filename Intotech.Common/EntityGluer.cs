@@ -14,15 +14,17 @@ namespace Intotech.Common
 
         1. Id: 123
         2. Email: "kac..."
+        3. AccountDto: { Id: 2
+        }
 
          * */
-        public static List<string> GlueEntitiy(object entity)
+        public static List<string> GlueEntity(object entity)
         {
             List<string> result = new List<string>();
 
             PropertyInfo[] properties = entity.GetType().GetProperties();   
 
-            foreach (PropertyInfo property in properties)
+            foreach (PropertyInfo property in properties) // if type string int bool AccountDto -> GlueEntity
             {
                 string val = property.GetValue(entity, null).ToString();
 

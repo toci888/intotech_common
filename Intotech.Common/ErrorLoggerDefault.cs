@@ -6,12 +6,25 @@ using System.Threading.Tasks;
 
 namespace Intotech.Common
 {
-    public class ErrorLoggerDefault : IErrorLogger
+    public class ErrorLoggerDefault : IErrorLogger, IDisposable
     {
         private static string LogFile = "ErrorLogs.txt";
         private static string DebugLogFile = "DebugLogs.txt";
         private static StreamWriter Swr;
         private static StreamWriter SwrDebug;
+
+        public virtual void Dispose()
+        {
+            if (Swr != null)
+            {
+                Swr.Close();
+            }
+
+            if (Swr != null)
+            {
+                SwrDebug.Close();
+            }
+        }
 
         public virtual void Log(List<Exception> ex)
         {
@@ -70,13 +83,14 @@ namespace Intotech.Common
         }
 
         public virtual void Log(string message, LogLevels logLevel, params object[] details)
+            // "", Loglevel, .......
         {
             // ? 
             List<string> detailMessages = new List<string>();
 
             foreach (object item in details)
             {
-                detailMessages.AddRange(EntityGluer.GlueEntitiy(item));
+                detailMessages.AddRange(EntityGluer.GlueEntity(item));
             }
 
             Log(message + string.Join(" | ", detailMessages), logLevel);
