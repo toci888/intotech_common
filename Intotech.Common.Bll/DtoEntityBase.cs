@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intotech.Common.Bll
 {
-    public class DtoBase
+    public class DtoEntityBase
     {
         public string Language { get; set; }
     }
