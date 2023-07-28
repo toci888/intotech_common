@@ -15,4 +15,8 @@
     <PackageReference Include="AutoMapper" Version="12.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Intotech.Common.Interfaces\Intotech.Common.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

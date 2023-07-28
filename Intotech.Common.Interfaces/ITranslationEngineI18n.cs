@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intotech.Common.Bll
+namespace Intotech.Common.Interfaces
 {
-    public class DtoBase
+    public interface ITranslationEngineI18n
     {
-        public string Language { get; set; }
+        string Translate(string langCode, string tag);
     }
 }
