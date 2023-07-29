@@ -119,4 +119,18 @@ public static class StringUtils
             return false;
         }
     }
+
+    //provide a string and a list of strings to check against
+    public static bool ContainsAny(string str, List<string> list)
+    {
+        foreach (string s in list)
+        {
+            if (str.Contains(s))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
