@@ -20,18 +20,59 @@ namespace Intotech.Common
          * */
         public static List<string> GlueEntity(object entity)
         {
+            
             List<string> result = new List<string>();
 
-            PropertyInfo[] properties = entity.GetType().GetProperties();   
+            if (entity == default) { result.Add("null"); return result; }
 
+            PropertyInfo[] properties = entity.GetType().GetProperties();   
+            result.Add(entity.GetType().Name);
             foreach (PropertyInfo property in properties) // if type string int bool AccountDto -> GlueEntity
             {
-                string val = property.GetValue(entity, null).ToString();
+                var name = property.PropertyType;
+                if (!property.PropertyType.Name.Contains("ICollection"))
+                {
+                    if (IsPrimitiveOrNullablePrimitive(property.PropertyType) || property.PropertyType == typeof(string) || property.PropertyType == typeof(System.DateTime))
+                    {
+                        object val = property.GetValue(entity, null);
 
-                result.Add($"{property.Name}: ${val}");
+                        if (val != default)
+                        {
+                            val.ToString();
+                        }
+
+                        result.Add($"{property.Name}: {val}");
+                    }
+                    else
+                    {
+                        object val = property.GetValue(entity, null);
+                        result.Add($"{property.Name}: {{{string.Join(", ", GlueEntity(val))}}}");
+                    }
+                }
+                
+            }
+           
+            return result;
+        }
+
+        static bool IsPrimitiveOrNullablePrimitive(Type type)
+        {
+            if (type.IsPrimitive || type == typeof(DateTime))
+            {
+                return true;
             }
 
-            return result;
+            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                Type underlyingType = Nullable.GetUnderlyingType(type);
+
+                if (underlyingType != null && (underlyingType.IsPrimitive || underlyingType == typeof(DateTime)))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

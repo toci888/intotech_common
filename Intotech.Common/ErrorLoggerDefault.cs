@@ -92,8 +92,8 @@ namespace Intotech.Common
             {
                 detailMessages.AddRange(EntityGluer.GlueEntity(item));
             }
-
-            Log(message + string.Join(" | ", detailMessages), logLevel);
+            Console.WriteLine(string.Join(Environment.NewLine, detailMessages));
+           // Log(message + string.Join(" | ", detailMessages), logLevel);
         }
 
 
