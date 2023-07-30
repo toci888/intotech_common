@@ -93,7 +93,7 @@ namespace Intotech.Common
                 detailMessages.AddRange(EntityGluer.GlueEntity(item));
             }
             Console.WriteLine(string.Join(Environment.NewLine, detailMessages));
-           // Log(message + string.Join(" | ", detailMessages), logLevel);
+            Log(message + string.Join(Environment.NewLine, detailMessages), logLevel);
         }
 
 

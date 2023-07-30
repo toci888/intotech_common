@@ -22,17 +22,21 @@ namespace Intotech.Common
         {
             
             List<string> result = new List<string>();
+            int iterator = 1;
 
             if (entity == default) { result.Add("null"); return result; }
 
-            PropertyInfo[] properties = entity.GetType().GetProperties();   
+            PropertyInfo[] properties = entity.GetType().GetProperties();  
+            
             result.Add(entity.GetType().Name);
+
             foreach (PropertyInfo property in properties) // if type string int bool AccountDto -> GlueEntity
             {
                 var name = property.PropertyType;
+
                 if (!property.PropertyType.Name.Contains("ICollection"))
                 {
-                    if (IsPrimitiveOrNullablePrimitive(property.PropertyType) || property.PropertyType == typeof(string) || property.PropertyType == typeof(System.DateTime))
+                    if (IsPrimitiveOrNullablePrimitive(property.PropertyType) || property.PropertyType == typeof(string))
                     {
                         object val = property.GetValue(entity, null);
 
@@ -41,12 +45,12 @@ namespace Intotech.Common
                             val.ToString();
                         }
 
-                        result.Add($"{property.Name}: {val}");
+                        result.Add($" {iterator++}. {property.Name}: {val}");
                     }
                     else
                     {
                         object val = property.GetValue(entity, null);
-                        result.Add($"{property.Name}: {{{string.Join(", ", GlueEntity(val))}}}");
+                        result.Add($" {iterator++}. {property.Name}: {{{string.Join(", ", GlueEntity(val))}}}");
                     }
                 }
                 
