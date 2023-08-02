@@ -10,10 +10,11 @@ namespace Intotech.Common
     public abstract class TranslationEngineI18n : ITranslationEngineI18n
     {
         protected Dictionary<string, Dictionary<string, string>> ApplicationTranslationData;
-
-        protected TranslationEngineI18n(Dictionary<string, Dictionary<string, string>> applicationTranslationData)
+                                                   //country code,     tag, translation
+                                                   // pl,             _error, "Błąd"
+        protected TranslationEngineI18n()
         {
-            ApplicationTranslationData = applicationTranslationData;
+           
         }
 
         public virtual string Translate(string langCode, string tag)

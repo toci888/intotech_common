@@ -22,7 +22,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
                     {
                         writer.WriteLine(usings + Environment.NewLine);
                         writer.WriteLine(nmSpace + Environment.NewLine);
-                        writer.WriteLine($"public class {sourceClass.Name}Dto : DtoBase");
+                        writer.WriteLine($"public class {sourceClass.Name}Dto : DtoEntityBase");
                         writer.WriteLine("{");
                         writer.WriteLine($"    public {sourceClass.Name}ModelDto {sourceClass.Name} {{ get; set; }}");
                         //writer.WriteLine($"    public {sourceClass.Name}roleModelDto {sourceClass.Name}Role {{ get; set; }}");
@@ -31,7 +31,6 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
 
                     }
                 }
-
         }
     }
 }
