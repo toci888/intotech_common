@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq.Expressions;
 using Intotech.Common.Bll.ChorDtoBll.Dto;
+using Intotech.Common.Bll.ChorDtoBll.Dto.Extensions;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Bll.Interfaces.ChorDtoBll;
 
@@ -8,7 +9,7 @@ namespace Intotech.Common.Bll.ChorDtoBll;
 
 public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : IDtoLogicBase<TModelDto, TModel, TDto, TCollectionModel, TCollectionModelDto> 
     where TLogic : ILogicBase<TModel>
-    where TModelDto : DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto>, new()
+    where TModelDto : DtoModelBase, new()
     where TModel : ModelBase, new()
     where TCollectionModel : IList<TModel>, new()
     where TCollectionModelDto : IList<TModelDto>, new()
@@ -53,7 +54,7 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
     {
         foreach (TModelDto element in entityCollection)
         {
-            TModel item = element.MapDtoToModel();
+            TModel item = element.MapDtoToModel<TModel, TModelDto>();
 
             if (item.Id > 0)
             {
@@ -110,12 +111,12 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
 
     protected virtual TModel EntityGetter(TDto dto)
     {
-        DtoBase<TModel, TModelDto> field = GetDtoModelField(dto);
+        TModelDto field = GetDtoModelField(dto);
 
-        return field.MapDtoToModel();
+        return field.MapDtoToModel<TModel, TModelDto>();
     }
 
-    protected abstract DtoBase<TModel, TModelDto> GetDtoModelField(TDto dto);
+    protected abstract TModelDto GetDtoModelField(TDto dto);
     protected abstract TDto FillEntity(TDto dto, TModelDto field);
     protected abstract TDto FillEntity(TDto dto, TCollectionModelDto field);
 }

@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 namespace Intotech.Common.Bll.ChorDtoBll
 {
     public interface IDtoLogicBase<TModelDto, TModel, TDto, TCollectionModel, TCollectionModelDto> : IAbsDtoLogic<TModel, ILogicBase<TModel>, TDto, TCollectionModelDto>
-        where TModelDto : DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto>, new()
+        where TModelDto : DtoModelBase, new()
         where TModel : ModelBase, new()
         where TCollectionModel : IList<TModel>, new()
         where TCollectionModelDto : IList<TModelDto>, new()

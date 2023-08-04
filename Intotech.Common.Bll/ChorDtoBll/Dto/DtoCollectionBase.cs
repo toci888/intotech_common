@@ -9,7 +9,7 @@ namespace Intotech.Common.Bll.ChorDtoBll.Dto
 {
     public class DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto> : DtoBase<TModel, TModelDto>
         where TModel : ModelBase, new()
-        where TModelDto : DtoBase<TModel, TModelDto>, new()
+        where TModelDto : DtoModelBase, new() //DtoCollectionBase<TModel, TModelDto, TCollectionModel, TCollectionModelDto>
         where TCollectionModel : IList<TModel>, new()
         where TCollectionModelDto : IList<TModelDto>, new()
     {

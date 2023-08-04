@@ -4,9 +4,9 @@ namespace Intotech.Common.Bll.ChorDtoBll.Dto;
 
 public class DtoBase<TModel, TModelDto> 
     where TModel : ModelBase, new()
-    where TModelDto : DtoBase<TModel, TModelDto>, new()
+    where TModelDto : new() //DtoBase<TModel, TModelDto>, 
 {
-    public virtual TModelDto MapModelToDto(TModel model)
+   /* public virtual TModelDto MapModelToDto(TModel model)
     {
         return DtoModelMapper.Map<TModelDto, TModel>(model);
     }
@@ -19,5 +19,5 @@ public class DtoBase<TModel, TModelDto>
     public virtual TModelDto MapDtoToDto()
     {
         return DtoModelMapper.Map<TModelDto, TModelDto>((TModelDto)this);
-    }
+    }*/
 }
