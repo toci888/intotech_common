@@ -17,6 +17,18 @@ namespace Intotech.Common.Bll.BllLogicManagement
     {
         protected DtoLogicHandlerBase<TDtoLogic, TDto, TModelDto, TModel, TLogic, TCollectionModel, TCollectionModelDto> Children;
         protected TDtoLogic DtoLogic;
+        //protected string Self;
+
+        protected DtoLogicHandlerBase(
+                       TDtoLogic dtoLogic,
+          //             string self,
+                       DtoLogicHandlerBase<TDtoLogic, TDto, TModelDto, TModel, TLogic, TCollectionModel, TCollectionModelDto> children = null
+                   )
+        {
+            DtoLogic = dtoLogic;
+            //Self = self;
+            Children = children;
+        }
 
         public virtual TDto GetById(int id, List<string> handlers, TDto dto)
         {
@@ -24,9 +36,14 @@ namespace Intotech.Common.Bll.BllLogicManagement
 
             dto = DtoLogic.GetEntity(dto);
 
+            //dto = this[Self].GetEntity(dto);
+
             foreach (string handler in handlers)
             {
-
+                if (Children.ContainsKey(handler))
+                {
+                    dto = Children[handler].GetEntity(dto);
+                }
             }
 
             return dto;
