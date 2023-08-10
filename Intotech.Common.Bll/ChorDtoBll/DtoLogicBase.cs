@@ -7,7 +7,9 @@ using Intotech.Common.Bll.Interfaces.ChorDtoBll;
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
-public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : IDtoLogicBase<TModelDto, TModel, TDto, TCollectionModel, TCollectionModelDto> 
+public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : 
+    IDtoLogicBase<TModelDto, TModel, TDto, TCollectionModel, TCollectionModelDto> 
+
     where TLogic : ILogicBase<TModel>
     where TModelDto : DtoModelBase, new()
     where TModel : ModelBase, new()
