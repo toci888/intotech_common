@@ -10,11 +10,18 @@ public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
 
     protected virtual void InsertCollection(List<TModel> items)
     {
+        bool shouldPopulate = false;
         foreach (TModel item in items)
         {
             Expression<Func<TModel, bool>> SelectWhereCondition = TakeWhereCondition(item);
 
-            if (Select(SelectWhereCondition).FirstOrDefault() == null)
+            TModel? isAlreadyInDb = Select(SelectWhereCondition).FirstOrDefault();
+            if (isAlreadyInDb == null)
+            {
+                shouldPopulate = true;
+            }
+
+            if (shouldPopulate)
             {
                 Insert(item);
             }
