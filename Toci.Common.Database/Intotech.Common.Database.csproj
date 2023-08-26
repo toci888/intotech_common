@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Intotech.Common.Bll.Interfaces\Intotech.Common.Bll.Interfaces.csproj" />
     <ProjectReference Include="..\Intotech.Common.Database.Interfaces\Intotech.Common.Database.Interfaces.csproj" />
     <ProjectReference Include="..\Intotech.Common\Intotech.Common.csproj" />
   </ItemGroup>

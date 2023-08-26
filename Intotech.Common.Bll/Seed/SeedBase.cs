@@ -1,8 +1,9 @@
+using Intotech.Common.Bll.Interfaces;
 using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Seed;
 
-public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
+public abstract class SeedBase<TModel> : LogicBase<TModel>, IDisposable where TModel : ModelBase
 {
     protected int AccountIdOffset = 0;
 
@@ -32,4 +33,9 @@ public abstract class SeedBase<TModel> : LogicBase<TModel> where TModel : class
     {
         return m => true;
     }
+
+    //public void Dispose()
+    //{
+    //    //DbHandle?.Dispose();
+    //}
 }

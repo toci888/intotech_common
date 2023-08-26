@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Intotech.Common.Microservices;
 
-public abstract class ApiControllerBase<TLogic, TModel> : ControllerBase, IApiControllerBase<TLogic, TModel> where TLogic : ILogicBase<TModel> where TModel : class
+public abstract class ApiControllerBase<TLogic, TModel> : ControllerBase, IApiControllerBase<TLogic, TModel> where TLogic : ILogicBase<TModel> where TModel : ModelBase
 {
     protected TLogic Logic;
     protected ApiControllerBase(TLogic logic)

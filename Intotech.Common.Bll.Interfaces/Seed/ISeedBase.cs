@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Intotech.Common.Bll.Interfaces.Seed
 {
-    public interface ISeedBase<TModel> : ILogicBase<TModel> where TModel : class
+    public interface ISeedBase<TModel> : ILogicBase<TModel> where TModel : ModelBase
     {
     }
 }

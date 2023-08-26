@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Interfaces;
 
-public interface ILogicBase<TModel> where TModel : class
+public interface ILogicBase<TModel> where TModel : ModelBase
 {
     IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter);
 
