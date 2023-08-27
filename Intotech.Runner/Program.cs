@@ -23,7 +23,7 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 //    ModelPersistenceUsing = "Intotech.Xerion.Dictionaries.Database.Persistence.Models"
 //};
 RegenerateScafRunner runner = new();
-runner.Regenerate("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models\\", "using Intotech.Common.Bll.Interfaces; ", "ModelBase");
+runner.Regenerate("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Intotech.Wheelo.Chat.Database.Persistence\\Models\\", "using Intotech.Common.Bll.Interfaces; ", "ModelBase");
 //ScopesGeneratorRunner scopesGeneratorRunner = new();
 
 //scopesGeneratorRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll", "C:\\Users\\stasx\\Desktop\\");

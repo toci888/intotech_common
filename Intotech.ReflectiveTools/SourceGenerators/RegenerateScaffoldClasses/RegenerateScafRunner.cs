@@ -13,31 +13,39 @@ namespace Intotech.ReflectiveTools.SourceGenerators.RegenerateScaffoldClasses
         public virtual void Regenerate(string folderPath, string? Usings, string? Inheritance)
         {
             string[] files = Directory.GetFiles(folderPath);
+
             foreach (string file in files)
             {
                 
                 string fileName = GetFileNameFromPath(file);
-
-                fileName += "\r\n";
+                if (fileName.Contains("Context")) { 
+                    continue;
+                }
 
                 using (StreamReader reader = new StreamReader(file)) 
                 {
                     string fileContent = reader.ReadToEnd();
 
-                    string[] words = fileContent.Split(" ");
+                    string[] words = fileContent.Split("\r\n");
 
 
                     for (int i = 0; i < words.Length; i++)
                     {
-                        if (words[i] == fileName)
+                        if (words[i].Contains(fileName))
                         {
-                            fileName = fileName.Replace("\r\n", "");
+                            string name = string.Copy(fileName);
                             fileName += $" : {Inheritance}\r\n";
-                            words[i] = fileName;
+                           words[i] = words[i].Replace(name, fileName) ;
                             break;
                         }
+
+                        
                     }
 
+                    for (int i = 0; i < words.Length; i++)
+                    {
+                        words[i] += "\r\n";
+                    }
                     string word = string.Join(" ", words); ;
                     _fileContent = string.Copy(word);
                 }
