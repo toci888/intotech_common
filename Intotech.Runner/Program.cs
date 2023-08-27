@@ -9,6 +9,7 @@ using Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator;
 using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
 using Intotech.ReflectiveTools.SourceGenerators.ScopesGenerator;
 using System.IO;
+using Intotech.ReflectiveTools.SourceGenerators.RegenerateScaffoldClasses;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
 
@@ -21,10 +22,11 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 //    KeyNamespace = "Intotech.Xerion.Dictionaries.Bll.Persistence", //
 //    ModelPersistenceUsing = "Intotech.Xerion.Dictionaries.Database.Persistence.Models"
 //};
+RegenerateScafRunner runner = new();
+runner.Regenerate("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\Models\\", "using Intotech.Common.Bll.Interfaces; ", "ModelBase");
+//ScopesGeneratorRunner scopesGeneratorRunner = new();
 
-ScopesGeneratorRunner scopesGeneratorRunner = new();
-
-scopesGeneratorRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll", "C:\\Users\\stasx\\Desktop\\");
+//scopesGeneratorRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll", "C:\\Users\\stasx\\Desktop\\");
 
 //interfaceAndLogicFileGenerator.GenerateCodeFiles("", files, generatedFile);
 
@@ -37,8 +39,8 @@ scopesGeneratorRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\
 //DtoLogicRendererRunner dtosRender = new();
 
 //dtosRender.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub", "C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Intotech.Wheelo.Bll.Logic\\DtoLogics\\",
- //   "using System.Linq.Expressions;\r\nusing Intotech.Common.Bll.ChorDtoBll;\r\nusing Intotech.Common.Bll.ChorDtoBll.Dto;\r\nusing Intotech.Wheelo.Bll.Models.Dtos;\r\nusing Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;\r\nusing Intotech.Wheelo.Bll.Persistence;\r\nusing Intotech.Wheelo.Common.Interfaces.ModelMapperInterfaces;\r\nusing Toci.Driver.Database.Persistence.Models;",
- //   "namespace Intotech.Wheelo.Bll.Logic.DtoLogics;");
+//   "using System.Linq.Expressions;\r\nusing Intotech.Common.Bll.ChorDtoBll;\r\nusing Intotech.Common.Bll.ChorDtoBll.Dto;\r\nusing Intotech.Wheelo.Bll.Models.Dtos;\r\nusing Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;\r\nusing Intotech.Wheelo.Bll.Persistence;\r\nusing Intotech.Wheelo.Common.Interfaces.ModelMapperInterfaces;\r\nusing Toci.Driver.Database.Persistence.Models;",
+//   "namespace Intotech.Wheelo.Bll.Logic.DtoLogics;");
 
 //// Generate Dto Classes
 
