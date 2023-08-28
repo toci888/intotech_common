@@ -1,5 +1,6 @@
 ﻿using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Database.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,35 @@ namespace Intotech.Common.Database
 {
     public class DbHandleManager<TModel> : IDbHandleManager<TModel> where TModel : ModelBase
     {
-        public virtual IDbHandle<TModel> GetInstance(DbHandleType dbHandleType)
+        private Func<DbContext> databaseHandle;
+
+        public DbHandleManager(Func<DbContext> databaseHandle)
+        {
+            this.databaseHandle = databaseHandle;
+        }
+        public DbHandleManager(Func<DbContext> databaseHandle, DbHandleType type)
+        {
+            //this.GetInstance(type);
+        }
+
+        public virtual IDbHandle<TModel> GetInstance(DbHandleType dbHandleType, Func<DbContext> databaseHandle)
         {
             if (dbHandleType == DbHandleType.TypeSc)
             {
-                return new DbHandleSc<TModel>();
+                return new DbHandleCriticalSection<TModel>(databaseHandle, DbHandleType.TypeSc);
             }
-            
-            return new DbHandleMt<TModel>();
+
+            return new DbHandleMultiThreading<TModel>(databaseHandle);
+        }
+
+        public IDbHandle<TModel> GetInstance(Func<DbContext> databaseHandle, DbHandleType dbHandleType)
+        {
+            return GetInstance(dbHandleType, databaseHandle);
+        }
+
+        public IDbHandle<TModel> GetInstance(DbHandleType dbHandleType)
+        {
+            throw new NotImplementedException();
         }
     }
 }
