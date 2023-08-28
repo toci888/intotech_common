@@ -7,7 +7,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Intotech.Common.Database;
 
-public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : ModelBase
+public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable where TModel : ModelBase
 {
     protected DbContext DatabaseHandle; //DEPRECATED
     protected Func<DbContext> FDatabaseHandle;
@@ -15,12 +15,12 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
     private readonly string ConnectionString;
     private readonly object LockObj = new object();
 
-    public DbHandle(Func<DbContext> databaseHandle)
+    public DbHandleCriticalSection(Func<DbContext> databaseHandle)
     {
         FDatabaseHandle = databaseHandle;
     }
 
-    public DbHandle(Func<DbContext> databaseHandle, string connectionString)
+    public DbHandleCriticalSection(Func<DbContext> databaseHandle, string connectionString)
     {
         FDatabaseHandle = databaseHandle;
         ConnectionString = connectionString;
@@ -28,26 +28,29 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
 
     public int Delete(TModel model)
     {
-        DbContext context = FDatabaseHandle();
+        lock (LockObj)
         {
-            try
+            using (DbContext context = FDatabaseHandle())
             {
-                TModel element = Select().Where(m => m.Id == model.Id).FirstOrDefault();
-                if (element == null)
+                try
                 {
-                    return 0;
+                    TModel element = Select().Where(m => m.Id == model.Id).FirstOrDefault();
+                    if (element == null)
+                    {
+                        return 0;
+                    }
+                    context.Remove(element);// HERE TO FIX
+                    context.SaveChanges();
                 }
-                context.Remove(element);// HERE TO FIX
-                context.SaveChanges();
+                catch (Exception ex)
+                {
+
+                }
+
+                // DatabaseHandle?.Dispose();
+
+                return 1;
             }
-            catch (Exception ex)
-            {
-
-            }
-
-            // DatabaseHandle?.Dispose();
-
-            return 1;
         }
     }
 
@@ -78,7 +81,7 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
     public TModel Insert(TModel model)
     {
         DbContext context = FDatabaseHandle();
-        
+
         // insert into product (id, ....) 
         EntityEntry entr = context.Set<TModel>().Add(model);
 
@@ -87,7 +90,7 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
         // DatabaseHandle?.Dispose();
 
         return (TModel)(entr.Entity);
-        
+
     }
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
@@ -126,7 +129,7 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
     public TModel Update(TModel model)
     {
         DbContext context = FDatabaseHandle();
-        
+
         context.Update(model);
 
         context.SaveChanges();
@@ -134,7 +137,7 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
         //  DatabaseHandle?.Dispose();
 
         return model;
-        
+
     }
 
     public void Dispose()
