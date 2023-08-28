@@ -20,6 +20,11 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
     
     }
 
+    public DbHandleCriticalSection(Func<DbContext> databaseHandle, bool sc) : this(databaseHandle)
+    {
+        
+    }
+
     public DbHandleCriticalSection(Func<DbContext> databaseHandle)
     {
         FDatabaseHandle = databaseHandle;
