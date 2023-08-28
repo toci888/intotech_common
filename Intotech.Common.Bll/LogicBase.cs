@@ -12,12 +12,12 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
     protected abstract DbContext GetEfHandle();
     protected IDbHandle<TModel> DbHandle;
 
-    public LogicBase(bool cs)
+    public LogicBase()
     {
         DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
     }
 
-    protected LogicBase()
+    protected LogicBase(bool multi = false)
     {
         DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
     }
