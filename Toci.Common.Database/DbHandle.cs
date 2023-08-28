@@ -7,7 +7,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Intotech.Common.Database;
 
-public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : ModelBase
+public class DbHandle<TModel> : DbHandleManager<TModel>, IDbHandle<TModel>, IDisposable where TModel : ModelBase
 {
     protected DbContext DatabaseHandle; //DEPRECATED
     protected Func<DbContext> FDatabaseHandle;
@@ -18,6 +18,11 @@ public class DbHandle<TModel> : IDbHandle<TModel>, IDisposable where TModel : Mo
     public DbHandle(Func<DbContext> databaseHandle)
     {
         FDatabaseHandle = databaseHandle;
+    }
+
+    public DbHandle(DbHandleType type)
+    {
+        this.GetInstance(type);
     }
 
     public DbHandle(Func<DbContext> databaseHandle, string connectionString)
