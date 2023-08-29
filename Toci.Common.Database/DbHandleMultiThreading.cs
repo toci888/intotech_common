@@ -22,7 +22,7 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public DbHandleMultiThreading(Func<DbContext> databaseHandle) : base(databaseHandle)
     {
-        
+        DatabaseHandle = databaseHandle();
     }
 
     public DbHandleMultiThreading(Func<DbContext> databaseHandle, string connectionString) : base(databaseHandle) 
@@ -33,7 +33,7 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public int Delete(TModel model)
     {
-        DbContext context = FDatabaseHandle();
+        //DbContext context = FDatabaseHandle();
         {
             try
             {
@@ -42,8 +42,8 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
                 {
                     return 0;
                 }
-                context.Remove(element);// HERE TO FIX
-                context.SaveChanges();
+                DatabaseHandle.Remove(element);// HERE TO FIX
+                DatabaseHandle.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -118,9 +118,9 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public IQueryable<TModel> Select()
     {
-        DbContext context = FDatabaseHandle();
+        //DbContext context = FDatabaseHandle();
         {
-            IQueryable<TModel> result = context.Set<TModel>().AsQueryable().AsNoTracking();
+            IQueryable<TModel> result = DatabaseHandle.Set<TModel>().AsQueryable().AsNoTracking();
 
             //context.Dispose();
 
@@ -130,11 +130,11 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public TModel Update(TModel model)
     {
-        DbContext context = FDatabaseHandle();
-        
-        context.Update(model);
+        //DbContext context = FDatabaseHandle();
 
-        context.SaveChanges();
+        DatabaseHandle.Update(model);
+
+        DatabaseHandle.SaveChanges();
 
         //  DatabaseHandle?.Dispose();
 

@@ -1,6 +1,8 @@
-﻿namespace Intotech.Common.Bll.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
 
-public class ModelBase
+namespace Intotech.Common.Bll.Interfaces;
+
+public class ModelBase : DbContextOptionsBuilder<DbContext>
 {
     public int Id { get; set; }
 }
