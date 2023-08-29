@@ -9,7 +9,7 @@ namespace Intotech.Common.Database;
 
 public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle<TModel>, IDisposable where TModel : ModelBase
 {
-    protected DbContext DatabaseHandle; //DEPRECATED
+    protected DbContext DatabaseHandle;
     protected Func<DbContext> FDatabaseHandle;
     protected NpgsqlConnection Connection;
     private readonly string ConnectionString;
@@ -82,12 +82,12 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public TModel Insert(TModel model)
     {
-        DbContext context = FDatabaseHandle();
-        
-        // insert into product (id, ....) 
-        EntityEntry entr = context.Set<TModel>().Add(model);
+        //DbContext context = FDatabaseHandle();
 
-        context.SaveChanges();// here
+        // insert into product (id, ....) 
+        EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
+
+        DatabaseHandle.SaveChanges();// here
 
         // DatabaseHandle?.Dispose();
 
@@ -119,13 +119,11 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
     public IQueryable<TModel> Select()
     {
         //DbContext context = FDatabaseHandle();
-        {
-            IQueryable<TModel> result = DatabaseHandle.Set<TModel>().AsQueryable().AsNoTracking();
+        IQueryable<TModel> result = DatabaseHandle.Set<TModel>().AsQueryable().AsNoTracking();
 
-            //context.Dispose();
+        //context.Dispose();
 
-            return result;
-        }
+        return result;
     }
 
     public TModel Update(TModel model)
