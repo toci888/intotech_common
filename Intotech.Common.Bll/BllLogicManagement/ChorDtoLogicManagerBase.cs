@@ -2,6 +2,13 @@
 
 namespace Intotech.Common.Bll.BllLogicManagement
 {
+    /// <summary>
+    /// Klasa odpowiada za wyabstrahowanie zarządzania handlerami, pole TDtoLogicHandler przyjmuje dowolny generyczny handler.
+    /// W metodzie getbyid handler zwraca atomowe dto po id.
+    /// </summary>
+    /// <typeparam name="TDtoLogicHandler">Generic handler constrained to IDtoLogicHandler<TDtoLogic, TDto>.</typeparam>
+    /// <typeparam name="TDtoLogic"></typeparam>
+    /// <typeparam name="TDto"></typeparam>
     public abstract class ChorDtoLogicManagerBase<TDtoLogicHandler, TDtoLogic, TDto> : IChorDtoLogicManager<TDtoLogicHandler, TDto>
         where TDtoLogicHandler : IDtoLogicHandler<TDtoLogic, TDto>
     {
