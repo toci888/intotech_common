@@ -17,7 +17,7 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public DbHandleMultiThreading(Func<DbContext> databaseHandle, DbHandleType type) : base(databaseHandle)
     {
-
+        DatabaseHandle = databaseHandle();
     }
 
     public DbHandleMultiThreading(Func<DbContext> databaseHandle) : base(databaseHandle)
@@ -25,10 +25,11 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
         DatabaseHandle = databaseHandle();
     }
 
-    public DbHandleMultiThreading(Func<DbContext> databaseHandle, string connectionString) : base(databaseHandle) 
+    public DbHandleMultiThreading(Func<DbContext> databaseHandle, string connectionString) : this(databaseHandle) 
     {
         FDatabaseHandle = databaseHandle;
         ConnectionString = connectionString;
+        DatabaseHandle = databaseHandle();
     }
 
     public int Delete(TModel model)
