@@ -44,7 +44,7 @@ namespace Intotech.GhostRider.Panels
 
                 if (reloadMethod == true)
                 {
-                    HandleClick(sender, eventArgs); 
+                    //HandleClick(sender, eventArgs);
                     MessageBox.Show("Files are updated");
                 }
             }
