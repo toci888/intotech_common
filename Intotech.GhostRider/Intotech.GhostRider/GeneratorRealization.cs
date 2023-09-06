@@ -71,7 +71,7 @@ namespace Intotech.GhostRider
         }
         public virtual bool LogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
         {
-            if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
+            //if (Directory.GetFiles(outputDirectory).Length > 0)
             {
                 try
                 {
@@ -86,14 +86,14 @@ namespace Intotech.GhostRider
                 }
                 return false;
             }
-            else
-            {
-                if (FolderCleaner(outputDirectory, dontDeleteFiles) == false)
-                {
-                    return false;
-                }
-                return true;
-            }
+            //else
+            //{
+            //    if (FolderCleaner(outputDirectory, dontDeleteFiles) == false)
+            //    {
+            //        return false;
+            //    }
+            //    return true;
+            //}
         }
         public virtual bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
         {   
