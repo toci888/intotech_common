@@ -30,20 +30,21 @@
         {
             menuStrip1 = new MenuStrip();
             dtoGenToolStripMenuItem = new ToolStripMenuItem();
-            logicGenToolStripMenuItem = new ToolStripMenuItem();
-            iLogicGenToolStripMenuItem = new ToolStripMenuItem();
-            modelDtoGenToolStripMenuItem = new ToolStripMenuItem();
+            modelDtoGenToolStripMenuItem1 = new ToolStripMenuItem();
+            dtoGenToolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            logicGenToolStripMenuItem1 = new ToolStripMenuItem();
+            iLogicGenToolStripMenuItem1 = new ToolStripMenuItem();
             dtoLogicGenToolStripMenuItem = new ToolStripMenuItem();
             iDtoLogicGenToolStripMenuItem = new ToolStripMenuItem();
             derivanceManipulatorToolStripMenuItem = new ToolStripMenuItem();
-            toolStripMenuItem1 = new ToolStripMenuItem();
             iLogicHandlersToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { dtoGenToolStripMenuItem, logicGenToolStripMenuItem, toolStripMenuItem1, iLogicGenToolStripMenuItem, modelDtoGenToolStripMenuItem, dtoLogicGenToolStripMenuItem, iDtoLogicGenToolStripMenuItem, derivanceManipulatorToolStripMenuItem, iLogicHandlersToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { dtoGenToolStripMenuItem, toolStripMenuItem1, dtoLogicGenToolStripMenuItem, iDtoLogicGenToolStripMenuItem, derivanceManipulatorToolStripMenuItem, iLogicHandlersToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1020, 24);
@@ -52,31 +53,46 @@
             // 
             // dtoGenToolStripMenuItem
             // 
+            dtoGenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modelDtoGenToolStripMenuItem1, dtoGenToolStripMenuItem1 });
             dtoGenToolStripMenuItem.Name = "dtoGenToolStripMenuItem";
             dtoGenToolStripMenuItem.Size = new Size(59, 20);
             dtoGenToolStripMenuItem.Text = "DtoGen";
             dtoGenToolStripMenuItem.Click += dtoGenToolStripMenuItem_Click;
             // 
-            // logicGenToolStripMenuItem
+            // modelDtoGenToolStripMenuItem1
             // 
-            logicGenToolStripMenuItem.Name = "logicGenToolStripMenuItem";
-            logicGenToolStripMenuItem.Size = new Size(69, 20);
-            logicGenToolStripMenuItem.Text = "LogicGen";
-            logicGenToolStripMenuItem.Click += logicGenToolStripMenuItem_Click;
+            modelDtoGenToolStripMenuItem1.Name = "modelDtoGenToolStripMenuItem1";
+            modelDtoGenToolStripMenuItem1.Size = new Size(180, 22);
+            modelDtoGenToolStripMenuItem1.Text = "ModelDtoGen";
+            modelDtoGenToolStripMenuItem1.Click += modelDtoGenToolStripMenuItem1_Click;
             // 
-            // iLogicGenToolStripMenuItem
+            // dtoGenToolStripMenuItem1
             // 
-            iLogicGenToolStripMenuItem.Name = "iLogicGenToolStripMenuItem";
-            iLogicGenToolStripMenuItem.Size = new Size(72, 20);
-            iLogicGenToolStripMenuItem.Text = "ILogicGen";
-            iLogicGenToolStripMenuItem.Click += iLogicGenToolStripMenuItem_Click;
+            dtoGenToolStripMenuItem1.Name = "dtoGenToolStripMenuItem1";
+            dtoGenToolStripMenuItem1.Size = new Size(180, 22);
+            dtoGenToolStripMenuItem1.Text = "DtoGen";
+            dtoGenToolStripMenuItem1.Click += dtoGenToolStripMenuItem1_Click;
             // 
-            // modelDtoGenToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            modelDtoGenToolStripMenuItem.Name = "modelDtoGenToolStripMenuItem";
-            modelDtoGenToolStripMenuItem.Size = new Size(93, 20);
-            modelDtoGenToolStripMenuItem.Text = "ModelDtoGen";
-            modelDtoGenToolStripMenuItem.Click += modelDtoGenToolStripMenuItem_Click;
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { logicGenToolStripMenuItem1, iLogicGenToolStripMenuItem1 });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(78, 20);
+            toolStripMenuItem1.Text = "I & LogicGen";
+            // 
+            // logicGenToolStripMenuItem1
+            // 
+            logicGenToolStripMenuItem1.Name = "logicGenToolStripMenuItem1";
+            logicGenToolStripMenuItem1.Size = new Size(127, 22);
+            logicGenToolStripMenuItem1.Text = "LogicGen";
+            logicGenToolStripMenuItem1.Click += logicGenToolStripMenuItem1_Click;
+            // 
+            // iLogicGenToolStripMenuItem1
+            // 
+            iLogicGenToolStripMenuItem1.Name = "iLogicGenToolStripMenuItem1";
+            iLogicGenToolStripMenuItem1.Size = new Size(127, 22);
+            iLogicGenToolStripMenuItem1.Text = "ILogicGen";
+            iLogicGenToolStripMenuItem1.Click += iLogicGenToolStripMenuItem1_Click;
             // 
             // dtoLogicGenToolStripMenuItem
             // 
@@ -98,12 +114,6 @@
             derivanceManipulatorToolStripMenuItem.Size = new Size(136, 20);
             derivanceManipulatorToolStripMenuItem.Text = "DerivanceManipulator";
             derivanceManipulatorToolStripMenuItem.Click += derivanceManipulatorToolStripMenuItem_Click;
-            // 
-            // toolStripMenuItem1
-            // 
-            toolStripMenuItem1.Name = "toolStripMenuItem1";
-            toolStripMenuItem1.Size = new Size(72, 20);
-            toolStripMenuItem1.Text = "ILogicGen";
             // 
             // iLogicHandlersToolStripMenuItem
             // 
@@ -133,13 +143,14 @@
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem dtoGenToolStripMenuItem;
-        private ToolStripMenuItem logicGenToolStripMenuItem;
-        private ToolStripMenuItem iLogicGenToolStripMenuItem;
-        private ToolStripMenuItem modelDtoGenToolStripMenuItem;
         private ToolStripMenuItem dtoLogicGenToolStripMenuItem;
         private ToolStripMenuItem derivanceManipulatorToolStripMenuItem;
         private ToolStripMenuItem iDtoLogicGenToolStripMenuItem;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem iLogicHandlersToolStripMenuItem;
+        private ToolStripMenuItem logicGenToolStripMenuItem1;
+        private ToolStripMenuItem iLogicGenToolStripMenuItem1;
+        private ToolStripMenuItem modelDtoGenToolStripMenuItem1;
+        private ToolStripMenuItem dtoGenToolStripMenuItem1;
     }
 }
