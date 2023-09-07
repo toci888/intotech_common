@@ -12,7 +12,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
     public class LogicRendererRunner
     {
         protected List<string> Excluded = new() { "<>c", "Context", "Attribute" };
-        public virtual void LoadAndReadAssembly(string inputDllPath, string outputDirectory, string usings, string nmSpace, bool isInterfase)
+        public virtual void LoadAndReadAssembly(string inputDllPath, string outputDirectory, string usings, string nmSpace, bool isInterfase, bool isHandler = false)
         {
             var types = Assembly.LoadFrom(inputDllPath).GetTypes();
 
@@ -20,12 +20,21 @@ namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
             {
                 if (!Excluded.Any(n => types[i].Name.Contains(n)))
                 {
-                    LogicRenderer logicRenderer = new();
-
-                    logicRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace, isInterfase);
+                    if (isHandler)
+                    {
+                        LogicHandlerRenderer logicRenderer = new LogicHandlerRenderer();
+                        logicRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace, isInterfase);
+                    }
+                    else
+                    {
+                        LogicRenderer logicRenderer = new();
+                        // todo handlers
+                        logicRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace, isInterfase);
+                    }
                 }
             }
               
         }
+
     }
 }

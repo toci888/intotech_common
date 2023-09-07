@@ -122,6 +122,33 @@ namespace Intotech.GhostRider
             }
         }
 
+        public virtual bool ILogicHandlerRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
+        {
+            if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
+            {
+                try
+                {
+                    LogicRendererRunner logicRendererRunner = new();
+                    // todo handlers
+                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, true, true);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    throw;
+                }
+                return false;
+            }
+            else
+            {
+                if (FolderCleaner(outputDirectory, dontDeleteFiles) == false)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
         public virtual bool DtoLogicRender(string modelPath, string outputDirectory, string usings, string nameSpace, bool isInterface)
         {
             if (Directory.GetFiles(outputDirectory).Length== 0)
