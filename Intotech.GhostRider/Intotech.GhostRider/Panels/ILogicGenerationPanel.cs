@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Intotech.GhostRider.Panels
+﻿namespace Intotech.GhostRider.Panels
 {
-    internal class ILogicGenerationPanel : PanelBase
+    public class ILogicGenerationPanel : PanelBase
     {
         protected string modelPath = null;
 
