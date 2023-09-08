@@ -38,17 +38,7 @@ namespace Intotech.GhostRider
 
         private void dtoLogicGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (generatorOptionPanel != null)
-            {
-                generatorOptionPanel.Hide();
-            }
 
-            generatorOptionPanel = new DtoLogicGenerationPanel();
-
-            generatorOptionPanel.Size = new Size(1019, 510);
-            Controls.Add(generatorOptionPanel);
-
-            generatorOptionPanel.Show();
         }
 
         private void _modelDto_GenButton_Click(object sender, EventArgs e)
@@ -83,17 +73,7 @@ namespace Intotech.GhostRider
 
         private void iDtoLogicGenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (generatorOptionPanel != null)
-            {
-                generatorOptionPanel.Hide();
-            }
 
-            generatorOptionPanel = new IDtoLogicGenerationPanel();
-
-            generatorOptionPanel.Size = new Size(1019, 510);
-            Controls.Add(generatorOptionPanel);
-
-            generatorOptionPanel.Show();
         }
 
         private void iLogicHandlersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -164,6 +144,36 @@ namespace Intotech.GhostRider
             }
 
             generatorOptionPanel = new DtoGenerationPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
+        }
+
+        private void dtoLogicGenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
+
+            generatorOptionPanel = new DtoLogicGenerationPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
+        }
+
+        private void iDtoLogicGenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
+
+            generatorOptionPanel = new IDtoLogicGenerationPanel();
 
             generatorOptionPanel.Size = new Size(1019, 510);
             Controls.Add(generatorOptionPanel);
