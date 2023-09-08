@@ -40,6 +40,8 @@
             dtoLogicGenToolStripMenuItem1 = new ToolStripMenuItem();
             derivanceManipulatorToolStripMenuItem = new ToolStripMenuItem();
             iLogicHandlersToolStripMenuItem = new ToolStripMenuItem();
+            iLogicHandlersToolStripMenuItem1 = new ToolStripMenuItem();
+            logicHandlersToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -106,14 +108,14 @@
             // iDtoLogicGenToolStripMenuItem1
             // 
             iDtoLogicGenToolStripMenuItem1.Name = "iDtoLogicGenToolStripMenuItem1";
-            iDtoLogicGenToolStripMenuItem1.Size = new Size(180, 22);
+            iDtoLogicGenToolStripMenuItem1.Size = new Size(146, 22);
             iDtoLogicGenToolStripMenuItem1.Text = "IDtoLogicGen";
             iDtoLogicGenToolStripMenuItem1.Click += iDtoLogicGenToolStripMenuItem1_Click;
             // 
             // dtoLogicGenToolStripMenuItem1
             // 
             dtoLogicGenToolStripMenuItem1.Name = "dtoLogicGenToolStripMenuItem1";
-            dtoLogicGenToolStripMenuItem1.Size = new Size(180, 22);
+            dtoLogicGenToolStripMenuItem1.Size = new Size(146, 22);
             dtoLogicGenToolStripMenuItem1.Text = "DtoLogicGen";
             dtoLogicGenToolStripMenuItem1.Click += dtoLogicGenToolStripMenuItem1_Click;
             // 
@@ -126,10 +128,25 @@
             // 
             // iLogicHandlersToolStripMenuItem
             // 
+            iLogicHandlersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { iLogicHandlersToolStripMenuItem1, logicHandlersToolStripMenuItem });
             iLogicHandlersToolStripMenuItem.Name = "iLogicHandlersToolStripMenuItem";
             iLogicHandlersToolStripMenuItem.Size = new Size(98, 20);
             iLogicHandlersToolStripMenuItem.Text = "ILogicHandlers";
             iLogicHandlersToolStripMenuItem.Click += iLogicHandlersToolStripMenuItem_Click;
+            // 
+            // iLogicHandlersToolStripMenuItem1
+            // 
+            iLogicHandlersToolStripMenuItem1.Name = "iLogicHandlersToolStripMenuItem1";
+            iLogicHandlersToolStripMenuItem1.Size = new Size(180, 22);
+            iLogicHandlersToolStripMenuItem1.Text = "ILogicHandlers";
+            iLogicHandlersToolStripMenuItem1.Click += iLogicHandlersToolStripMenuItem1_Click;
+            // 
+            // logicHandlersToolStripMenuItem
+            // 
+            logicHandlersToolStripMenuItem.Name = "logicHandlersToolStripMenuItem";
+            logicHandlersToolStripMenuItem.Size = new Size(180, 22);
+            logicHandlersToolStripMenuItem.Text = "LogicHandlers";
+            logicHandlersToolStripMenuItem.Click += logicHandlersToolStripMenuItem_Click;
             // 
             // GhostRiderGenEx
             // 
@@ -162,5 +179,7 @@
         private ToolStripMenuItem dtoGenToolStripMenuItem1;
         private ToolStripMenuItem iDtoLogicGenToolStripMenuItem1;
         private ToolStripMenuItem dtoLogicGenToolStripMenuItem1;
+        private ToolStripMenuItem iLogicHandlersToolStripMenuItem1;
+        private ToolStripMenuItem logicHandlersToolStripMenuItem;
     }
 }

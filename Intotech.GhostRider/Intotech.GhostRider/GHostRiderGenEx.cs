@@ -78,17 +78,7 @@ namespace Intotech.GhostRider
 
         private void iLogicHandlersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (generatorOptionPanel != null)
-            {
-                generatorOptionPanel.Hide();
-            }
 
-            generatorOptionPanel = new IDtoLogicHandlerPanel();
-
-            generatorOptionPanel.Size = new Size(1019, 510);
-            Controls.Add(generatorOptionPanel);
-
-            generatorOptionPanel.Show();
         }
 
         private void logicGenToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -179,6 +169,26 @@ namespace Intotech.GhostRider
             Controls.Add(generatorOptionPanel);
 
             generatorOptionPanel.Show();
+        }
+
+        private void iLogicHandlersToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
+
+            generatorOptionPanel = new IDtoLogicHandlerPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
+        }
+
+        private void logicHandlersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
