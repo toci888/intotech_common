@@ -122,7 +122,7 @@ namespace Intotech.GhostRider
             }
         }
 
-        public virtual bool ILogicHandlerRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
+        public virtual bool ILogicHandlerRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles, bool isInterface = true)
         {
             if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
             {
@@ -130,7 +130,7 @@ namespace Intotech.GhostRider
                 {
                     LogicRendererRunner logicRendererRunner = new();
                     // todo handlers
-                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, true, true);
+                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, isInterface, true);
                 }
                 catch (Exception ex)
                 {

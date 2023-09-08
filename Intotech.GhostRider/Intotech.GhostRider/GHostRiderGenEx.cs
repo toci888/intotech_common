@@ -188,7 +188,17 @@ namespace Intotech.GhostRider
 
         private void logicHandlersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (generatorOptionPanel != null)
+            {
+                generatorOptionPanel.Hide();
+            }
 
+            generatorOptionPanel = new DtoLogicHandlerPanel();
+
+            generatorOptionPanel.Size = new Size(1019, 510);
+            Controls.Add(generatorOptionPanel);
+
+            generatorOptionPanel.Show();
         }
     }
 
