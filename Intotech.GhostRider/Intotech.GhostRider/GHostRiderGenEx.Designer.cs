@@ -28,109 +28,158 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.dtoGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modelDtoGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dtoLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.derivanceManipulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iDtoLogicGenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            menuStrip1 = new MenuStrip();
+            dtoGenToolStripMenuItem = new ToolStripMenuItem();
+            modelDtoGenToolStripMenuItem1 = new ToolStripMenuItem();
+            dtoGenToolStripMenuItem1 = new ToolStripMenuItem();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            logicGenToolStripMenuItem1 = new ToolStripMenuItem();
+            iLogicGenToolStripMenuItem1 = new ToolStripMenuItem();
+            dtoLogicGenToolStripMenuItem = new ToolStripMenuItem();
+            iDtoLogicGenToolStripMenuItem1 = new ToolStripMenuItem();
+            dtoLogicGenToolStripMenuItem1 = new ToolStripMenuItem();
+            derivanceManipulatorToolStripMenuItem = new ToolStripMenuItem();
+            iLogicHandlersToolStripMenuItem = new ToolStripMenuItem();
+            iLogicHandlersToolStripMenuItem1 = new ToolStripMenuItem();
+            logicHandlersToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dtoGenToolStripMenuItem,
-            this.logicGenToolStripMenuItem,
-            this.iLogicGenToolStripMenuItem,
-            this.modelDtoGenToolStripMenuItem,
-            this.dtoLogicGenToolStripMenuItem,
-            this.iDtoLogicGenToolStripMenuItem,
-            this.derivanceManipulatorToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1020, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menu";
+            menuStrip1.Items.AddRange(new ToolStripItem[] { dtoGenToolStripMenuItem, toolStripMenuItem1, dtoLogicGenToolStripMenuItem, derivanceManipulatorToolStripMenuItem, iLogicHandlersToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1020, 24);
+            menuStrip1.TabIndex = 0;
+            menuStrip1.Text = "menu";
             // 
             // dtoGenToolStripMenuItem
             // 
-            this.dtoGenToolStripMenuItem.Name = "dtoGenToolStripMenuItem";
-            this.dtoGenToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.dtoGenToolStripMenuItem.Text = "DtoGen";
-            this.dtoGenToolStripMenuItem.Click += new System.EventHandler(this.dtoGenToolStripMenuItem_Click);
+            dtoGenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { modelDtoGenToolStripMenuItem1, dtoGenToolStripMenuItem1 });
+            dtoGenToolStripMenuItem.Name = "dtoGenToolStripMenuItem";
+            dtoGenToolStripMenuItem.Size = new Size(59, 20);
+            dtoGenToolStripMenuItem.Text = "DtoGen";
+            dtoGenToolStripMenuItem.Click += dtoGenToolStripMenuItem_Click;
             // 
-            // logicGenToolStripMenuItem
+            // modelDtoGenToolStripMenuItem1
             // 
-            this.logicGenToolStripMenuItem.Name = "logicGenToolStripMenuItem";
-            this.logicGenToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.logicGenToolStripMenuItem.Text = "LogicGen";
-            this.logicGenToolStripMenuItem.Click += new System.EventHandler(this.logicGenToolStripMenuItem_Click);
+            modelDtoGenToolStripMenuItem1.Name = "modelDtoGenToolStripMenuItem1";
+            modelDtoGenToolStripMenuItem1.Size = new Size(148, 22);
+            modelDtoGenToolStripMenuItem1.Text = "ModelDtoGen";
+            modelDtoGenToolStripMenuItem1.Click += modelDtoGenToolStripMenuItem1_Click;
             // 
-            // iLogicGenToolStripMenuItem
+            // dtoGenToolStripMenuItem1
             // 
-            this.iLogicGenToolStripMenuItem.Name = "iLogicGenToolStripMenuItem";
-            this.iLogicGenToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.iLogicGenToolStripMenuItem.Text = "ILogicGen";
-            this.iLogicGenToolStripMenuItem.Click += new System.EventHandler(this.iLogicGenToolStripMenuItem_Click);
+            dtoGenToolStripMenuItem1.Name = "dtoGenToolStripMenuItem1";
+            dtoGenToolStripMenuItem1.Size = new Size(148, 22);
+            dtoGenToolStripMenuItem1.Text = "DtoGen";
+            dtoGenToolStripMenuItem1.Click += dtoGenToolStripMenuItem1_Click;
             // 
-            // modelDtoGenToolStripMenuItem
+            // toolStripMenuItem1
             // 
-            this.modelDtoGenToolStripMenuItem.Name = "modelDtoGenToolStripMenuItem";
-            this.modelDtoGenToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.modelDtoGenToolStripMenuItem.Text = "ModelDtoGen";
-            this.modelDtoGenToolStripMenuItem.Click += new System.EventHandler(this.modelDtoGenToolStripMenuItem_Click);
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { logicGenToolStripMenuItem1, iLogicGenToolStripMenuItem1 });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(78, 20);
+            toolStripMenuItem1.Text = "I & LogicGen";
+            // 
+            // logicGenToolStripMenuItem1
+            // 
+            logicGenToolStripMenuItem1.Name = "logicGenToolStripMenuItem1";
+            logicGenToolStripMenuItem1.Size = new Size(127, 22);
+            logicGenToolStripMenuItem1.Text = "LogicGen";
+            logicGenToolStripMenuItem1.Click += logicGenToolStripMenuItem1_Click;
+            // 
+            // iLogicGenToolStripMenuItem1
+            // 
+            iLogicGenToolStripMenuItem1.Name = "iLogicGenToolStripMenuItem1";
+            iLogicGenToolStripMenuItem1.Size = new Size(127, 22);
+            iLogicGenToolStripMenuItem1.Text = "ILogicGen";
+            iLogicGenToolStripMenuItem1.Click += iLogicGenToolStripMenuItem1_Click;
             // 
             // dtoLogicGenToolStripMenuItem
             // 
-            this.dtoLogicGenToolStripMenuItem.Name = "dtoLogicGenToolStripMenuItem";
-            this.dtoLogicGenToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.dtoLogicGenToolStripMenuItem.Text = "DtoLogicGen";
-            this.dtoLogicGenToolStripMenuItem.Click += new System.EventHandler(this.dtoLogicGenToolStripMenuItem_Click);
+            dtoLogicGenToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { iDtoLogicGenToolStripMenuItem1, dtoLogicGenToolStripMenuItem1 });
+            dtoLogicGenToolStripMenuItem.Name = "dtoLogicGenToolStripMenuItem";
+            dtoLogicGenToolStripMenuItem.Size = new Size(88, 20);
+            dtoLogicGenToolStripMenuItem.Text = "DtoLogicGen";
+            dtoLogicGenToolStripMenuItem.Click += dtoLogicGenToolStripMenuItem_Click;
+            // 
+            // iDtoLogicGenToolStripMenuItem1
+            // 
+            iDtoLogicGenToolStripMenuItem1.Name = "iDtoLogicGenToolStripMenuItem1";
+            iDtoLogicGenToolStripMenuItem1.Size = new Size(146, 22);
+            iDtoLogicGenToolStripMenuItem1.Text = "IDtoLogicGen";
+            iDtoLogicGenToolStripMenuItem1.Click += iDtoLogicGenToolStripMenuItem1_Click;
+            // 
+            // dtoLogicGenToolStripMenuItem1
+            // 
+            dtoLogicGenToolStripMenuItem1.Name = "dtoLogicGenToolStripMenuItem1";
+            dtoLogicGenToolStripMenuItem1.Size = new Size(146, 22);
+            dtoLogicGenToolStripMenuItem1.Text = "DtoLogicGen";
+            dtoLogicGenToolStripMenuItem1.Click += dtoLogicGenToolStripMenuItem1_Click;
             // 
             // derivanceManipulatorToolStripMenuItem
             // 
-            this.derivanceManipulatorToolStripMenuItem.Name = "derivanceManipulatorToolStripMenuItem";
-            this.derivanceManipulatorToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
-            this.derivanceManipulatorToolStripMenuItem.Text = "DerivanceManipulator";
-            this.derivanceManipulatorToolStripMenuItem.Click += new System.EventHandler(this.derivanceManipulatorToolStripMenuItem_Click);
+            derivanceManipulatorToolStripMenuItem.Name = "derivanceManipulatorToolStripMenuItem";
+            derivanceManipulatorToolStripMenuItem.Size = new Size(136, 20);
+            derivanceManipulatorToolStripMenuItem.Text = "DerivanceManipulator";
+            derivanceManipulatorToolStripMenuItem.Click += derivanceManipulatorToolStripMenuItem_Click;
             // 
-            // iDtoLogicGenToolStripMenuItem
+            // iLogicHandlersToolStripMenuItem
             // 
-            this.iDtoLogicGenToolStripMenuItem.Name = "iDtoLogicGenToolStripMenuItem";
-            this.iDtoLogicGenToolStripMenuItem.Size = new System.Drawing.Size(91, 20);
-            this.iDtoLogicGenToolStripMenuItem.Text = "IDtoLogicGen";
-            this.iDtoLogicGenToolStripMenuItem.Click += new System.EventHandler(this.iDtoLogicGenToolStripMenuItem_Click);
+            iLogicHandlersToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { iLogicHandlersToolStripMenuItem1, logicHandlersToolStripMenuItem });
+            iLogicHandlersToolStripMenuItem.Name = "iLogicHandlersToolStripMenuItem";
+            iLogicHandlersToolStripMenuItem.Size = new Size(98, 20);
+            iLogicHandlersToolStripMenuItem.Text = "ILogicHandlers";
+            iLogicHandlersToolStripMenuItem.Click += iLogicHandlersToolStripMenuItem_Click;
+            // 
+            // iLogicHandlersToolStripMenuItem1
+            // 
+            iLogicHandlersToolStripMenuItem1.Name = "iLogicHandlersToolStripMenuItem1";
+            iLogicHandlersToolStripMenuItem1.Size = new Size(180, 22);
+            iLogicHandlersToolStripMenuItem1.Text = "ILogicHandlers";
+            iLogicHandlersToolStripMenuItem1.Click += iLogicHandlersToolStripMenuItem1_Click;
+            // 
+            // logicHandlersToolStripMenuItem
+            // 
+            logicHandlersToolStripMenuItem.Name = "logicHandlersToolStripMenuItem";
+            logicHandlersToolStripMenuItem.Size = new Size(180, 22);
+            logicHandlersToolStripMenuItem.Text = "LogicHandlers";
+            logicHandlersToolStripMenuItem.Click += logicHandlersToolStripMenuItem_Click;
             // 
             // GhostRiderGenEx
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1020, 533);
-            this.Controls.Add(this.menuStrip1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "GhostRiderGenEx";
-            this.Text = "Class Generator";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            AutoSize = true;
+            ClientSize = new Size(1020, 533);
+            Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = menuStrip1;
+            Name = "GhostRiderGenEx";
+            Text = "Class Generator";
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private MenuStrip menuStrip1;
         private ToolStripMenuItem dtoGenToolStripMenuItem;
-        private ToolStripMenuItem logicGenToolStripMenuItem;
-        private ToolStripMenuItem iLogicGenToolStripMenuItem;
-        private ToolStripMenuItem modelDtoGenToolStripMenuItem;
         private ToolStripMenuItem dtoLogicGenToolStripMenuItem;
         private ToolStripMenuItem derivanceManipulatorToolStripMenuItem;
-        private ToolStripMenuItem iDtoLogicGenToolStripMenuItem;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem iLogicHandlersToolStripMenuItem;
+        private ToolStripMenuItem logicGenToolStripMenuItem1;
+        private ToolStripMenuItem iLogicGenToolStripMenuItem1;
+        private ToolStripMenuItem modelDtoGenToolStripMenuItem1;
+        private ToolStripMenuItem dtoGenToolStripMenuItem1;
+        private ToolStripMenuItem iDtoLogicGenToolStripMenuItem1;
+        private ToolStripMenuItem dtoLogicGenToolStripMenuItem1;
+        private ToolStripMenuItem iLogicHandlersToolStripMenuItem1;
+        private ToolStripMenuItem logicHandlersToolStripMenuItem;
     }
 }

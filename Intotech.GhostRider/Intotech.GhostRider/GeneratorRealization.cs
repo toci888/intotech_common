@@ -71,13 +71,39 @@ namespace Intotech.GhostRider
         }
         public virtual bool LogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
         {
-            if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
+            //if (Directory.GetFiles(outputDirectory).Length > 0)
             {
                 try
                 {
                     LogicRendererRunner logicRendererRunner = new();
 
                     logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, false);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    throw;
+                }
+                return false;
+            }
+            //else
+            //{
+            //    if (FolderCleaner(outputDirectory, dontDeleteFiles) == false)
+            //    {
+            //        return false;
+            //    }
+            //    return true;
+            //}
+        }
+        public virtual bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
+        {   
+            if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
+            {
+                try
+                {
+                    LogicRendererRunner logicRendererRunner = new();
+
+                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, true);
                 }
                 catch (Exception ex)
                 {
@@ -95,15 +121,16 @@ namespace Intotech.GhostRider
                 return true;
             }
         }
-        public virtual bool ILogicRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles)
-        {   
+
+        public virtual bool ILogicHandlerRender(string inputDllPath, string outputDirectory, string usings, string nameSpace, List<string> dontDeleteFiles, bool isInterface = true)
+        {
             if (Directory.GetFiles(outputDirectory).Length - dontDeleteFiles.Count() == 0)
             {
                 try
                 {
                     LogicRendererRunner logicRendererRunner = new();
-
-                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, true);
+                    // todo handlers
+                    logicRendererRunner.LoadAndReadAssembly(inputDllPath, outputDirectory, usings, nameSpace, isInterface, true);
                 }
                 catch (Exception ex)
                 {
