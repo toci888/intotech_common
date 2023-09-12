@@ -35,7 +35,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
         ConnectionString = "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka"; //connectionString
     }
 
-    public int Delete(TModel model)
+    public virtual int Delete(TModel model)
     {
         lock (LockObj)
         {
@@ -93,7 +93,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
         return result;
     }
 
-    public TModel Insert(TModel model)
+    public virtual TModel Insert(TModel model)
     {
         //
 
@@ -134,7 +134,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
         return result;
     }
 
-    public IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
+    public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
         using (DbContext context = FDatabaseHandle())
         {
@@ -146,7 +146,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
         }
     }
 
-    public TModel Update(TModel model)
+    public virtual TModel Update(TModel model)
     {
         //DbContext context = FDatabaseHandle();
         //DbContext context = FDatabaseHandle();

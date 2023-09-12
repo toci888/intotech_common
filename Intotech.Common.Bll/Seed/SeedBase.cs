@@ -9,6 +9,12 @@ public abstract class SeedBase<TModel> : LogicBaseCs<TModel>, IDisposable where 
 
     public abstract void Insert();
 
+    public SeedBase()
+    {
+        //DbHandle = new DbHandleCriticalSectionIWC<TModel>(() => null, "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka");
+
+    }
+
     protected virtual void InsertCollection(List<TModel> items)
     {
         bool shouldPopulate = false;

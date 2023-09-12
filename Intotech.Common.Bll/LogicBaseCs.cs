@@ -15,32 +15,22 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public LogicBaseCs()
     {
-        if (DbHandle == null)
-        {
-            DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
-        }
         
     }
 
     protected LogicBaseCs(bool multi = false)
     {
-        if (DbHandle == null)
-        {
-           // DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
-        }
+        
     }
 
     protected LogicBaseCs(string connectionString)
     {
-        if (DbHandle == null)
-        {
-           // DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle, connectionString);
-        }
+        
     }
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle, ConnectionString))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle, ConnectionString))
         {
             return DbHandle.RawSelect(selectQuery, mapperDelegate);
         }
@@ -48,7 +38,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual TModel Insert(TModel model)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             return DbHandle.Insert(model);
         }
@@ -56,7 +46,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             List<TModel> result = DbHandle.Select(filter).ToList();
 
@@ -66,7 +56,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual TModel Update(TModel model)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             return DbHandle.Update(model);
         }
@@ -74,7 +64,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual int Delete(TModel model)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             return DbHandle.Delete(model);
         }
@@ -82,7 +72,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             return DbHandle.Delete(tableName, idColumn, id);
         }
@@ -90,7 +80,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+       /// using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             return DbHandle.Delete(tableName, whereClause);
         }
