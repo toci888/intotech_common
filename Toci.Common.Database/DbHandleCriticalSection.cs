@@ -10,8 +10,6 @@ namespace Intotech.Common.Database;
 
 public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable where TModel : ModelBase
 {
-    //private readonly DbContext context;
-    protected DbContext DatabaseHandle; //DEPRECATED
     protected Func<DbContext> FDatabaseHandle;
     protected NpgsqlConnection Connection;
     private readonly string ConnectionString = "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka"; // TODO SYF
@@ -19,37 +17,22 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
 
     public DbHandleCriticalSection(Func<DbContext> databaseHandle, DbHandleType type) : this(databaseHandle)
     {
-        //context = databaseHandle();
-        if (DatabaseHandle == null)
-        {
-            DatabaseHandle = databaseHandle();
-        }
+        
     }
 
     public DbHandleCriticalSection(Func<DbContext> databaseHandle, bool sc) : this(databaseHandle)
     {
-        //context = databaseHandle();
-        DatabaseHandle = databaseHandle();
-        
     }
 
     public DbHandleCriticalSection(Func<DbContext> databaseHandle)
     {
-        //context = databaseHandle();
         FDatabaseHandle = databaseHandle;
-       
-            DatabaseHandle = databaseHandle();
-        
     }
 
     public DbHandleCriticalSection(Func<DbContext> databaseHandle, string connectionString)
     {
-        //context = databaseHandle();
-        DatabaseHandle = databaseHandle();
-        
-
-        FDatabaseHandle = databaseHandle;
-        ConnectionString = "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka";
+        FDatabaseHandle = databaseHandle; 
+        ConnectionString = "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka"; //connectionString
     }
 
     public int Delete(TModel model)
