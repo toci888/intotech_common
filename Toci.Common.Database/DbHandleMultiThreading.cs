@@ -3,6 +3,7 @@ using Intotech.Common.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Npgsql;
+using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Intotech.Common.Database;
@@ -38,7 +39,7 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
         {
             try
             {
-                TModel element = Select().Where(m => m.Id == model.Id).FirstOrDefault();
+                TModel element = Select(m => m.Id == model.Id).FirstOrDefault();
                 if (element == null)
                 {
                     return 0;
@@ -117,10 +118,10 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
         return result;
     }
 
-    public IQueryable<TModel> Select()
+    public IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        //DbContext context = FDatabaseHandle();
-        IQueryable<TModel> result = DatabaseHandle.Set<TModel>().AsQueryable().AsNoTracking();
+        DbContext context = FDatabaseHandle();
+        IEnumerable<TModel> result = context.Set<TModel>().Where(filter).ToList();
 
         //context.Dispose();
 

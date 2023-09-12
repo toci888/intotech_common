@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Seed;
 
-public abstract class SeedBase<TModel> : LogicBase<TModel>, IDisposable where TModel : ModelBase
+public abstract class SeedBase<TModel> : LogicBaseCs<TModel>, IDisposable where TModel : ModelBase
 {
     protected int AccountIdOffset = 0;
 

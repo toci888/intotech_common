@@ -10,26 +10,36 @@ namespace Intotech.Common.Bll;
 public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable where TModel : ModelBase
 {
     protected abstract DbContext GetEfHandle();
-    protected IDbHandle<TModel> DbHandle;
+    protected static IDbHandle<TModel> DbHandle;
 
     public LogicBaseCs()
     {
-        DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
+        if (DbHandle == null)
+        {
+            DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
+        }
+        
     }
 
     protected LogicBaseCs(bool multi = false)
     {
-        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        if (DbHandle == null)
+        {
+            DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
+        }
     }
 
     protected LogicBaseCs(string connectionString)
     {
-        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle, connectionString);
+        if (DbHandle == null)
+        {
+            DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle, connectionString);
+        }
     }
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
     {
-        //using (DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle))
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
             return DbHandle.RawSelect(selectQuery, mapperDelegate);
         }
@@ -37,17 +47,17 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual TModel Insert(TModel model)
     {
-        //DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
-
-        return DbHandle.Insert(model);
-
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        {
+            return DbHandle.Insert(model);
+        }
     }
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        //DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
         {
-            List<TModel> result = DbHandle.Select().Where(filter).ToList();
+            List<TModel> result = DbHandle.Select(filter).ToList();
 
             return result;
         }
@@ -55,32 +65,34 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel>, IDisposable wher
 
     public virtual TModel Update(TModel model)
     {
-        //DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
-
-        return DbHandle.Update(model);
-
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        {
+            return DbHandle.Update(model);
+        }
     }
 
     public virtual int Delete(TModel model)
     {
-        //DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
-
-        return DbHandle.Delete(model);
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        {
+            return DbHandle.Delete(model);
+        }
     }
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        //DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
-
-        return DbHandle.Delete(tableName, idColumn, id);
-
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        {
+            return DbHandle.Delete(tableName, idColumn, id);
+        }
     }
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        //DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
-
-        return DbHandle.Delete(tableName, whereClause);
+        //using (DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle))
+        {
+            return DbHandle.Delete(tableName, whereClause);
+        }
     }
 
     public void Dispose()
