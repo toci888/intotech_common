@@ -73,6 +73,8 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
         command.CommandText = "delete from Accountscollocations where " + idColumn + " = " + id;
 
         int result = command.ExecuteNonQuery();
+
+        Connection.Close();
         command.Dispose();
 
         return result;
@@ -88,6 +90,8 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
         command.CommandText = "delete from Accountscollocations where " + whereClause;
 
         int result = command.ExecuteNonQuery();
+
+        Connection.Close();
         command.Dispose();
 
         return result;
@@ -129,6 +133,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
             result.Add(mapperDelegate(reader));
         }
 
+        Connection.Close();
         command.Dispose();
 
         return result;
