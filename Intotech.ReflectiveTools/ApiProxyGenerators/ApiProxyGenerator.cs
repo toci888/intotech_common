@@ -5,10 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Core;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace Intotech.ReflectiveTools.ApiProxyGenerators
 {
@@ -61,7 +59,8 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
 
         protected virtual string GetProxyMethodCallByAttributes(MethodInfo method, string paramType)
         {
-            HttpPutAttribute gowno = new HttpPutAttribute();
+            Attribute.IsDefined(method, typeof(HttpGetAttribute));
+
 
             List<Attribute> attributes = method.GetCustomAttributes().ToList();
 
