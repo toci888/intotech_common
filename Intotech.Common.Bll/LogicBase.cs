@@ -14,7 +14,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public LogicBase()
     {
-        DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
+        DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle());
     }
 
     protected LogicBase(bool multi = false)

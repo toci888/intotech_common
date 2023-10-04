@@ -8,73 +8,56 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Intotech.Common.Database;
 
-public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable where TModel : ModelBase
+public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : ModelBase
 {
-    protected Func<DbContext> FDatabaseHandle;
-    protected NpgsqlConnection Connection;
-    private readonly string ConnectionString = "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka"; // TODO SYF
-    private readonly object LockObj = new object();
+    protected DbContext DatabaseHandle;
+    private readonly string ConnectionString;
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle, DbHandleType type) : this(databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, DbHandleType type) : this(databaseHandle)
     {
         
     }
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle, bool sc) : this(databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, bool sc) : this(databaseHandle)
     {
     }
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle)
     {
-        FDatabaseHandle = databaseHandle;
+        DatabaseHandle = databaseHandle;
     }
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle, string connectionString)
+    public DbHandleCriticalSection(DbContext databaseHandle, string connectionString) : this(databaseHandle)
     {
-        FDatabaseHandle = databaseHandle; 
-        ConnectionString = "Host=localhost;Database=Intotech.Wheelo;Username=postgres;Password=beatka"; //connectionString
+        ConnectionString = connectionString;
     }
 
     public virtual int Delete(TModel model)
     {
-        lock (LockObj)
+        TModel? element = Select(m => m.Id == model.Id).FirstOrDefault();
+        if (element == null)
         {
-            using (DbContext context = FDatabaseHandle())
-            {
-                try
-                {
-                    TModel element = Select(m => m.Id == model.Id).FirstOrDefault();
-                    if (element == null)
-                    {
-                        return 0;
-                    }
-                    context.Remove(element);// HERE TO FIX
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-                // DatabaseHandle?.Dispose();
-
-                return 1;
-            }
+            return 0;
         }
+
+        DatabaseHandle.Remove(element); // TODO check if deleted ? 
+        DatabaseHandle.SaveChanges();
+            
+        return 1; // line 44
     }
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        NpgsqlConnection connection = new NpgsqlConnection();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
 
-        NpgsqlCommand command = Connection.CreateCommand();
-        command.CommandText = "delete from Accountscollocations where " + idColumn + " = " + id;
+        NpgsqlCommand command = connection.CreateCommand();
+        command.CommandText = $"delete from {tableName} where {idColumn} = {id}";
 
         int result = command.ExecuteNonQuery();
 
-        Connection.Close();
+        connection.Close();
         command.Dispose();
 
         return result;
@@ -82,16 +65,17 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        NpgsqlConnection connection = new NpgsqlConnection();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
 
-        NpgsqlCommand command = Connection.CreateCommand();
-        command.CommandText = "delete from Accountscollocations where " + whereClause;
+        NpgsqlCommand command = connection.CreateCommand();
+
+        command.CommandText = $"delete from {tableName} where {whereClause}";
 
         int result = command.ExecuteNonQuery();
 
-        Connection.Close();
+        connection.Close();
         command.Dispose();
 
         return result;
@@ -99,29 +83,22 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
 
     public virtual TModel Insert(TModel model)
     {
-        //
+        EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
 
-        // insert into product (id, ....) 
-        using (DbContext context = FDatabaseHandle())
-        {
-            EntityEntry entr = context.Set<TModel>().Add(model);
+        DatabaseHandle.SaveChanges();
 
-            context.SaveChanges();// here
-
-            // DatabaseHandle?.Dispose();
-
-            return (TModel)(entr.Entity);
-        }
-
+        return (TModel)(entr.Entity);
     }
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        NpgsqlConnection connection = new NpgsqlConnection();
 
-        NpgsqlCommand command = Connection.CreateCommand();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
+
+        NpgsqlCommand command = connection.CreateCommand();
+
         command.CommandText = selectQuery;
 
         NpgsqlDataReader reader = command.ExecuteReader();
@@ -133,7 +110,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
             result.Add(mapperDelegate(reader));
         }
 
-        Connection.Close();
+        connection.Close();
         command.Dispose();
 
         return result;
@@ -141,35 +118,16 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        using (DbContext context = FDatabaseHandle())
-        {
-            IEnumerable<TModel> result = context.Set<TModel>().Where(filter).ToList();
+        IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
 
-            //context.Dispose();
-
-            return result;
-        }
+        return result;
     }
 
     public virtual TModel Update(TModel model)
     {
-        //DbContext context = FDatabaseHandle();
-        //DbContext context = FDatabaseHandle();
-        using (DbContext context = FDatabaseHandle())
-        {
-            context.Update(model);
+        DatabaseHandle.Update(model);
+        DatabaseHandle.SaveChanges();
 
-            context.SaveChanges();
-
-            //  DatabaseHandle?.Dispose();
-
-            return model;
-        }
-
-    }
-
-    public void Dispose()
-    {
-        //DatabaseHandle?.Dispose();
+        return model;
     }
 }
