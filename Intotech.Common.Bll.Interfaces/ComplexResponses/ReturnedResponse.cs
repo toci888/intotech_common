@@ -1,4 +1,4 @@
-﻿namespace Intotech.Common.Bll.ComplexResponses;
+﻿namespace Intotech.Common.Bll.Interfaces.ComplexResponses;
 
 public class ReturnedResponse<TResult>
 {
