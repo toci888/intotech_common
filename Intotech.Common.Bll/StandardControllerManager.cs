@@ -1,23 +1,27 @@
 ﻿using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Bll.Interfaces.ComplexResponses;
-using Intotech.Common.Database.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using Intotech.Common.Interfaces;
 
 namespace Intotech.Common.Bll
 {
     public abstract class StandardControllerManager<TILogic, TModel, TModelDto> : IStandardControllerManager<TILogic, TModel, TModelDto>
         where TModel : ModelBase
         where TILogic : ILogicBase<TModel>
-        where TModelDto : DtoEntityBase
+        where TModelDto : DtoModelBase, new()
     {
-        public ReturnedResponse<TModelDto> GetSingle(Expression<Func<TModel, TModelDto, bool>> condition)
-        {
-            throw new NotImplementedException();
+        TILogic Logic;
+        TranslationEngineI18n translationEngineI18N;
+
+        public ReturnedResponse<TModelDto> GetSingle(int id)
+        { 
+            TModel result = Logic.Select(m => m.Id == id).FirstOrDefault();
+
+            if (result != null)
+            {
+                return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(result), translationEngineI18N.Translate(TranslationEngineConsts.LangPl, "_success"), true, 1);
+            }
+
+            return new ReturnedResponse<TModelDto>(null, translationEngineI18N.Translate(TranslationEngineConsts.LangPl, "_noData"), false, 2); // TODO err code
         }
     }
 }
