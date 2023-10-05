@@ -16,7 +16,35 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
         
         public ApiProxyGenerator()
         {
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve; ;
+
             ControllersAssembly = Assembly.LoadFrom(@"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Api\bin\Debug\net7.0\Intotech.Wheelo.Api.dll");
+        }
+
+        private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)
+        {
+            string assemblyName = new AssemblyName(args.Name).Name;
+            string desiredAssemblyPath = "C:\\\\Users\\\\bzapa\\\\source\\\\repos\\\\toci888\\\\Intotech.Common\\\\Intotech.Runner\\\\bin\\\\Debug\\\\net7.0\\\\Microsoft.AspNetCore.Mvc.Core.dll";
+
+            if (assemblyName.Contains("Mvc.Core"))
+            {
+                if (File.Exists(desiredAssemblyPath))
+                {
+                    return Assembly.LoadFile(desiredAssemblyPath);
+                }
+            }
+
+            string desiredAssemblyPath2 = "C:\\\\Users\\\\bzapa\\\\source\\\\repos\\\\toci888\\\\Intotech.Common\\\\Intotech.Runner\\\\bin\\\\Debug\\\\net7.0\\\\Microsoft.AspNetCore.Authorization.dll";
+
+            if (assemblyName.Contains("AspNetCore.Authorization"))
+            {
+                if (File.Exists(desiredAssemblyPath2))
+                {
+                    return Assembly.LoadFile(desiredAssemblyPath2);
+                }
+            }
+
+            return null;// Assembly.Load(args.Name);
         }
 
         public virtual void CreateProxies(string usings, string namespaceStr, string outputPath)
@@ -59,10 +87,7 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
 
         protected virtual string GetProxyMethodCallByAttributes(MethodInfo method, string paramType)
         {
-            Attribute.IsDefined(method, typeof(HttpGetAttribute));
-
-
-            List<Attribute> attributes = method.GetCustomAttributes().ToList();
+            List<object> attributes = method.GetCustomAttributes(true).ToList();
 
             //AttributeDto attrData = (AttributeDto)attributes.Select(attr => (AttributeDto)HttpAttributesParser.GetHttpAttributeData(attr).Method.Length > 0).First();
 
@@ -72,13 +97,18 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
             {
                 attrData = HttpAttributesParser.GetHttpAttributeData(attribute);
 
-                if (attrData.Method.Length > 0)
+                if (attrData.Method != null && attrData.Method.Length > 0)
                 {
                     break;
                 }
             }
 
             return $"Api{attrData.Method}<{paramType}>(\"{attrData.Route}\", false);";
+        }
+
+        private void CurrentDomain_AssemblyLoad(object? sender, AssemblyLoadEventArgs args)
+        {
+            //throw new NotImplementedException();
         }
 
         protected virtual string GetProxyMethodBody(MethodInfo method)

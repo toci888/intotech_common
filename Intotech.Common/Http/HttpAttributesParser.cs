@@ -33,18 +33,33 @@ namespace Intotech.Common.Http
 
             foreach (KeyValuePair<string, Type> item in ParseAttributesMap)
             {
-                if (httpAttributeCandidate.GetType() == item.Value)
+                if (httpAttributeCandidate.GetType().FullName == item.Value.FullName)
                 {
-                    HttpMethodAttribute hma = (HttpMethodAttribute)Convert.ChangeType(httpAttributeCandidate, item.Value);
+                    //HttpMethodAttribute hma = (HttpMethodAttribute)Convert.ChangeType(httpAttributeCandidate, item.Value);
 
                     result.Method = item.Key;
-                    result.Route = hma.Template;
+
+                    result.Route = GetTemplateFromAttribute(httpAttributeCandidate);
 
                     break;
                 }
             }
 
             return result;
+        }
+
+        public static string GetTemplateFromAttribute(Attribute httpAttributeCandidate)
+        {
+            //HttpGetAttribute httpGetAttribute = httpAttributeCandidate as Microsoft.AspNetCore.Mvc.HttpGetAttribute;
+
+            object? routePropValue = httpAttributeCandidate.GetType().GetProperty("Template").GetValue(httpAttributeCandidate, null);
+
+            if (routePropValue != null)
+            {
+                return routePropValue.ToString();
+            }
+
+            return string.Empty;
         }
     }
 }
