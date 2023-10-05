@@ -3,113 +3,102 @@ using Intotech.Common.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Npgsql;
+using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Intotech.Common.Database;
 
-public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable where TModel : ModelBase
+public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : ModelBase
 {
-    protected DbContext DatabaseHandle; //DEPRECATED
-    protected Func<DbContext> FDatabaseHandle;
-    protected NpgsqlConnection Connection;
+    protected DbContext DatabaseHandle;
     private readonly string ConnectionString;
-    private readonly object LockObj = new object();
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle, DbHandleType type) : this(databaseHandle)
-    {
-    
-    }
-
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle, bool sc) : this(databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, DbHandleType type) : this(databaseHandle)
     {
         
     }
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, bool sc) : this(databaseHandle)
     {
-        FDatabaseHandle = databaseHandle;
     }
 
-    public DbHandleCriticalSection(Func<DbContext> databaseHandle, string connectionString)
+    public DbHandleCriticalSection(DbContext databaseHandle)
     {
-        FDatabaseHandle = databaseHandle;
+        DatabaseHandle = databaseHandle;
+    }
+
+    public DbHandleCriticalSection(DbContext databaseHandle, string connectionString) : this(databaseHandle)
+    {
         ConnectionString = connectionString;
     }
 
-    public int Delete(TModel model)
+    public virtual int Delete(TModel model)
     {
-        lock (LockObj)
+        TModel? element = Select(m => m.Id == model.Id).FirstOrDefault();
+        if (element == null)
         {
-            using (DbContext context = FDatabaseHandle())
-            {
-                try
-                {
-                    TModel element = Select().Where(m => m.Id == model.Id).FirstOrDefault();
-                    if (element == null)
-                    {
-                        return 0;
-                    }
-                    context.Remove(element);// HERE TO FIX
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-
-                }
-
-                // DatabaseHandle?.Dispose();
-
-                return 1;
-            }
+            return 0;
         }
+
+        DatabaseHandle.Remove(element); // TODO check if deleted ? 
+        DatabaseHandle.SaveChanges();
+            
+        return 1; // line 44
     }
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        NpgsqlConnection connection = new NpgsqlConnection();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
 
-        NpgsqlCommand command = Connection.CreateCommand();
-        command.CommandText = "delete from Accountscollocations where " + idColumn + " = " + id;
+        NpgsqlCommand command = connection.CreateCommand();
+        command.CommandText = $"delete from {tableName} where {idColumn} = {id}";
 
-        return command.ExecuteNonQuery();
+        int result = command.ExecuteNonQuery();
+
+        connection.Close();
+        command.Dispose();
+
+        return result;
     }
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        NpgsqlConnection connection = new NpgsqlConnection();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
 
-        NpgsqlCommand command = Connection.CreateCommand();
-        command.CommandText = "delete from Accountscollocations where " + whereClause;
+        NpgsqlCommand command = connection.CreateCommand();
 
-        return command.ExecuteNonQuery();
+        command.CommandText = $"delete from {tableName} where {whereClause}";
+
+        int result = command.ExecuteNonQuery();
+
+        connection.Close();
+        command.Dispose();
+
+        return result;
     }
 
-    public TModel Insert(TModel model)
+    public virtual TModel Insert(TModel model)
     {
-        DbContext context = FDatabaseHandle();
+        EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
 
-        // insert into product (id, ....) 
-        EntityEntry entr = context.Set<TModel>().Add(model);
-
-        context.SaveChanges();// here
-
-        // DatabaseHandle?.Dispose();
+        DatabaseHandle.SaveChanges();
 
         return (TModel)(entr.Entity);
-
     }
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        NpgsqlConnection connection = new NpgsqlConnection();
 
-        NpgsqlCommand command = Connection.CreateCommand();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
+
+        NpgsqlCommand command = connection.CreateCommand();
+
         command.CommandText = selectQuery;
 
         NpgsqlDataReader reader = command.ExecuteReader();
@@ -121,37 +110,24 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel>, IDisposable wh
             result.Add(mapperDelegate(reader));
         }
 
+        connection.Close();
+        command.Dispose();
+
         return result;
     }
 
-    public IQueryable<TModel> Select()
+    public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        DbContext context = FDatabaseHandle();
-        {
-            IQueryable<TModel> result = context.Set<TModel>().AsQueryable().AsNoTracking();
+        IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
 
-            //context.Dispose();
-
-            return result;
-        }
+        return result;
     }
 
-    public TModel Update(TModel model)
+    public virtual TModel Update(TModel model)
     {
-        DbContext context = FDatabaseHandle();
-
-        context.Update(model);
-
-        context.SaveChanges();
-
-        //  DatabaseHandle?.Dispose();
+        DatabaseHandle.Update(model);
+        DatabaseHandle.SaveChanges();
 
         return model;
-
-    }
-
-    public void Dispose()
-    {
-        //DatabaseHandle?.Dispose();
     }
 }

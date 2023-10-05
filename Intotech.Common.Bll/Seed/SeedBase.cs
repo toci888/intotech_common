@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Seed;
 
-public abstract class SeedBase<TModel> : LogicBase<TModel>, IDisposable where TModel : ModelBase
+public abstract class SeedBase<TModel> : LogicBaseCs<TModel> where TModel : ModelBase
 {
     protected int AccountIdOffset = 0;
 
@@ -31,11 +31,6 @@ public abstract class SeedBase<TModel> : LogicBase<TModel>, IDisposable where TM
 
     public virtual Expression<Func<TModel, bool>> TakeWhereCondition(TModel searchValue)
     {
-        return m => true;
+        return m => true; // TODO WTF ??
     }
-
-    //public void Dispose()
-    //{
-    //    //DbHandle?.Dispose();
-    //}
 }

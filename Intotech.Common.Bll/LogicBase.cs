@@ -14,7 +14,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public LogicBase()
     {
-        DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle);
+        DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle());
     }
 
     protected LogicBase(bool multi = false)
@@ -47,7 +47,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
     {
         DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
         {
-            List<TModel> result = dbHandle.Select().Where(filter).ToList();
+            List<TModel> result = dbHandle.Select(filter).ToList();
 
             return result;
         }

@@ -10,8 +10,12 @@ using Intotech.ReflectiveTools.SourceGenerators.ModelManipulation;
 using Intotech.ReflectiveTools.SourceGenerators.ScopesGenerator;
 using System.IO;
 using Intotech.ReflectiveTools.SourceGenerators.RegenerateScaffoldClasses;
+using Intotech.ReflectiveTools.ApiProxyGenerators;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
+
+ApiProxyGenerator apiProxyGenerator = new ApiProxyGenerator();  
+apiProxyGenerator.CreateProxies("", "Intotech.Wheelo.Tests.ApiProxyTests", @"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Bll.Porsche.Interfaces\Intotech.Wheelo.Tests\ApiProxyTests\");
 
 //InterfaceAndLogicFileGenerator interfaceAndLogicFileGenerator = new InterfaceAndLogicFileGenerator();
 
@@ -22,8 +26,8 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 //    KeyNamespace = "Intotech.Xerion.Dictionaries.Bll.Persistence", //
 //    ModelPersistenceUsing = "Intotech.Xerion.Dictionaries.Database.Persistence.Models"
 //};
-RegenerateScafRunner runner = new();
-runner.Regenerate("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Intotech.Wheelo.Chat.Database.Persistence\\Models\\", "using Intotech.Common.Bll.Interfaces; ", "ModelBase");
+//RegenerateScafRunner runner = new();
+//runner.Regenerate("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Intotech.Wheelo.Chat.Database.Persistence\\Models\\", "using Intotech.Common.Bll.Interfaces; ", "ModelBase");
 //ScopesGeneratorRunner scopesGeneratorRunner = new();
 
 //scopesGeneratorRunner.LoadAndReadAssembly("C:\\Users\\stasx\\Documents\\GitHub\\intotech_wheelo\\Toci.Driver.Bll.Porsche.Interfaces\\Toci.Driver.Database.Persistence\\bin\\Debug\\net7.0\\Toci.Driver.Database.Persistence.dll", "C:\\Users\\stasx\\Desktop\\");
