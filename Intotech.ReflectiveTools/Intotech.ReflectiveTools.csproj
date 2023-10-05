@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
-	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5.0"  /> <!-- Version="2.2.5" -->
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5.0" /> <!-- Version="2.2.5" -->
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
     <PackageReference Include="TypeLite" Version="1.8.4" />
   </ItemGroup>
@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Intotech.Common.Bll.Interfaces\Intotech.Common.Bll.Interfaces.csproj" />
     <ProjectReference Include="..\Intotech.Common\Intotech.Common.csproj" />
   </ItemGroup>
 

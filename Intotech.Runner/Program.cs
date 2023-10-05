@@ -11,11 +11,14 @@ using Intotech.ReflectiveTools.SourceGenerators.ScopesGenerator;
 using System.IO;
 using Intotech.ReflectiveTools.SourceGenerators.RegenerateScaffoldClasses;
 using Intotech.ReflectiveTools.ApiProxyGenerators;
+using Intotech.ReflectiveTools.Integral;
 
 Console.WriteLine("The runner is a midnight runner ! xd");
 
-ApiProxyGenerator apiProxyGenerator = new ApiProxyGenerator();  
-apiProxyGenerator.CreateProxies("", "Intotech.Wheelo.Tests.ApiProxyTests", @"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Bll.Porsche.Interfaces\Intotech.Wheelo.Tests\ApiProxyTests\");
+
+
+//ApiProxyGenerator apiProxyGenerator = new ApiProxyGenerator();  
+//apiProxyGenerator.CreateProxies("", "Intotech.Wheelo.Tests.ApiProxyTests", @"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Bll.Porsche.Interfaces\Intotech.Wheelo.Tests\ApiProxyTests\");
 
 //InterfaceAndLogicFileGenerator interfaceAndLogicFileGenerator = new InterfaceAndLogicFileGenerator();
 

@@ -29,7 +29,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
                     {
                         LogicRenderer logicRenderer = new();
                         // todo handlers
-                        logicRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace, isInterfase);
+                        logicRenderer.RenderLogicClassInterface(types[i], outputDirectory, usings, nmSpace, isInterfase);
                     }
                 }
             }

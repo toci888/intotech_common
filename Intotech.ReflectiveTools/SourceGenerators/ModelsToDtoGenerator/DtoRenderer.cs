@@ -9,7 +9,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
 {
     public class DtoRenderer
     {
-        public virtual void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace)
+        public virtual void RenderDtoClass(Type sourceClass, string outputPath, string usings, string nmSpace)
         {
           
                 if (!sourceClass.FullName.Contains("Context"))

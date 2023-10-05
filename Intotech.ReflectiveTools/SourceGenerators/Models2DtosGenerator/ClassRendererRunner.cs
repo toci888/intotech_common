@@ -17,7 +17,7 @@ public class ClassRendererRunner
             {
                 ClassRenderer classRenderer = new();
 
-                classRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace);
+                classRenderer.RenderModelDtoClass(types[i], outputDirectory, usings, nmSpace);
             }
         }
             

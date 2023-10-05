@@ -22,7 +22,7 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToDtoGenerator
                 {
                     DtoRenderer dtoRenderer = new();
 
-                    dtoRenderer.RenderAutoProperties(types[i], outputDirectory, usings, nmSpace);
+                    dtoRenderer.RenderDtoClass(types[i], outputDirectory, usings, nmSpace);
                 }
             }
         }

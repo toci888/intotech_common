@@ -10,14 +10,12 @@ namespace Intotech.ReflectiveTools.SourceGenerators.LogicGenerator
 {
     public class LogicRenderer
     {
-        public virtual void RenderAutoProperties(Type sourceClass, string outputPath, string usings, string nmSpace, bool isInterfase)
+        public virtual void RenderLogicClassInterface(Type sourceClass, string outputPath, string usings, string nmSpace, bool isInterfase)
         {
             if (!isInterfase)
             {
                 if (!sourceClass.FullName.Contains("Context"))
                 {
-                    PropertyInfo[] properties = sourceClass.GetProperties();
-
                     outputPath += sourceClass.Name + "Logic.cs";
 
                     using (StreamWriter writer = new StreamWriter(outputPath, Encoding.UTF8, new FileStreamOptions() { Mode = FileMode.OpenOrCreate, Access = FileAccess.ReadWrite }))
