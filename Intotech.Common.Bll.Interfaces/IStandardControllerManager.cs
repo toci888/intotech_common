@@ -9,5 +9,7 @@ namespace Intotech.Common.Bll.Interfaces
         where TModelDto : DtoModelBase
     {
         ReturnedResponse<TModelDto> GetSingle(int id);
+
+        ReturnedResponse<TModelDto> Set(TModelDto modelDto);
     }
 }
