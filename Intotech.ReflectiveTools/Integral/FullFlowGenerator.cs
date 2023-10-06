@@ -15,7 +15,7 @@ namespace Intotech.ReflectiveTools.Integral
         {
             foreach (ModelBase model in models)
             {
-                //GenerateLogicBases(model, data);
+                GenerateLogicBases(model, data);
                 GenerateDtoAndModelDto(model, data);
             }
         }
