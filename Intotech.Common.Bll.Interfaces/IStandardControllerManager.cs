@@ -7,7 +7,7 @@ namespace Intotech.Common.Bll.Interfaces
         where TModel : ModelBase
         where TILogic : ILogicBase<TModel>
         where TModelDto : DtoModelBase
-        where TRequestDto : DtoEntityBase
+        where TRequestDto : MsvcRequestDtoBase<TModelDto>
     {
         ReturnedResponse<TModelDto> GetSingle(TRequestDto request);
 

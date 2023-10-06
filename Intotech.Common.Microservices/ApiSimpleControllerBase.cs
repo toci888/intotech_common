@@ -10,8 +10,8 @@ public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where T
     protected TManager Manager;
     protected ITranslationEngineI18n I18nTranslation;
 
-    protected ApiSimpleControllerBase(TManager service)
+    protected ApiSimpleControllerBase(TManager manager)
     {
-        Manager = service;
+        Manager = manager;
     }
 }
