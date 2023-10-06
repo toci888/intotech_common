@@ -23,9 +23,9 @@ public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where T
         { 
             KeyValuePair<string, StringValues> langHeader = httpContextAccessor.HttpContext.Request.Headers.Where(h => h.Key.Equals(HttpConfigurationConsts.LanguageHeaderKey)).FirstOrDefault();
 
-            if (langHeader.Key != null)
+            if (langHeader.Key != null && langHeader.Value.Count > 0)
             {
-                HeaderLanguage = langHeader.Value;
+                HeaderLanguage = langHeader.Value.ToString().Split(",", StringSplitOptions.None).First();
             }
         }
 

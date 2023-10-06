@@ -2,6 +2,6 @@
 {
     public static class HttpConfigurationConsts
     {
-        public const string LanguageHeaderKey = "Language";
+        public const string LanguageHeaderKey = "Accept-Language";
     }
 }
