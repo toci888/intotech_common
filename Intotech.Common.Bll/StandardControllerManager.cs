@@ -1,17 +1,21 @@
 ﻿using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Bll.Interfaces.ComplexResponses;
+using Intotech.Common.Interfaces;
 
 namespace Intotech.Common.Bll
 {
-    public abstract class StandardControllerManager<TILogic, TModel, TModelDto, TRequestDto> : IStandardControllerManager<TILogic, TModel, TModelDto, TRequestDto>
+    public abstract class StandardControllerManager<TILogic, TModel, TModelDto, TRequestDto> : ServiceBaseEx, IStandardControllerManager<TILogic, TModel, TModelDto, TRequestDto>
         where TModel : ModelBase, new()
         where TILogic : ILogicBase<TModel>
         where TModelDto : DtoModelBase, new()
         where TRequestDto : MsvcRequestDtoBase<TModelDto>, new()
     {
         protected TILogic Logic;
-        protected TranslationEngineI18n translationEngineI18N;
         protected string HeaderLanguage;
+
+        protected StandardControllerManager(ITranslationEngineI18n translationEngine) : base(translationEngine)
+        {
+        }
 
         public void AcceptLanguageHeader(string header)
         {
@@ -20,7 +24,7 @@ namespace Intotech.Common.Bll
 
         public virtual ReturnedResponse<int> Delete(TRequestDto request)
         {
-            return new ReturnedResponse<int>(Logic.Delete(DtoModelMapper.Map<TModel, TModelDto>(request.RequestBody)), translationEngineI18N.Translate(HeaderLanguage, "_success"), true, 1);
+            return new ReturnedResponse<int>(Logic.Delete(DtoModelMapper.Map<TModel, TModelDto>(request.RequestBody)), I18nTranslation.Translate(HeaderLanguage, "_success"), true, 1);
         }
 
         public virtual TRequestDto GetRequestForGet(int id)
@@ -34,24 +38,24 @@ namespace Intotech.Common.Bll
 
             if (result != null)
             {
-                return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(result), translationEngineI18N.Translate(HeaderLanguage, "_success"), true, 1);
+                return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(result), I18nTranslation.Translate(HeaderLanguage, "_success"), true, 1);
             }
 
-            return new ReturnedResponse<TModelDto>(null, translationEngineI18N.Translate(HeaderLanguage, "_noData"), false, 2); // TODO err code
+            return new ReturnedResponse<TModelDto>(null, I18nTranslation.Translate(HeaderLanguage, "_noData"), false, 2); // TODO err code
         }
 
         public virtual ReturnedResponse<TModelDto> Set(TRequestDto request)
         {
             TModel result = Logic.Insert(DtoModelMapper.Map<TModel, TModelDto>(request.RequestBody));
 
-            return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(result), translationEngineI18N.Translate(HeaderLanguage, "_success"), true, 1);
+            return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(result), I18nTranslation.Translate(HeaderLanguage, "_success"), true, 1);
         }
 
         public virtual ReturnedResponse<TModelDto> Update(TRequestDto request)
         {
             TModel updResult = Logic.Update(DtoModelMapper.Map<TModel, TModelDto>(request.RequestBody));
 
-            return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(updResult), translationEngineI18N.Translate(HeaderLanguage, "_success"), true, 1);
+            return new ReturnedResponse<TModelDto>(DtoModelMapper.Map<TModelDto, TModel>(updResult), I18nTranslation.Translate(HeaderLanguage, "_success"), true, 1);
         }
     }
 }
