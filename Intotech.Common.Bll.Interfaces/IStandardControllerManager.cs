@@ -17,6 +17,6 @@ namespace Intotech.Common.Bll.Interfaces
 
         ReturnedResponse<int> Delete(TRequestDto request);
 
-        TRequestDto GetRequestForGet(int id, string language);
+        TRequestDto GetRequestForGet(int id);
     }
 }

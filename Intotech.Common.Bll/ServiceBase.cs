@@ -8,7 +8,7 @@ using Intotech.Common.Interfaces;
 
 namespace Intotech.Common.Bll
 {
-    public abstract class ServiceBase : IService
+    public abstract class ServiceBase : IManager
     {
         protected string DefaultLang = "pl"; //#TODO CONSTS
 
@@ -19,6 +19,11 @@ namespace Intotech.Common.Bll
         {
             ErrorLogger = errorLogger;
             I18nTranslation = i18nTranslation;
+        }
+
+        public void AcceptLanguageHeader(string header)
+        {
+            
         }
     }
 }
