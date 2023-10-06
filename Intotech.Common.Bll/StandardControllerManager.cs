@@ -11,16 +11,10 @@ namespace Intotech.Common.Bll
         where TRequestDto : MsvcRequestDtoBase<TModelDto>, new()
     {
         protected TILogic Logic;
-        protected string HeaderLanguage;
-
+        
         protected StandardControllerManager(ITranslationEngineI18n translationEngine, TILogic logic) : base(translationEngine)
         {
             Logic = logic;
-        }
-
-        public void AcceptLanguageHeader(string header)
-        {
-            HeaderLanguage = header;
         }
 
         public virtual ReturnedResponse<int> Delete(TRequestDto request)
