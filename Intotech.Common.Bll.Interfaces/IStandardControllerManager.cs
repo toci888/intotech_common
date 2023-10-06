@@ -3,13 +3,20 @@ using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Interfaces
 {
-    public interface IStandardControllerManager<TILogic, TModel, TModelDto> : IManager
+    public interface IStandardControllerManager<TILogic, TModel, TModelDto, TRequestDto> : IManager
         where TModel : ModelBase
         where TILogic : ILogicBase<TModel>
         where TModelDto : DtoModelBase
+        where TRequestDto : DtoEntityBase
     {
-        ReturnedResponse<TModelDto> GetSingle(int id);
+        ReturnedResponse<TModelDto> GetSingle(TRequestDto request);
 
-        ReturnedResponse<TModelDto> Set(TModelDto modelDto);
+        ReturnedResponse<TModelDto> Set(TRequestDto request);
+
+        ReturnedResponse<TModelDto> Update(TRequestDto request);
+
+        ReturnedResponse<int> Delete(TRequestDto request);
+
+        TRequestDto GetRequestForGet(int id, string language);
     }
 }

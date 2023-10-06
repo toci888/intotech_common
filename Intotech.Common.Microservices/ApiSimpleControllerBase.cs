@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Intotech.Common.Microservices;
 
-public abstract class ApiSimpleControllerBase<TService> : ControllerBase where TService : IService
+public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where TManager : IService
 {
-    protected TService Service;
+    protected TManager Manager;
     protected ITranslationEngineI18n I18nTranslation;
 
-    protected ApiSimpleControllerBase(TService service)
+    protected ApiSimpleControllerBase(TManager service)
     {
-        Service = service;
+        Manager = service;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Intotech.Common.Bll.Interfaces
 {
-    public class DtoEntityBase
+    public abstract class DtoEntityBase
     {
         public string Language { get; set; }
     }
