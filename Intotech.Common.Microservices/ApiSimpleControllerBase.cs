@@ -2,7 +2,9 @@
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Http;
 using Intotech.Common.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
 
 namespace Intotech.Common.Microservices;
@@ -13,15 +15,18 @@ public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where T
     protected ITranslationEngineI18n I18nTranslation;
     protected string HeaderLanguage = TranslationEngineConsts.LangPl;
 
-    protected ApiSimpleControllerBase(TManager manager)
+    protected ApiSimpleControllerBase(TManager manager, IHttpContextAccessor httpContextAccessor = null)
     {
         Manager = manager;
 
-        KeyValuePair<string, StringValues> langHeader = Request.Headers.Where(h => h.Key.Equals(HttpConfigurationConsts.LanguageHeaderKey)).FirstOrDefault();
+        if (httpContextAccessor != null)
+        { 
+            KeyValuePair<string, StringValues> langHeader = httpContextAccessor.HttpContext.Request.Headers.Where(h => h.Key.Equals(HttpConfigurationConsts.LanguageHeaderKey)).FirstOrDefault();
 
-        if (langHeader.Key != null)
-        {
-            HeaderLanguage = langHeader.Value;
+            if (langHeader.Key != null)
+            {
+                HeaderLanguage = langHeader.Value;
+            }
         }
 
         Manager.AcceptLanguageHeader(HeaderLanguage);
