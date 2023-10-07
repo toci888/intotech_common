@@ -15,13 +15,13 @@ namespace Intotech.Common.Database
 {
     public class DbHandleManager<TModel> : DbContext, IDbHandleManager<TModel>, IDbContextFactory<DbContext> where TModel : ModelBase
     {
-        private Func<DbContext> databaseHandle;
+        private DbContext databaseHandle;
 
-        public DbHandleManager(Func<DbContext> databaseHandle)
+        public DbHandleManager(DbContext databaseHandle)
         {
             this.databaseHandle = databaseHandle;
         }
-        public DbHandleManager(Func<DbContext> databaseHandle, DbHandleType type)
+        public DbHandleManager(DbContext databaseHandle, DbHandleType type)
         {
             //this.GetInstance(type);
         }
@@ -31,17 +31,17 @@ namespace Intotech.Common.Database
             return this;
         }
 
-        public virtual IDbHandle<TModel> GetInstance(DbHandleType dbHandleType, Func<DbContext> databaseHandle)
+        public virtual IDbHandle<TModel> GetInstance(DbHandleType dbHandleType, DbContext databaseHandle)
         {
             if (dbHandleType == DbHandleType.TypeSc)
             {
-                return new DbHandleCriticalSection<TModel>(databaseHandle(), DbHandleType.TypeSc);
+                return new DbHandleCriticalSection<TModel>(databaseHandle, DbHandleType.TypeSc);
             }
 
             return new DbHandleMultiThreading<TModel>(databaseHandle);
         }
 
-        public IDbHandle<TModel> GetInstance(Func<DbContext> databaseHandle, DbHandleType dbHandleType)
+        public IDbHandle<TModel> GetInstance(DbContext databaseHandle, DbHandleType dbHandleType)
         {
             return GetInstance(dbHandleType, databaseHandle);
         }

@@ -1,5 +1,4 @@
 using Intotech.Common.Bll.Interfaces;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Seed;
@@ -18,7 +17,7 @@ public abstract class SeedBase<TModel> : LogicBaseCs<TModel> where TModel : Mode
     {
         bool shouldPopulate = false;
 
-        List < TModel > results = new List<TModel>();
+        List <TModel> results = new List<TModel>();
 
         foreach (TModel item in items)
         {

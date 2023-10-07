@@ -11,26 +11,26 @@ namespace Intotech.Common.Database;
 public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle<TModel>, IDisposable where TModel : ModelBase
 {
     protected DbContext DatabaseHandle;
-    protected Func<DbContext> FDatabaseHandle;
+    //protected Func<DbContext> FDatabaseHandle;
     protected NpgsqlConnection Connection;
     private readonly string ConnectionString;
     private readonly object LockObj = new object();
 
-    public DbHandleMultiThreading(Func<DbContext> databaseHandle, DbHandleType type) : base(databaseHandle)
+    public DbHandleMultiThreading(DbContext databaseHandle, DbHandleType type) : base(databaseHandle)
     {
-        DatabaseHandle = databaseHandle();
+        DatabaseHandle = databaseHandle;
     }
 
-    public DbHandleMultiThreading(Func<DbContext> databaseHandle) : base(databaseHandle)
+    public DbHandleMultiThreading(DbContext databaseHandle) : base(databaseHandle)
     {
-        DatabaseHandle = databaseHandle();
+        DatabaseHandle = databaseHandle;
     }
 
-    public DbHandleMultiThreading(Func<DbContext> databaseHandle, string connectionString) : this(databaseHandle) 
+    public DbHandleMultiThreading(DbContext databaseHandle, string connectionString) : this(databaseHandle) 
     {
-        FDatabaseHandle = databaseHandle;
+        //FDatabaseHandle = databaseHandle;
         ConnectionString = connectionString;
-        DatabaseHandle = databaseHandle();
+        DatabaseHandle = databaseHandle;
     }
 
     public int Delete(TModel model)
@@ -120,8 +120,8 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        DbContext context = FDatabaseHandle();
-        IEnumerable<TModel> result = context.Set<TModel>().Where(filter).ToList();
+        //DbContext context = FDatabaseHandle();
+        IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
 
         //context.Dispose();
 

@@ -19,17 +19,17 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     protected LogicBase(bool multi = false)
     {
-        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
     }
 
     protected LogicBase(string connectionString)
     {
-        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle, connectionString);
+        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle(), connectionString);
     }
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
     {
-        using (DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle))
+        using (DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle()))
         {
             return DbHandle.RawSelect(selectQuery, mapperDelegate);
         }
@@ -37,7 +37,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public virtual TModel Insert(TModel model)
     {
-        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
 
         return DbHandle.Insert(model);
 
@@ -45,7 +45,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
         {
             List<TModel> result = dbHandle.Select(filter).ToList();
 
@@ -55,7 +55,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public virtual TModel Update(TModel model)
     {
-        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
 
         return DbHandle.Update(model);
 
@@ -63,14 +63,14 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public virtual int Delete(TModel model)
     {
-        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
 
         return DbHandle.Delete(model);
     }
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
 
         return DbHandle.Delete(tableName, idColumn, id);
 
@@ -78,7 +78,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle);
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
 
         return DbHandle.Delete(tableName, whereClause);
     }
