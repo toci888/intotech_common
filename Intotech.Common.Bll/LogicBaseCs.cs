@@ -58,4 +58,11 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel> where TModel : Mo
     {
         return DbHandle.Delete(tableName, whereClause);
     }
+
+    public virtual int Delete(Expression<Func<TModel, bool>> selectFilter)
+    {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
+        return DbHandle.Delete(selectFilter);
+    }
 }

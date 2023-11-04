@@ -16,6 +16,8 @@ public interface IDbHandle<TModel>
     int Delete(TModel model);
 
     int Delete(string tableName, string idColumn, int id);
-
+    
     int Delete(string tableName, string whereClause);
+
+    int Delete(Expression<Func<TModel, bool>> selectFilter);
 }

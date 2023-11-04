@@ -34,15 +34,34 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
 
     public virtual int Delete(TModel model)
     {
-        if (model == null && model.Id <= 0)
+        TModel? element = Select(m => m.Id == model.Id).FirstOrDefault();
+        if (element == null)
         {
             return 0;
         }
 
-        DatabaseHandle.Remove(model); // TODO check if deleted ? 
+        DatabaseHandle.Remove(element); // TODO check if deleted ? 
         DatabaseHandle.SaveChanges();
-            
-        return 1;
+
+        return 1; // line 44
+    }
+
+    public virtual int Delete(Expression<Func<TModel, bool>> selectFilter)
+    {
+        List<TModel> elements = Select(selectFilter).ToList();
+        if (elements == null)
+        {
+            return 0;
+        }
+
+        foreach (TModel element in elements)
+        {
+            DatabaseHandle.Remove(element); // TODO check if deleted ? 
+        }
+
+        DatabaseHandle.SaveChanges();
+
+        return elements.Count(); // line 44
     }
 
     public virtual int Delete(string tableName, string idColumn, int id)

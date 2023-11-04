@@ -142,6 +142,24 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
         
     }
 
+    public virtual int Delete(Expression<Func<TModel, bool>> selectFilter)
+    {
+        List<TModel> elements = Select(selectFilter).ToList();
+        if (elements == null)
+        {
+            return 0;
+        }
+
+        foreach (TModel element in elements)
+        {
+            DatabaseHandle.Remove(elements); // TODO check if deleted ? 
+        }
+
+        DatabaseHandle.SaveChanges();
+
+        return elements.Count(); // line 44
+    }
+
     public void Dispose()
     {
         //DatabaseHandle?.Dispose();

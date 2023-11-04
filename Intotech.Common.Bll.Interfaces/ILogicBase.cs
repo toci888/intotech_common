@@ -18,4 +18,6 @@ public interface ILogicBase<TModel> where TModel : ModelBase
     int Delete(string tableName, string idColumn, int id);
 
     int Delete(string tableName, string whereClause);
+
+    int Delete(Expression<Func<TModel, bool>> selectFilter);
 }
