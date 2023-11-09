@@ -120,12 +120,20 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        //DbContext context = FDatabaseHandle();
-        IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
+        try
+        {
+            //DbContext context = FDatabaseHandle();
+            IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
+            //context.Dispose();
 
-        //context.Dispose();
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return new List<TModel>();
+        }
 
-        return result;
+
     }
 
     public TModel Update(TModel model)
