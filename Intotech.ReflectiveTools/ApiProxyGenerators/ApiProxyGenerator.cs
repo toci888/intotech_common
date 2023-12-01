@@ -18,7 +18,7 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
         {
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve; ;
 
-            ControllersAssembly = Assembly.LoadFrom(@"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Api\bin\Debug\net7.0\Intotech.Wheelo.Api.dll");
+            ControllersAssembly = Assembly.LoadFrom(@"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Intotech.Wheelo.Api\bin\Debug\net7.0\Intotech.Wheelo.Api.dll");
         }
 
         private Assembly? CurrentDomain_AssemblyResolve(object? sender, ResolveEventArgs args)

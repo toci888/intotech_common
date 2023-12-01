@@ -10,6 +10,6 @@ namespace Intotech.ReflectiveTools.SourceGenerators
     {
         public string KeyNamespace { get; set; } //Intotech.Wheelo.Bll.Persistence.Interfaces
 
-        public string ModelPersistenceUsing { get; set; } //Toci.Driver.Database.Persistence.Models
+        public string ModelPersistenceUsing { get; set; } //Intotech.Wheelo.Database.Persistence.Models
     }
 }

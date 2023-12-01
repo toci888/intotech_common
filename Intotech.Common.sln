@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Bll", "Into
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Bll.Interfaces", "Intotech.Common.Bll.Interfaces\Intotech.Common.Bll.Interfaces.csproj", "{F7C3429A-D94A-4D98-BC5E-FB0FF1ACBB3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Database", "Toci.Common.Database\Intotech.Common.Database.csproj", "{A92A0E16-A3B4-4EC8-AB45-005DE8393506}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Database.Interfaces", "Intotech.Common.Database.Interfaces\Intotech.Common.Database.Interfaces.csproj", "{9CC2C525-2D3E-4A19-B0F4-9DC5F25CD2B6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Microservices", "Intotech.Common.Microservices\Intotech.Common.Microservices.csproj", "{8DA9DA21-FAFE-459C-BDCD-4A485B6E695A}"
@@ -28,6 +26,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.GhostRider", "Intotech.GhostRider\Intotech.GhostRider\Intotech.GhostRider.csproj", "{06C6C67E-502B-49B5-AC36-7E7F08326BE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Interfaces", "Intotech.Common.Interfaces\Intotech.Common.Interfaces.csproj", "{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Intotech.Common.Database", "Intotech.Common.Database\Intotech.Common.Database.csproj", "{A35A4FF4-9CEA-41BF-AFB6-7611584CCDA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,6 @@ Global
 		{F7C3429A-D94A-4D98-BC5E-FB0FF1ACBB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7C3429A-D94A-4D98-BC5E-FB0FF1ACBB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7C3429A-D94A-4D98-BC5E-FB0FF1ACBB3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A92A0E16-A3B4-4EC8-AB45-005DE8393506}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A92A0E16-A3B4-4EC8-AB45-005DE8393506}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A92A0E16-A3B4-4EC8-AB45-005DE8393506}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A92A0E16-A3B4-4EC8-AB45-005DE8393506}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9CC2C525-2D3E-4A19-B0F4-9DC5F25CD2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9CC2C525-2D3E-4A19-B0F4-9DC5F25CD2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CC2C525-2D3E-4A19-B0F4-9DC5F25CD2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -87,6 +83,10 @@ Global
 		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2008A6CA-E83E-4779-B117-DF4E4CC6EFF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A35A4FF4-9CEA-41BF-AFB6-7611584CCDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A35A4FF4-9CEA-41BF-AFB6-7611584CCDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A35A4FF4-9CEA-41BF-AFB6-7611584CCDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A35A4FF4-9CEA-41BF-AFB6-7611584CCDA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
