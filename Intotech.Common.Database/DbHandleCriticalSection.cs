@@ -10,23 +10,25 @@ namespace Intotech.Common.Database;
 public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : ModelBase
 {
     protected DbContext DatabaseHandle;
+    protected IErrorLogger ErrorLogger;
     private readonly string ConnectionString;
 
-    public DbHandleCriticalSection(DbContext databaseHandle, DbHandleType type) : this(databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, DbHandleType type, IErrorLogger errorLogger) : this(databaseHandle, errorLogger)
     {
-        
+        ErrorLogger = errorLogger;
     }
 
-    public DbHandleCriticalSection(DbContext databaseHandle, bool sc) : this(databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, bool sc, IErrorLogger errorLogger) : this(databaseHandle, errorLogger)
     {
     }
 
-    public DbHandleCriticalSection(DbContext databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, IErrorLogger errorLogger)
     {
+        ErrorLogger = errorLogger;
         DatabaseHandle = databaseHandle;
     }
 
-    public DbHandleCriticalSection(DbContext databaseHandle, string connectionString) : this(databaseHandle)
+    public DbHandleCriticalSection(DbContext databaseHandle, string connectionString, IErrorLogger errorLogger) : this(databaseHandle, errorLogger)
     {
         ConnectionString = connectionString;
     }

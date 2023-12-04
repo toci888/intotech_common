@@ -98,6 +98,34 @@ namespace Intotech.Common.Http
             }
         }
 
+        protected virtual T ApiPatch<T, TDto>(string url, TDto dto, bool isResponseArray)
+        {
+            using (HttpClient hc = new HttpClient())
+            {
+                hc.BaseAddress = new Uri(BaseUrl);
+                // hc.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", LoggedUserContext.User.Token);
+
+                HttpContent content = JsonContent.Create<TDto>(dto);
+
+                HttpResponseMessage response = hc.SendAsync(new HttpRequestMessage()
+                { Method = HttpMethod.Patch, RequestUri = new Uri(url, UriKind.Relative), Content = content }).Result;
+
+                string responseContent = response.Content.ReadAsStringAsync().Result;
+
+                if (responseContent == string.Empty)
+                {
+                    return default(T);
+                }
+
+                if (typeof(T).IsValueType)
+                {
+                    return (T)Convert.ChangeType(responseContent, typeof(T));
+                }
+
+                return isResponseArray ? JArray.Parse(responseContent).ToObject<T>() : JObject.Parse(responseContent).ToObject<T>();
+            }
+        }
+
         protected virtual T ApiDelete<T, TDto>(string url, TDto dto, bool isResponseArray)
         {
             using (HttpClient hc = new HttpClient())

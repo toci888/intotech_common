@@ -9,6 +9,14 @@ namespace Intotech.ReflectiveTools.SourceGenerators.ModelsToTypescript
 {
     public class TypeScriptModelsGenerator
     {
+        public void WillYouGetIt(bool nie = false)
+        {
+            WillYouGetIt();
+            nie = true;
+            WillYouGetIt(true);
+            WillYouGetIt(false);
+        }
+
         protected Dictionary<string, string> TypesMap = new Dictionary<string, string>()
         {
             { "Int32", "number" },

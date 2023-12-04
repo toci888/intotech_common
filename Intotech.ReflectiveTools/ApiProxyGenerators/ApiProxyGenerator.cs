@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using System.Xml.Linq;
 
 namespace Intotech.ReflectiveTools.ApiProxyGenerators
 {
@@ -85,7 +86,7 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
             return entireClass.ToString();
         }
 
-        protected virtual string GetProxyMethodCallByAttributes(MethodInfo method, string paramType)
+        protected virtual string GetProxyMethodCallByAttributes(MethodInfo method, string paramType, ParameterInfo paramMethod)
         {
             List<object> attributes = method.GetCustomAttributes(true).ToList();
 
@@ -103,7 +104,12 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
                 }
             }
 
-            return $"Api{attrData.Method}<{paramType}>(\"{attrData.Route}\", false);";
+            if (attrData.Method != "Get")
+            {
+                return $"\treturn Api{attrData.Method}<ReturnedResponse<{GetGenericTypeArgument(method.ReturnType.GenericTypeArguments[0])}>, {paramType}>(\"{attrData.Route}\", {paramMethod.Name}, false);";
+            }
+
+            return $"\treturn Api{attrData.Method}<ReturnedResponse<{GetGenericTypeArgument(method.ReturnType.GenericTypeArguments[0])}>>(\"{attrData.Route}\", false);";
         }
 
         private void CurrentDomain_AssemblyLoad(object? sender, AssemblyLoadEventArgs args)
@@ -115,12 +121,12 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
         {
             StringBuilder sb = new StringBuilder();
 
-            if (method.ReturnType.GenericTypeArguments.Length == 0)
+            if (method.ReturnType.GenericTypeArguments.Length == 0 || method.Name.Contains("Try"))
             {
                 return string.Empty;
             }
 
-            sb.AppendLine($"public virtual {method.ReturnType.GenericTypeArguments[0].Name} {method.Name}Test() ");
+            sb.AppendLine($"public virtual ReturnedResponse<{GetGenericTypeArgument(method.ReturnType.GenericTypeArguments[0])}> {method.Name}Test() ");
 
             sb.AppendLine("{");
 
@@ -132,15 +138,30 @@ namespace Intotech.ReflectiveTools.ApiProxyGenerators
             }
 
             string paramType = paramMethod.ParameterType.ToString().Split(".", StringSplitOptions.None).Last();
-            string callProxyMethod = GetProxyMethodCallByAttributes(method, paramType);
+            string callProxyMethod = GetProxyMethodCallByAttributes(method, paramType, paramMethod);
 
-            sb.AppendLine($"{paramType} {paramMethod.Name} = new {paramType}();");
+            sb.AppendLine($"\t{paramType} {paramMethod.Name} = new {paramType}();");
 
             sb.AppendLine(callProxyMethod);
 
             sb.AppendLine("}");
 
             return sb.ToString();
+        }
+
+        protected string GetGenericTypeArgument(Type argument)
+        {
+            if (argument.Name.Contains("Nullable"))
+            {
+                return Nullable.GetUnderlyingType(argument).Name;
+            }
+
+            if (argument.Name.Contains("List"))
+            {
+                return "List<" + argument.GenericTypeArguments[0].Name + ">";
+            }
+
+            return argument.Name;
         }
     }
 }

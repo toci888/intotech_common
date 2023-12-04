@@ -15,7 +15,7 @@ public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where T
     protected ITranslationEngineI18n I18nTranslation;
     protected string HeaderLanguage = TranslationEngineConsts.LangPl;
 
-    protected ApiSimpleControllerBase(TManager manager, IHttpContextAccessor httpContextAccessor = null)
+    protected ApiSimpleControllerBase(TManager manager, IHttpContextAccessor httpContextAccessor)
     {
         Manager = manager;
 
