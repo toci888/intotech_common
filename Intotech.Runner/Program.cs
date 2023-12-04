@@ -17,8 +17,8 @@ Console.WriteLine("The runner is a midnight runner ! xd");
 
 
 
-//ApiProxyGenerator apiProxyGenerator = new ApiProxyGenerator();  
-//apiProxyGenerator.CreateProxies("", "Intotech.Wheelo.Tests.ApiProxyTests", @"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Bll.Porsche.Interfaces\Intotech.Wheelo.Tests\ApiProxyTests\");
+ApiProxyGenerator apiProxyGenerator = new ApiProxyGenerator();  
+apiProxyGenerator.CreateProxies("\r\nusing Intotech.Wheelo.Bll.Models.ModelDtos.Intotech.Wheelo.Dtos;\r\nusing Intotech.Wheelo.Bll.Models.OldModels;\r\nusing Intotech.Common.Bll.Interfaces.ComplexResponses;\r\nusing Intotech.Wheelo.Bll.Models.Tiny;", "Intotech.Wheelo.Tests.ApiProxyTests", @"C:\Users\bzapa\source\repos\toci888\Intotech.Wheelo\Toci.Driver.Bll.Porsche.Interfaces\Intotech.Wheelo.Tests\ApiProxyTests\");
 
 //InterfaceAndLogicFileGenerator interfaceAndLogicFileGenerator = new InterfaceAndLogicFileGenerator();
 
