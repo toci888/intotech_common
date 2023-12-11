@@ -52,6 +52,31 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
         return entityCollection;
     }
 
+    public virtual TCollectionModelDto GetCollection<TNestedModel, TNestedModelDto>(ILogicBase<TNestedModel> crudNestedLogicBase, Expression<Func<TNestedModel, bool>> nestedSelectFilter, Func<TCollectionModelDto, TNestedModelDto, TCollectionModelDto> setNestedFunc)
+        where TNestedModelDto : DtoModelBase, new()
+        where TNestedModel : ModelBase, new()
+    {
+        IList<TNestedModel> collection = crudNestedLogicBase.Select(nestedSelectFilter).ToList();
+
+        if (collection == null)
+        {
+            return default;
+        }
+
+        TCollectionModelDto entityCollection = new TCollectionModelDto();
+
+        foreach (TNestedModel element in collection)
+        {
+            TNestedModelDto item = new TNestedModelDto();
+
+            entityCollection = setNestedFunc(entityCollection, item.MapModelToDto(element));
+        }
+
+        //outputField = entityCollection;
+
+        return entityCollection;
+    }
+
     public virtual bool SetCollection(TCollectionModelDto entityCollection)
     {
         foreach (TModelDto element in entityCollection)

@@ -89,7 +89,7 @@ apiProxyGenerator.CreateProxies("\r\nusing Intotech.Wheelo.Bll.Models.ModelDtos.
 //string solutionPath = EnvironmentUtils.GetSolutionDirectory();
 //smg.GenerateFiles(@$"{solutionPath}\Intotech.Wheelo.Bll.Porsche.Interfaces\Intotech.Wheelo.Database.Persistence\Models",
 //    @$"{solutionPath}\Intotech.Wheelo.Seed.Common\Wheelo.Main\", "Wheelo.Main", "Intotech.Wheelo.Database.Persistence.Models",
-//    "SeedWheeloMainLogic"); // 
+//    "SeedLogic"); // 
 
 /*smg.GenerateFiles(@$"C:\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Database.Persistence\Models",
     @$"C:\Dev\Intotech.Xerion\Backend\Intotech.Xerion.Common\Seed\Xerion.Main",
