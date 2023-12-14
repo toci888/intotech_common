@@ -104,7 +104,15 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
     {
         EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
 
-        DatabaseHandle.SaveChanges();
+        try
+        {
+            DatabaseHandle.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            return default;
+        }
+        
 
         return (TModel)(entr.Entity);
     }
@@ -137,9 +145,16 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
+        try
+        {
+            IEnumerable<TModel> result = DatabaseHandle.Set<TModel>().Where(filter).ToList();
 
-        return result;
+            return result;
+        }
+        catch(Exception ex)  
+        {
+            return default;
+        }        
     }
 
     public virtual TModel Update(TModel model)

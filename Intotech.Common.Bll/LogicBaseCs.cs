@@ -34,9 +34,16 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel> where TModel : Mo
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        List<TModel> result = DbHandle.Select(filter).ToList();
+        try
+        {
+            List<TModel> result = DbHandle.Select(filter).ToList();
 
-        return result;
+            return result;
+        }
+        catch(Exception ex)
+        {
+            return default;
+        }
     }
 
     public virtual TModel Update(TModel model)

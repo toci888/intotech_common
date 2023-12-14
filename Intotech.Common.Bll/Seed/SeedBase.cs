@@ -23,7 +23,7 @@ public abstract class SeedBase<TModel> : LogicBaseCs<TModel> where TModel : Mode
         {
             Expression<Func<TModel, bool>> SelectWhereCondition = TakeWhereCondition(item);
 
-            TModel? isAlreadyInDb = Select(SelectWhereCondition).FirstOrDefault();
+            TModel? isAlreadyInDb = Select(SelectWhereCondition)?.FirstOrDefault();
             if (isAlreadyInDb == null)
             {
                 shouldPopulate = true;
