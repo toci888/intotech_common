@@ -11,10 +11,10 @@ public class ImageManager
         //httpRequestClient.BaseAddress = new Uri(baseUrl);
     }
 
-    public virtual string GetImageBase64(string url)
+    public virtual byte[] GetImageBytes(string url)
     {
-        byte[] imageBytes = httpRequestClient.GetByteArrayAsync(url).Result;
+        return httpRequestClient.GetByteArrayAsync(url).Result;
 
-        return Convert.ToBase64String(imageBytes);
+        //return Convert.ToBase64String(imageBytes);
     }
 }
