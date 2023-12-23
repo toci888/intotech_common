@@ -3,6 +3,7 @@ using Intotech.Common.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Npgsql;
+using System.Data.SqlClient;
 using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -60,53 +61,68 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        SqlConnection connection = new SqlConnection();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
 
-        NpgsqlCommand command = Connection.CreateCommand();
-        command.CommandText = "delete from Accountscollocations where " + idColumn + " = " + id;
+        SqlCommand command = connection.CreateCommand();
+        command.CommandText = $"delete from {tableName} where {idColumn} = {id}";
 
-        return command.ExecuteNonQuery();
+        int result = command.ExecuteNonQuery();
+
+        connection.Close();
+        command.Dispose();
+
+        return result;
     }
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        SqlConnection connection = new SqlConnection();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
 
-        NpgsqlCommand command = Connection.CreateCommand();
-        command.CommandText = "delete from Accountscollocations where " + whereClause;
+        SqlCommand command = connection.CreateCommand();
 
-        return command.ExecuteNonQuery();
+        command.CommandText = $"delete from {tableName} where {whereClause}";
+
+        int result = command.ExecuteNonQuery();
+
+        connection.Close();
+        command.Dispose();
+
+        return result;
     }
 
-    public TModel Insert(TModel model)
+    public virtual TModel Insert(TModel model)
     {
-        //DbContext context = FDatabaseHandle();
-
-        // insert into product (id, ....) 
         EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
 
-        DatabaseHandle.SaveChanges();// here
+        try
+        {
+            DatabaseHandle.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            return default;
+        }
 
-        // DatabaseHandle?.Dispose();
 
         return (TModel)(entr.Entity);
-        
     }
 
-    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
+    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<SqlDataReader, TModel> mapperDelegate)
     {
-        Connection = new NpgsqlConnection();
-        Connection.ConnectionString = ConnectionString;
-        Connection.Open();
+        SqlConnection connection = new SqlConnection();
 
-        NpgsqlCommand command = Connection.CreateCommand();
+        connection.ConnectionString = ConnectionString;
+        connection.Open();
+
+        SqlCommand command = connection.CreateCommand();
+
         command.CommandText = selectQuery;
 
-        NpgsqlDataReader reader = command.ExecuteReader();
+        SqlDataReader reader = command.ExecuteReader();
 
         List<TModel> result = new List<TModel>();
 
@@ -114,6 +130,9 @@ public class DbHandleMultiThreading<TModel> : DbHandleManager<TModel>, IDbHandle
         {
             result.Add(mapperDelegate(reader));
         }
+
+        connection.Close();
+        command.Dispose();
 
         return result;
     }

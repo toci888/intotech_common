@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System.Data.SqlClient;
 using System.Linq.Expressions;
 
 namespace Intotech.Common.Database.Interfaces;
@@ -7,7 +8,7 @@ public interface IDbHandle<TModel>
 {
     IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter);
 
-    IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate);
+    IEnumerable<TModel> RawSelect(string selectQuery, Func<SqlDataReader, TModel> mapperDelegate);
 
     TModel Insert(TModel model);
 

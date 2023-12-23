@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Data.SqlClient;
+using System.Linq.Expressions;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Database;
 using Intotech.Common.Database.Interfaces;
@@ -22,7 +23,7 @@ public abstract class LogicBaseCs<TModel> : ILogicBase<TModel> where TModel : Mo
         
     }
 
-    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
+    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<SqlDataReader, TModel> mapperDelegate)
     {
         return DbHandle.RawSelect(selectQuery, mapperDelegate);
     }

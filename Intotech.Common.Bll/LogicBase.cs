@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Data.SqlClient;
+using System.Linq.Expressions;
 using Intotech.Common.Bll.Interfaces;
 using Intotech.Common.Database;
 using Intotech.Common.Database.Interfaces;
@@ -28,7 +29,7 @@ public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where 
         DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle(), connectionString);
     }
 
-    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
+    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<SqlDataReader, TModel> mapperDelegate)
     {
         using (DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle()))
         {

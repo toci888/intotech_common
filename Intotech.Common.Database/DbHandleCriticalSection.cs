@@ -3,6 +3,7 @@ using Intotech.Common.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Npgsql;
+using System.Data.SqlClient;
 using System.Linq.Expressions;
 
 namespace Intotech.Common.Database;
@@ -67,11 +68,11 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
-        NpgsqlConnection connection = new NpgsqlConnection();
+        SqlConnection connection = new SqlConnection();
         connection.ConnectionString = ConnectionString;
         connection.Open();
 
-        NpgsqlCommand command = connection.CreateCommand();
+        SqlCommand command = connection.CreateCommand();
         command.CommandText = $"delete from {tableName} where {idColumn} = {id}";
 
         int result = command.ExecuteNonQuery();
@@ -84,11 +85,11 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
 
     public virtual int Delete(string tableName, string whereClause)
     {
-        NpgsqlConnection connection = new NpgsqlConnection();
+        SqlConnection connection = new SqlConnection();
         connection.ConnectionString = ConnectionString;
         connection.Open();
 
-        NpgsqlCommand command = connection.CreateCommand();
+        SqlCommand command = connection.CreateCommand();
 
         command.CommandText = $"delete from {tableName} where {whereClause}";
 
@@ -117,18 +118,18 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
         return (TModel)(entr.Entity);
     }
 
-    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
+    public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<SqlDataReader, TModel> mapperDelegate)
     {
-        NpgsqlConnection connection = new NpgsqlConnection();
+        SqlConnection connection = new SqlConnection();
 
         connection.ConnectionString = ConnectionString;
         connection.Open();
 
-        NpgsqlCommand command = connection.CreateCommand();
+        SqlCommand command = connection.CreateCommand();
 
         command.CommandText = selectQuery;
 
-        NpgsqlDataReader reader = command.ExecuteReader();
+        SqlDataReader reader = command.ExecuteReader();
 
         List<TModel> result = new List<TModel>();
 
