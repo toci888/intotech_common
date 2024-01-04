@@ -14,6 +14,7 @@ namespace Intotech.Common.Bll.ChorDtoBll
         TCollectionModelDto GetCollection();
         TDto GetEntity(TDto masterEntity, TCollectionModelDto outputField = default);
         bool SetCollection(TCollectionModelDto entityCollection);
+        bool SetCollection(TCollectionModelDto entityCollection, Expression<Func<TModel, bool>> deleteFilter);
         TDto SetEntity(TDto dtoToSet);
         void SetSelectFilter(Expression<Func<TModel, bool>> selectFilter);
     }

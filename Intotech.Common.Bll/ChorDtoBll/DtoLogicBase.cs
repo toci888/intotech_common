@@ -7,8 +7,8 @@ using Intotech.Common.Bll.Interfaces.ChorDtoBll;
 
 namespace Intotech.Common.Bll.ChorDtoBll;
 
-public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> : 
-    IDtoLogicBase<TModelDto, TModel, TDto, TCollectionModel, TCollectionModelDto> 
+public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionModel, TCollectionModelDto> :
+    IDtoLogicBase<TModelDto, TModel, TDto, TCollectionModel, TCollectionModelDto>
 
     where TLogic : ILogicBase<TModel>
     where TModelDto : DtoModelBase, new()
@@ -114,6 +114,45 @@ public abstract class DtoLogicBase<TModelDto, TModel, TLogic, TDto, TCollectionM
             {
                 CrudLogic.Insert(item);
             }
+        }
+
+        return true;
+    }
+
+    public virtual bool SetCollection(TCollectionModelDto entityCollection, Expression<Func<TModel, bool>> deleteFilter)
+    {
+        IList<TModel> collection = CrudLogic.Select(deleteFilter).ToList();
+
+        //bool doUpdate = true;
+
+        //if (collection.Count() > entityCollection.Count())
+        //{
+        foreach (TModel item in collection)
+        {
+            CrudLogic.Delete(item);
+        }
+
+        //doUpdate = false;
+        //}
+
+        foreach (TModelDto element in entityCollection)
+        {
+            TModel item = element.MapDtoToModel<TModel, TModelDto>();
+
+            if (item == null)
+            {
+                continue;
+            }
+
+            CrudLogic.Insert(item);
+            //if (item.Id > 0)
+            //{
+            //    CrudLogic.Update(item);
+            //}
+            //else
+            //{
+
+            //}
         }
 
         return true;

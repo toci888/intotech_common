@@ -16,7 +16,14 @@ namespace Intotech.Common
 
             Mapper mapper = new Mapper(config);
 
-            return mapper.Map<TDto>(model);
+            try
+            {
+                return mapper.Map<TDto>(model);
+            }
+            catch (Exception ex)
+            {
+                return default(TDto);
+            }
         }
     }
 }

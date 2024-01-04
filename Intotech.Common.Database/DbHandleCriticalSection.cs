@@ -14,7 +14,7 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
 
     public DbHandleCriticalSection(DbContext databaseHandle, DbHandleType type) : this(databaseHandle)
     {
-        
+
     }
 
     public DbHandleCriticalSection(DbContext databaseHandle, bool sc) : this(databaseHandle)
@@ -102,7 +102,14 @@ public class DbHandleCriticalSection<TModel> : IDbHandle<TModel> where TModel : 
     {
         EntityEntry entr = DatabaseHandle.Set<TModel>().Add(model);
 
-        DatabaseHandle.SaveChanges();
+        try
+        {
+            DatabaseHandle.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+
+        }
 
         return (TModel)(entr.Entity);
     }
