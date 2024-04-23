@@ -6,14 +6,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
+using System.Diagnostics;
 
 namespace Intotech.Common.Microservices;
 
-public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where TManager : IManager
+public abstract class ApiSimpleControllerBase<TManager> : ControllerBase, IActionFilter where TManager : IManager 
 {
     protected TManager Manager;
     protected ITranslationEngineI18n I18nTranslation;
     protected string HeaderLanguage = TranslationEngineConsts.LangPl;
+    protected Stopwatch ActionStopwatch = new Stopwatch();
 
     protected ApiSimpleControllerBase(TManager manager, IHttpContextAccessor httpContextAccessor)
     {
@@ -31,4 +33,22 @@ public abstract class ApiSimpleControllerBase<TManager> : ControllerBase where T
 
         Manager.AcceptLanguageHeader(HeaderLanguage);
     }
+
+    [NonAction]
+    public void OnActionExecuted(ActionExecutedContext context)
+    {
+        ActionStopwatch.Stop();
+
+        long miliseconds = ActionStopwatch.ElapsedMilliseconds;
+
+        SaveElapsedData(miliseconds, context);
+    }
+
+    [NonAction]
+    public void OnActionExecuting(ActionExecutingContext context)
+    {
+        ActionStopwatch.Start();
+    }
+
+    protected abstract void SaveElapsedData(long miliseconds, ActionExecutedContext context);
 }
