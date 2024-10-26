@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExcelLibrary" Version="1.2011.7.31" />
+    <PackageReference Include="Npgsql" Version="7.0.4" />
   </ItemGroup>
 
 </Project>
