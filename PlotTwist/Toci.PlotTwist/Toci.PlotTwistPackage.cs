@@ -24,8 +24,8 @@ namespace Toci.PlotTwist
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [Guid(Toci.PlotTwistPackage.PackageGuidString)]
-    public sealed class Toci.PlotTwistPackage : AsyncPackage
+    [Guid(Toci.PlotTwist.PlotTwistPackage.PackageGuidString)]
+    public sealed class PlotTwistPackage : AsyncPackage
     {
          /// <summary>
         /// Toci.PlotTwistPackage GUID string.
