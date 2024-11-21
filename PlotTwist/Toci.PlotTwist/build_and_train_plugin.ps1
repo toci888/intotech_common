@@ -3,7 +3,7 @@
 # 1. Zdefiniuj ścieżki
 $repoUrl = "https://github.com/toci888/intotech_common.git"
 $localRepoPath = "$HOME\intotech_common"
-$vsixProjectPath = "$localRepoPath\PlotTwist"
+$vsixProjectPath = "$localRepoPath\PlotTwist\Toci.PlotTwist"
 
 # 2. Klonowanie repozytorium, jeśli jeszcze nie istnieje
 if (-not (Test-Path -Path $localRepoPath)) {
@@ -20,6 +20,7 @@ if (-not (Test-Path -Path $vsixProjectPath)) {
     Write-Error "VSIX project path not found: $vsixProjectPath"
     exit 1
 }
+
 cd $vsixProjectPath
 
 # 4. Przygotowanie środowiska
@@ -28,8 +29,7 @@ dotnet restore
 
 # 5. Budowanie projektu VSIX
 Write-Host "Building VSIX plugin..."
-dotnet build --configuration Release
-
+dotnet build --configuration Release 
 # 6. Uruchamianie testów jednostkowych
 Write-Host "Running unit tests..."
 dotnet test

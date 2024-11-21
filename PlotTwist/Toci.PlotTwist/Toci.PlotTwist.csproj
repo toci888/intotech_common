@@ -49,6 +49,7 @@
     <Compile Include="Toci.PlotTwistPackage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="build_and_train_plugin.ps1" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
