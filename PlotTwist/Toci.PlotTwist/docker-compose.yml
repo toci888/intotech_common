@@ -1,0 +1,11 @@
+﻿version: "3.8"
+
+services:
+  plottwist:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./PlotTwist:/app
+    working_dir: /app/Toci.PlotTwist
+    command: ["dotnet", "build"]
