@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace Intotech.Common.Bll.Interfaces;
 
-public interface ILogicBase<TModel> where TModel : class
+public interface ILogicBase<TModel> where TModel : ModelBase
 {
     IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter);
 
@@ -18,4 +18,6 @@ public interface ILogicBase<TModel> where TModel : class
     int Delete(string tableName, string idColumn, int id);
 
     int Delete(string tableName, string whereClause);
+
+    int Delete(Expression<Func<TModel, bool>> selectFilter);
 }

@@ -2,7 +2,7 @@
 
 public interface ILogic2DtoHandler<out TDto, TDtoLogic, in TModel, TCollectionModelDto> 
     where TDtoLogic : IAbsDtoLogic<TModel, ILogicBase<TModel>, TDto, TCollectionModelDto>
-    where TModel : class
+    where TModel : ModelBase
 {
     TDto GetData(TModel modelConstraint);
 }

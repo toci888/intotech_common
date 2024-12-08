@@ -30,13 +30,13 @@
             string fileContent = FileUtils.GetTextFromFile(_dbContextFilePath);
             
 
-            bool isScaffoldConnectionStringRight = fileContent.Contains(DbSetupEntity.CustomDbConnectionString);
+            //bool isScaffoldConnectionStringRight = fileContent.Contains(DbSetupEntity.CustomDbConnectionString);
 
 
-            if (isDbFresh || !isScaffoldConnectionStringRight)
-            {
-                return DbScaffoldManager.RunScaffold();
-            }
+            //if (isDbFresh || !isScaffoldConnectionStringRight)
+            //{
+            //    return DbScaffoldManager.RunScaffold();
+            //}
 
             return false;
         }

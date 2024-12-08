@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Intotech.Common.Bll.Interfaces
+﻿namespace Intotech.Common.Bll.Interfaces
 {
-    public class DtoModelBase
+    public abstract class DtoModelBase
     {
-        //?
+        public virtual int Id { get; set; }
     }
 }

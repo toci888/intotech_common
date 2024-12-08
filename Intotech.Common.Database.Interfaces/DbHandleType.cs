@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Intotech.Common.Bll.Interfaces.Seed
+namespace Intotech.Common.Database.Interfaces
 {
-    public interface ISeedBase<TModel> : ILogicBase<TModel> where TModel : ModelBase
+    public enum DbHandleType
     {
+        TypeMt,
+        TypeSc
     }
 }

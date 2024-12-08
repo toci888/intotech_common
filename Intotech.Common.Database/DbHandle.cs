@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Npgsql;
+using System.Linq.Expressions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Intotech.Common.Database;
@@ -127,5 +128,15 @@ public class DbHandle<TModel> : IDbHandle<TModel> where TModel : class
     public void Dispose()
     {
         DatabaseHandle?.Dispose();
+    }
+
+    public IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int Delete(Expression<Func<TModel, bool>> selectFilter)
+    {
+        throw new NotImplementedException();
     }
 }

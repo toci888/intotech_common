@@ -7,56 +7,92 @@ using Npgsql;
 
 namespace Intotech.Common.Bll;
 
-public abstract class LogicBase<TModel> : ILogicBase<TModel> where TModel : class
+public abstract class LogicBase<TModel> : ILogicBase<TModel>, IDisposable where TModel : ModelBase
 {
     protected abstract DbContext GetEfHandle();
     protected IDbHandle<TModel> DbHandle;
+    protected IErrorLogger ErrorLogger;
 
-    protected LogicBase()
+    public LogicBase(IErrorLogger errorLogger)
     {
-        DbHandle = new DbHandle<TModel>(GetEfHandle);
+        DbHandle = new DbHandleCriticalSection<TModel>(GetEfHandle(), errorLogger);
+    }
+
+    protected LogicBase(bool multi = false)
+    {
+        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
     }
 
     protected LogicBase(string connectionString)
     {
-        DbHandle = new DbHandle<TModel>(GetEfHandle, connectionString);
+        DbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle(), connectionString);
     }
-
 
     public virtual IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate)
     {
-        return DbHandle.RawSelect(selectQuery, mapperDelegate);
+        using (DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle()))
+        {
+            return DbHandle.RawSelect(selectQuery, mapperDelegate);
+        }
     }
 
     public virtual TModel Insert(TModel model)
     {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
         return DbHandle.Insert(model);
+
     }
 
     public virtual IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter)
     {
-        List<TModel> result = DbHandle.Select().Where(filter).ToList();
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+        {
+            List<TModel> result = dbHandle.Select(filter).ToList();
 
-        return result;
+            return result;
+        }
     }
 
     public virtual TModel Update(TModel model)
     {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
         return DbHandle.Update(model);
+
     }
 
     public virtual int Delete(TModel model)
     {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
         return DbHandle.Delete(model);
+    }
+
+    public virtual int Delete(Expression<Func<TModel, bool>> selectFilter)
+    {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
+        return DbHandle.Delete(selectFilter);
     }
 
     public virtual int Delete(string tableName, string idColumn, int id)
     {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
         return DbHandle.Delete(tableName, idColumn, id);
+
     }
 
     public virtual int Delete(string tableName, string whereClause)
     {
+        DbHandleMultiThreading<TModel> dbHandle = new DbHandleMultiThreading<TModel>(GetEfHandle());
+
         return DbHandle.Delete(tableName, whereClause);
+    }
+
+    public void Dispose()
+    {
+        //DbHandle?.Dispose();
     }
 }

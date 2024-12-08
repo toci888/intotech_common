@@ -1,10 +1,11 @@
 ﻿using Npgsql;
+using System.Linq.Expressions;
 
 namespace Intotech.Common.Database.Interfaces;
 
-public interface IDbHandle<TModel> : IDisposable
+public interface IDbHandle<TModel>
 {
-    IQueryable<TModel> Select();
+    IEnumerable<TModel> Select(Expression<Func<TModel, bool>> filter);
 
     IEnumerable<TModel> RawSelect(string selectQuery, Func<NpgsqlDataReader, TModel> mapperDelegate);
 
@@ -15,6 +16,8 @@ public interface IDbHandle<TModel> : IDisposable
     int Delete(TModel model);
 
     int Delete(string tableName, string idColumn, int id);
-
+    
     int Delete(string tableName, string whereClause);
+
+    int Delete(Expression<Func<TModel, bool>> selectFilter);
 }

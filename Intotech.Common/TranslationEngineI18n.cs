@@ -19,6 +19,11 @@ namespace Intotech.Common
 
         public virtual string Translate(string langCode, string tag)
         {
+            if (langCode == null)
+            {
+                langCode = "pl-PL";
+            }
+
             return ApplicationTranslationData.ContainsKey(langCode) && ApplicationTranslationData[langCode].ContainsKey(tag) ? ApplicationTranslationData[langCode][tag] : tag;
         }
     }
