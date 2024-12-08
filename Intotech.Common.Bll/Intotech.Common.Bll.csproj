@@ -14,12 +14,13 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="4.8.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Intotech.Common.Bll.Interfaces\Intotech.Common.Bll.Interfaces.csproj" />
     <ProjectReference Include="..\Intotech.Common.Database.Interfaces\Intotech.Common.Database.Interfaces.csproj" />
+    <ProjectReference Include="..\Intotech.Common.Database\Intotech.Common.Database.csproj" />
     <ProjectReference Include="..\Intotech.Common.Interfaces\Intotech.Common.Interfaces.csproj" />
     <ProjectReference Include="..\Intotech.Common\Intotech.Common.csproj" />
   </ItemGroup>
